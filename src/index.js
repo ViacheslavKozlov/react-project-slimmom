@@ -7,13 +7,13 @@ import App from "./Components/App";
 
 ReactDOM.render(
   <>
-    <Provider>
-      <PersistGate>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      </PersistGate>
-    </Provider>
+    {/* <Provider> */}
+    {/* <PersistGate> */}
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+    {/* </PersistGate> */}
+    {/* </Provider> */}
   </>,
   document.getElementById("root")
 );
