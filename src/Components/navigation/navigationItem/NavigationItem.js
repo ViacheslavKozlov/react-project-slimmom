@@ -21,6 +21,7 @@ const NavigationItem = ({
             </NavLink>
           ) : (
             <NavLink to={path} exact={exact}>
+              <img src="../../../images/logo-desc-min.jpg" alt="Logo"></img>
               <p>
                 Slim<span>Mom</span>
               </p>

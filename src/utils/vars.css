@@ -1,0 +1,16 @@
+:root {
+  --main-color: #ffffff;
+  --main-txt-color: #9b9faa;
+  --headline-txt-color: #212121;
+  --linear-color: #e0e0e0;
+  --active-color: #fc842d;
+  --calories-color: #264061;
+}
+
+/* how to use in modules:
+myComponent.module.css
+@import '......../vars.css';
+
+.component{
+  color: var(--main-color);
+} */

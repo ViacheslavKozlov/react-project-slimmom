@@ -24,10 +24,6 @@ const Navigation = ({ routes = mainRoutes }) => {
 
         {isAuth && (
           <ul>
-            <li>
-              <span>Юзер</span>
-            </li>
-
             <li onClick={toggle}>
               <span>Выйти</span>
             </li>

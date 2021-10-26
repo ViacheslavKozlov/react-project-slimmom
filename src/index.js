@@ -9,7 +9,6 @@ ReactDOM.render(
   <>
     {/* <Provider> */}
     {/* <PersistGate> */}
-
     <BrowserRouter>
       <App />
     </BrowserRouter>
