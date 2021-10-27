@@ -13,17 +13,17 @@ const dailyCaloriesReducer = createReducer(
   }
 );
 
-const dailyCaloriesErrorReducer = createReducer("", {
-  [getDailyRateError]: (_, action) => action.payload,
-});
-
 const dailyRateLoaderReducer = createReducer(false, {
   [getDailyRateRequest]: () => true,
   [getDailyRateSucces]: () => false,
   [getDailyRateError]: () => false,
 });
 
-export const contactsReducer = combineReducers({
+const dailyCaloriesErrorReducer = createReducer("", {
+  [getDailyRateError]: (_, action) => action.payload,
+});
+
+export const dailyRateReducer = combineReducers({
   reponse: dailyCaloriesReducer,
   isLoading: dailyRateLoaderReducer,
   error: dailyCaloriesErrorReducer,
