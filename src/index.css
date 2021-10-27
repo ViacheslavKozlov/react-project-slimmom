@@ -16,7 +16,7 @@
     width: 768px;
   }
 
-  @media screen and (min-width: 1024px) {
+  @media screen and (min-width: 1280px) {
     padding-left: 71px;
     padding-right: 71px;
     width: 1024px;
