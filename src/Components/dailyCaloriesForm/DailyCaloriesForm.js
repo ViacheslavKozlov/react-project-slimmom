@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import { Formik } from "formik";
 import { getDailyRateOperation } from "../../redux/dailyRate/dailyRateOperations";
 import { useDispatch } from "react-redux";
+import { useLocation } from "react-router";
 import axios from "axios";
 import style from "./DailyCaloriesForm.module.css";
+import Modal from "../modal/Modal";
 
 // {
 //   "weight": 100,
@@ -24,6 +26,14 @@ const initialState = {
 const DailyCaloriesForm = () => {
   const [userData, setUserData] = useState(initialState);
 
+  const [modal, setModalOpen] = useState(false);
+
+  const location = useLocation();
+
+  const toggleModal = () => {
+    setModalOpen((prev) => !prev);
+  };
+
   // const dispatch = useDispatch();
 
   const handleSubmit = async (e) => {
@@ -31,7 +41,7 @@ const DailyCaloriesForm = () => {
     // dispatch(getDailyRateOperation(userData));
     try {
       const response = await axios.post(
-        `https://slimmom-backend.goit.global/daily-rate`,
+        `https://slimmom-backend.goit.global/daily-rate/`,
         userData
       );
       // dispatch(getDailyRateSucces({ ...response.data }));
@@ -40,6 +50,7 @@ const DailyCaloriesForm = () => {
       // dispatch(getDailyRateError(error.message));
       console.log(error);
     }
+    toggleModal();
     // dispatch(getDailyRateOperation(userData));
   };
 
@@ -52,13 +63,16 @@ const DailyCaloriesForm = () => {
   const { weight, height, age, desiredWeight, bloodType } = userData;
   return (
     <>
-      <div className={style.formWrapper}>
-        <h1 className={style.formTitle}>
-          Просчитай свою суточную норму калорий прямо сейчас
+      {modal && <Modal toggleModal={toggleModal} />}
+      <div className={style.form_wrapper}>
+        <h1 className={style.form_title}>
+          {location.pathname === "/calculator"
+            ? "Узнай свою суточную норму калорий"
+            : "Просчитай свою суточную норму калорий прямо сейчас"}
         </h1>
         <form className={style.form} onSubmit={handleSubmit}>
-          <div className={style.inputsWrapper}>
-            <div>
+          <div className={style.inputs_wrapper}>
+            <div className={style.inputs_box_first}>
               <input
                 className={style.inputItem}
                 id="userHeight"
@@ -71,8 +85,7 @@ const DailyCaloriesForm = () => {
                 name="height"
                 value={height}
               />
-            </div>
-            <div>
+
               <input
                 className={style.inputItem}
                 id="userAge"
@@ -85,8 +98,7 @@ const DailyCaloriesForm = () => {
                 name="age"
                 value={age}
               />
-            </div>
-            <div>
+
               <input
                 className={style.inputItem}
                 id="userWeight"
@@ -100,7 +112,7 @@ const DailyCaloriesForm = () => {
                 value={weight}
               />
             </div>
-            <div>
+            <div className={style.inputs_box_second}>
               <input
                 className={style.inputItem}
                 id="userDesiredWeight"
@@ -113,9 +125,7 @@ const DailyCaloriesForm = () => {
                 name="desiredWeight"
                 value={desiredWeight}
               />
-            </div>
 
-            <div>
               <p>Группа крови *</p>
               <div className={style.inputRadioWrapper}>
                 <label>
