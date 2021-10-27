@@ -10,7 +10,6 @@
 
 /* how to use in modules:
 myComponent.module.css
-@import '......../vars.css';
 
 .component{
   color: var(--main-color);
