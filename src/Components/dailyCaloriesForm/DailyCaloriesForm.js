@@ -50,7 +50,12 @@ const DailyCaloriesForm = () => {
 
   const onHandleChange = (e) => {
     const { value, name } = e.target;
-    console.log();
+    // console.log(Number(""));
+    if (value === "") {
+      setUserData((prev) => ({ ...prev, [name]: value }));
+      localStorage.setItem([name], JSON.stringify(value));
+      return;
+    }
     setUserData((prev) => ({ ...prev, [name]: Number(value) }));
     // if (type === "radio") {
     //   return;
@@ -62,7 +67,6 @@ const DailyCaloriesForm = () => {
   return (
     <>
       {modal && <Modal toggleModal={toggleModal} dailyRate={dailyRate} />}
-      <div className="container">jkdaksjdashgdjhasd</div>
       <div className={`${style.form_wrapper} container`}>
         <h1 className={style.form_title}>
           {location.pathname === "/calculator"
@@ -72,13 +76,16 @@ const DailyCaloriesForm = () => {
         <form className={style.form} onSubmit={handleSubmit}>
           <div className={style.inputs_wrapper}>
             <div className={style.inputs_box_first}>
+              {/* <label>Рост</label> */}
               <input
                 className={style.inputItem}
                 id="userHeight"
                 type="number"
                 required
+                autoComplete="off"
                 min="100"
                 max="250"
+                // pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
                 onChange={onHandleChange}
                 placeholder="Рост *"
                 name="height"
@@ -90,6 +97,7 @@ const DailyCaloriesForm = () => {
                 id="userAge"
                 type="number"
                 required
+                autoComplete="off"
                 min="18"
                 max="100"
                 onChange={onHandleChange}
@@ -102,6 +110,7 @@ const DailyCaloriesForm = () => {
                 className={style.inputItem}
                 id="userWeight"
                 type="number"
+                autoComplete="off"
                 required
                 min="20"
                 max="500"
@@ -117,6 +126,7 @@ const DailyCaloriesForm = () => {
                 id="userDesiredWeight"
                 type="number"
                 required
+                autoComplete="off"
                 min="20"
                 max="500"
                 onChange={onHandleChange}
