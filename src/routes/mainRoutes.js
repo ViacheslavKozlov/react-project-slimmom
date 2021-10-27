@@ -32,8 +32,8 @@ export const mainRoutes = [
     isRestricted: false,
   },
   {
-    name: "Регистрация",
-    path: "/register",
+    name: "Вход",
+    path: "/login",
     exact: true,
     component: lazy(() =>
       import("../pages/AuthPage" /*webpackChunkName:"AuthPage"*/)
@@ -42,8 +42,8 @@ export const mainRoutes = [
     isRestricted: true,
   },
   {
-    name: "Вход",
-    path: "/login",
+    name: "Регистрация",
+    path: "/register",
     exact: true,
     component: lazy(() =>
       import("../pages/AuthPage" /*webpackChunkName:"AuthPage"*/)

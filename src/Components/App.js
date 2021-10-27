@@ -9,8 +9,8 @@ const App = () => {
   const [isAuth, setIsAuth] = useState(false);
   return (
     <>
-      <ButtonAdd />
-      <Button buttonName="dfghjkl"/>
+      {/* <ButtonAdd />
+      <Button buttonName="dfghjkl"/> */}
       <AuthContext.Provider value={[isAuth, setIsAuth]}>
         <Header />
         <Main />
