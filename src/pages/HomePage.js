@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import DailyCaloriesForm from "../Components/dailyCaloriesForm/DailyCaloriesForm";
-import Modal from "../Components/modal/Modal";
 
 const HomePage = () => {
   return (
