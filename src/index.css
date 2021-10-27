@@ -1,11 +1,5 @@
 @import-normalize;
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 :global(.container) {
   margin: 0 auto;
   width: 100%;

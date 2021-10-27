@@ -6,7 +6,6 @@ import { PersistGate } from "redux-persist/es/integration/react";
 import App from "./Components/App";
 import Spinner from "./Components/loader/Loader";
 import store, { persistor } from "./redux/store";
-import "./index.css";
 
 ReactDOM.render(
   <>
