@@ -1,0 +1,36 @@
+.statistics_wrapper {
+  padding: 40px 0;
+  background-color: #f0f1f3;
+}
+.statistics_box:not(:last-child) {
+  margin-bottom: 40px;
+}
+.statistics_title {
+  margin: 0 0 20px 0;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.2;
+  letter-spacing: 0.04em;
+
+  color: #212121;
+}
+
+.statistic_box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.statistic_box:not(:last-child) {
+  margin-bottom: 15px;
+}
+
+.statistic_text {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.2;
+  letter-spacing: 0.04em;
+
+  margin: 0;
+
+  color: #9b9faa;
+}
