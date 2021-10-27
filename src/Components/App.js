@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Button, ButtonAdd } from "./button/Button";
 import Header from "./header/Header";
 import Main from "./main/Main";
 
@@ -8,6 +9,8 @@ const App = () => {
   const [isAuth, setIsAuth] = useState(false);
   return (
     <>
+      <ButtonAdd />
+      <Button buttonName="dfghjkl"/>
       <AuthContext.Provider value={[isAuth, setIsAuth]}>
         <Header />
         <Main />
