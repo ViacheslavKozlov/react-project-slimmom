@@ -8,7 +8,7 @@ const Svg = ({svgName}) => {
         <svg  width="20" height="20" fill="white"> 
             <use href={ sprite + "#add"}/>
 </svg >
-    );
+    )
 }
 
 export  {Svg};

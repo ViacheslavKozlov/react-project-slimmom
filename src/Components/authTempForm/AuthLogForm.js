@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import styles from "./AuthTempForm.module.css";
+import styles from "./AuthLogForm.module.css";
 import { mainRoutes } from "../../routes/mainRoutes";
 
 const AuthForm = ({ handleSubmit, btnName }) => {
@@ -14,17 +14,9 @@ const AuthForm = ({ handleSubmit, btnName }) => {
     type === "email" && setEmail(value);
     type === "password" && setPassword(value);
   };
-
-  // const formReset = () => {
-  //   setName("");
-  //   setEmail("");
-  //   setPassword("");
-  // };
-
   const onSubmit = (e) => {
     e.preventDefault();
     handleSubmit({ username: name, email, password });
-    // formReset();
   };
   return (
     <form onSubmit={onSubmit}>

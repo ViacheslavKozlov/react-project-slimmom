@@ -9,12 +9,13 @@ import {
   getUserSuccess,
 } from "./authActions";
 
-const persistConfig = {
-  key: "refresh",
-  version: 1,
-  storage,
-  whitelist: ["refreshToken", "sid"],
+const persistConfig = { 
+  key: "refresh", 
+  version: 1, 
+  storage, 
+  whitelist: ["accessToken","refreshToken", "sid"], 
 };
+
 
 const userInfo = createReducer(
   {},
