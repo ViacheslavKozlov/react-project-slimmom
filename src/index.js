@@ -3,6 +3,8 @@ import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import { PersistGate } from "redux-persist/es/integration/react";
+import "./index.css";
+import "modern-normalize/modern-normalize.css";
 import App from "./Components/App";
 import Spinner from "./Components/loader/Loader";
 import store, { persistor } from "./redux/store";

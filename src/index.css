@@ -1,25 +1,34 @@
-@import-normalize;
+/* @import-normalize; */
+:root {
+  --main-color: #ffffff;
+  --main-txt-color: #9b9faa;
+  --headline-txt-color: #212121;
+  --linear-color: #e0e0e0;
+  --active-color: #fc842d;
+  --calories-color: #264061;
+}
+
+/* how to use in modules:
+myComponent.module.css
+
+.component{
+  color: var(--main-color);
+} */
 
 :global(.container) {
   margin: 0 auto;
   width: 100%;
 
   @media screen and (min-width: 320px) {
-    padding-left: 20px;
-    padding-right: 20px;
     width: 320px;
   }
 
   @media screen and (min-width: 768px) {
-    padding-left: 76px;
-    padding-right: 76px;
     width: 768px;
   }
 
   @media screen and (min-width: 1280px) {
-    padding-left: 71px;
-    padding-right: 71px;
-    width: 1024px;
+    width: 1280px;
   }
 }
 
