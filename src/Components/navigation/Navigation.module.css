@@ -4,78 +4,81 @@ ol {
   list-style: none;
   margin: 0;
 }
-.itemUser {
-  text-decoration: none;
-  color: var(--headline-txt-color);
-  font-family: Gotham Pro;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 14px;
-  line-height: 13px;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-}
 
-.item {
-  text-decoration: none;
-  color: var(--main-txt-color);
-  font-family: Gotham Pro;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 14px;
-  line-height: 13px;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-}
+@media screen and (min-width: 1024px) {
+  .itemUser {
+    text-decoration: none;
+    color: var(--headline-txt-color);
+    font-family: Gotham Pro;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 13px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
 
-.item:hover {
-  cursor: pointer;
-  color: var(--headline-txt-color);
-}
+  .item {
+    text-decoration: none;
+    color: var(--main-txt-color);
+    font-family: Gotham Pro;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 13px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
 
-.item:first-child {
-  margin-right: 20px;
-}
-.item:last-child::before {
-  position: absolute;
-  width: 32px;
-  height: 0px;
-  right: 170px;
-  top: 123px;
-  transform: rotate(90deg);
+  .item:hover {
+    cursor: pointer;
+    color: var(--headline-txt-color);
+  }
 
-  content: "";
-  display: block;
-  margin-left: 10px;
+  .item:first-child {
+    margin-right: 20px;
+  }
+  .item:last-child::before {
+    position: absolute;
+    width: 32px;
+    height: 0px;
+    right: 170px;
+    top: 123px;
+    transform: rotate(90deg);
 
-  border: 2px solid #e0e0e0;
-}
+    content: "";
+    display: block;
+    margin-left: 10px;
 
-.item:not(:last-child) {
-  margin-right: 22px;
-}
+    border: 2px solid #e0e0e0;
+  }
 
-.listMain {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 385px;
-}
+  .item:not(:last-child) {
+    margin-right: 22px;
+  }
 
-.listSecondary {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 115px;
-}
+  .listMain {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 385px;
+  }
 
-.container {
-  padding-top: 82px;
-  padding-bottom: 143px;
-  padding-left: 90px;
-  padding-right: 115px;
-  display: flex;
-  justify-content: space-between;
+  .listSecondary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 115px;
+  }
+
+  .container {
+    padding-top: 82px;
+    padding-bottom: 143px;
+    padding-left: 90px;
+    padding-right: 115px;
+    display: flex;
+    justify-content: space-between;
+  }
 }
 
 @import "../../utils/vars.css";
