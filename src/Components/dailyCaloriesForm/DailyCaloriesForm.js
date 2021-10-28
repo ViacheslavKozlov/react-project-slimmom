@@ -1,26 +1,19 @@
 import React, { useState } from "react";
-import { Formik } from "formik";
-import { getDailyRateOperation } from "../../redux/dailyRate/dailyRateOperations";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router";
-import axios from "axios";
 import style from "./DailyCaloriesForm.module.css";
 import Modal from "../modal/Modal";
-
-// {
-//   "weight": 100,
-//   "height": 170,
-//   "age": 30,
-//   "desiredWeight": 60,
-//   "bloodType": 1
-// }
+import { dailyRateSelector } from "../../redux/dailyRate/dailyRateSelectors";
+import { getDailyRateOperation } from "../../redux/dailyRate/dailyRateOperations";
+import { Button } from "../button/Button";
 
 const initialState = {
   weight: JSON.parse(localStorage.getItem("weight")) || "",
   height: JSON.parse(localStorage.getItem("height")) || "",
   age: JSON.parse(localStorage.getItem("age")) || "",
   desiredWeight: JSON.parse(localStorage.getItem("desiredWeight")) || "",
-  bloodType: JSON.parse(localStorage.getItem("bloodType")) || "1",
+  // bloodType: 1,
+  bloodType: JSON.parse(localStorage.getItem("bloodType")) || 1,
 };
 
 const DailyCaloriesForm = () => {
@@ -28,43 +21,53 @@ const DailyCaloriesForm = () => {
 
   const [modal, setModalOpen] = useState(false);
 
+  const dailyRate = useSelector(dailyRateSelector);
+
+  const dispatch = useDispatch();
+
   const location = useLocation();
 
   const toggleModal = () => {
     setModalOpen((prev) => !prev);
   };
 
-  // const dispatch = useDispatch();
-
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    // dispatch(getDailyRateOperation(userData));
-    try {
-      const response = await axios.post(
-        `https://slimmom-backend.goit.global/daily-rate/`,
-        userData
-      );
-      // dispatch(getDailyRateSucces({ ...response.data }));
-      console.log(response.data);
-    } catch (error) {
-      // dispatch(getDailyRateError(error.message));
-      console.log(error);
+    dispatch(getDailyRateOperation(userData));
+
+    localStorage.removeItem("weight");
+    localStorage.removeItem("height");
+    localStorage.removeItem("age");
+    localStorage.removeItem("desiredWeight");
+    localStorage.removeItem("bloodType");
+
+    setUserData({ ...initialState });
+    if (location.pathname === "/calculator") {
+      return;
     }
     toggleModal();
-    // dispatch(getDailyRateOperation(userData));
   };
 
   const onHandleChange = (e) => {
     const { value, name } = e.target;
-    setUserData((prev) => ({ ...prev, [name]: value }));
-    localStorage.setItem([name], JSON.stringify(value));
+    // console.log(Number(""));
+    if (value === "") {
+      setUserData((prev) => ({ ...prev, [name]: value }));
+      localStorage.setItem([name], JSON.stringify(value));
+      return;
+    }
+    setUserData((prev) => ({ ...prev, [name]: Number(value) }));
+    // if (type === "radio") {
+    //   return;
+    // }
+    localStorage.setItem([name], JSON.stringify(Number(value)));
   };
 
   const { weight, height, age, desiredWeight, bloodType } = userData;
   return (
     <>
-      {modal && <Modal toggleModal={toggleModal} />}
-      <div className={style.form_wrapper}>
+      {modal && <Modal toggleModal={toggleModal} dailyRate={dailyRate} />}
+      <div className={`${style.form_wrapper} container`}>
         <h1 className={style.form_title}>
           {location.pathname === "/calculator"
             ? "Узнай свою суточную норму калорий"
@@ -73,13 +76,16 @@ const DailyCaloriesForm = () => {
         <form className={style.form} onSubmit={handleSubmit}>
           <div className={style.inputs_wrapper}>
             <div className={style.inputs_box_first}>
+              {/* <label>Рост</label> */}
               <input
                 className={style.inputItem}
                 id="userHeight"
                 type="number"
                 required
+                autoComplete="off"
                 min="100"
                 max="250"
+                // pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
                 onChange={onHandleChange}
                 placeholder="Рост *"
                 name="height"
@@ -91,6 +97,7 @@ const DailyCaloriesForm = () => {
                 id="userAge"
                 type="number"
                 required
+                autoComplete="off"
                 min="18"
                 max="100"
                 onChange={onHandleChange}
@@ -103,6 +110,7 @@ const DailyCaloriesForm = () => {
                 className={style.inputItem}
                 id="userWeight"
                 type="number"
+                autoComplete="off"
                 required
                 min="20"
                 max="500"
@@ -118,6 +126,7 @@ const DailyCaloriesForm = () => {
                 id="userDesiredWeight"
                 type="number"
                 required
+                autoComplete="off"
                 min="20"
                 max="500"
                 onChange={onHandleChange}
@@ -132,7 +141,7 @@ const DailyCaloriesForm = () => {
                   <input
                     type="radio"
                     className={style.radioInput}
-                    checked={bloodType === "1"}
+                    checked={bloodType === 1}
                     name="bloodType"
                     value="1"
                     onChange={onHandleChange}
@@ -143,7 +152,7 @@ const DailyCaloriesForm = () => {
                   <input
                     type="radio"
                     className={style.radioInput}
-                    checked={bloodType === "2"}
+                    checked={bloodType === 2}
                     name="bloodType"
                     value="2"
                     onChange={onHandleChange}
@@ -154,7 +163,7 @@ const DailyCaloriesForm = () => {
                   <input
                     type="radio"
                     className={style.radioInput}
-                    checked={bloodType === "3"}
+                    checked={bloodType === 3}
                     name="bloodType"
                     value="3"
                     onChange={onHandleChange}
@@ -165,7 +174,7 @@ const DailyCaloriesForm = () => {
                   <input
                     type="radio"
                     className={style.radioInput}
-                    checked={bloodType === "4"}
+                    checked={bloodType === 4}
                     name="bloodType"
                     value="4"
                     onChange={onHandleChange}
@@ -174,6 +183,7 @@ const DailyCaloriesForm = () => {
                 </label>
               </div>
             </div>
+            {/* <Button buttonName="Похудеть" /> */}
           </div>
           <button className={style.formbtn} type="submit">
             Похудеть
