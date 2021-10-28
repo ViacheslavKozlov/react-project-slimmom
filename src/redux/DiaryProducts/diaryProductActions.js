@@ -18,10 +18,10 @@ export const deleteProductError = createAction(
   "DiaryProducts/deleteProductError"
 );
 
-export const getProductRequest = createAction(
+export const getProductsRequest = createAction(
   "DiaryProducts/getProductRequest"
 );
-export const getProductSuccess = createAction(
+export const getProductsSuccess = createAction(
   "DiaryProducts/getProductSuccess"
 );
-export const getProductError = createAction("DiaryProducts/getProductError");
+export const getProductsError = createAction("DiaryProducts/getProductError");

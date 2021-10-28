@@ -5,7 +5,7 @@ import { deleteContact } from "../../../redux/DiaryProducts/diaryProductOperatio
 
 const DiaryProductsListItem = ({ eatenProduct }) => {
   const dispatch = useDispatch();
-  const deleteContactItem = () => dispatch(deleteContact(eatenProducts.id));
+  // const deleteContactItem = () => dispatch(deleteContact(eatenProducts.id));
   return (
     <>
       <li className="data">
@@ -16,7 +16,7 @@ const DiaryProductsListItem = ({ eatenProduct }) => {
           className="btn"
           type="button"
           id={eatenProduct.id}
-          onClick={deleteContactItem}
+          // onClick={deleteContactItem}
         >
           Delete
         </button>

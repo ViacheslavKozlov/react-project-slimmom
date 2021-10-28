@@ -1,10 +1,10 @@
 import React from "react";
 import DiaryProductsListItem from "./diaryProductsListItem/DiaryProductsListItem";
 import { useSelector } from "react-redux";
-import { contactsFilteredContacts } from "../../redux/Contacts/contactsSelectors";
+import { getEatenProducts } from "../../redux/DiaryProducts/diaryProductSelector";
 
 const DiaryProductsList = () => {
-  const contacts = useSelector(contactsFilteredContacts);
+  const eatenProducts = useSelector(getEatenProducts);
   return (
     <>
       <ul className="list">
