@@ -5,11 +5,16 @@ import {
   getDailyRateRequest,
   getDailyRateSucces,
 } from "./dailyRateActions";
+import { loginAuthSuccess, registerAuthSuccess } from "../auth/authActions";
+const initialState = {};
 
 const dailyCaloriesReducer = createReducer(
   {},
   {
     [getDailyRateSucces]: (_, action) => action.payload,
+    // [getDailyRateRequest]: () => {},
+    // [registerAuthSuccess]: () => {},
+    // [loginAuthSuccess]: () => initialState,
   }
 );
 
