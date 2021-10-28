@@ -1,12 +1,5 @@
 // import { createSelector } from "@reduxjs/toolkit";
 
-// const contactsSelector = (state) => state.;
-// const filterSelector = (state) => state.;
-// const loaderSelector = (state) => state.;
+const dailyRateSelector = (state) => state.dailyRate.response;
 
-// export {
-//   contactsSelector,
-//   filterSelector,
-//   loaderSelector,
-//   filteredContactsSelector,
-// };
+export { dailyRateSelector };
