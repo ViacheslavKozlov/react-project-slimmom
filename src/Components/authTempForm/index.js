@@ -1,1 +1,1 @@
-export { default } from "./AuthTempForm.js";
+export { default } from "./AuthLogForm.js";

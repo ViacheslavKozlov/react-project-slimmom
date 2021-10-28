@@ -32,16 +32,6 @@ export const mainRoutes = [
     isRestricted: false,
   },
   {
-    name: "Регистрация",
-    path: "/register",
-    exact: true,
-    component: lazy(() =>
-      import("../pages/AuthPage" /*webpackChunkName:"AuthPage"*/)
-    ),
-    isPrivate: false,
-    isRestricted: true,
-  },
-  {
     name: "Вход",
     path: "/login",
     exact: true,
@@ -51,4 +41,15 @@ export const mainRoutes = [
     isPrivate: false,
     isRestricted: true,
   },
+  {
+    name: "Регистрация",
+    path: "/register",
+    exact: true,
+    component: lazy(() =>
+      import("../pages/AuthPage" /*webpackChunkName:"AuthPage"*/)
+    ),
+    isPrivate: false,
+    isRestricted: true,
+  },
+  
 ];
