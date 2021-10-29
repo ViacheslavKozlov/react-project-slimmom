@@ -27,7 +27,7 @@ const userInfo = createReducer(
   }
 );
 
-const isAuth = createReducer(false, {
+const isAuthIn = createReducer(false, {
   // [registerAuthSuccess]: () => true,
   [loginAuthSuccess]: () => true,
   [logoutAuthSuccess]: () => false,
@@ -38,7 +38,7 @@ const persistedUsersData = persistReducer(persistConfig, userInfo);
 
 const userRedusers = combineReducers({
   userInfo: persistedUsersData,
-  isAuth,
+  isAuthIn,
 });
 
 export default userRedusers;
