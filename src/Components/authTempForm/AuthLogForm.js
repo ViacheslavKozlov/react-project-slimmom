@@ -2,17 +2,11 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import styles from "./AuthLogForm.module.css";
 import { mainRoutes } from "../../routes/mainRoutes";
-import { useSelector } from "react-redux";
-import { dailyRateSelector } from "../../redux/dailyRate/dailyRateSelectors";
-import { useHistory } from "react-router";
 
 const AuthForm = ({ handleSubmit, btnName }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  const state = useSelector(dailyRateSelector);
-  const history = useHistory();
 
   const onChange = (e) => {
     const { type, value } = e.target;
@@ -23,12 +17,6 @@ const AuthForm = ({ handleSubmit, btnName }) => {
   const onSubmit = (e) => {
     e.preventDefault();
     handleSubmit({ username: name, email, password });
-    // console.log(state.userData);
-    // if (state.userData.notAllowedProducts !== []) {
-    //   history.push("/calculator");
-    //   return;
-    // }
-    // history.push("/diary");
   };
   return (
     <form onSubmit={onSubmit}>

@@ -1,9 +1,11 @@
 import axios from "axios";
 import {
+  getDailyRateByDateError,
   getDailyRateByDateSucces,
   getDailyRateError,
   getDailyRateRequest,
   getDailyRateSucces,
+  getUserInfoError,
   getUserInfoSucces,
 } from "./dailyRateActions";
 
@@ -33,7 +35,7 @@ const getUserInfoOperation = () => async (dispatch) => {
 
     dispatch(getUserInfoSucces({ ...response.data }));
   } catch (error) {
-    dispatch(getDailyRateError(error.message));
+    dispatch(getUserInfoError(error.message));
   }
 };
 
@@ -44,10 +46,7 @@ const getDailyRateOperation =
     try {
       const response = await axios.post(
         `${BASE_URL}/daily-rate/${id}`,
-        userData,
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
+        userData
       );
       if (response.data.notAllowedProducts.length >= 5) {
         const normData = {
@@ -68,13 +67,11 @@ const getDailyRateByDateOperation =
   async (dispatch) => {
     // dispatch(getDailyRateRequest());
     try {
-      const response = await axios.post(`${BASE_URL}/day/info`, date, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const response = await axios.post(`${BASE_URL}/day/info`, date);
 
       dispatch(getDailyRateByDateSucces({ ...response.data }));
     } catch (error) {
-      dispatch(getDailyRateError(error.message));
+      dispatch(getDailyRateByDateError(error.message));
     }
   };
 

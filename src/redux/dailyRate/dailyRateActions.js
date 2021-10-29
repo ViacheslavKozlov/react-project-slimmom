@@ -29,4 +29,6 @@ export {
   getDailyRateByDateSucces,
   getDailyRateByDateError,
   getUserInfoSucces,
+  getUserInfoRequest,
+  getUserInfoError,
 };

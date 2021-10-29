@@ -17,9 +17,9 @@ const DailyStatistics = () => {
   console.log(dailyRate);
 
   useEffect(() => {
-    if (location.pathname === "/calculator") {
-      return;
-    }
+    // if (location.pathname === "/calculator") {
+    //   return;
+    // }
     dispatch(getDailyRateByDateOperation(date));
   }, [location.pathname, dispatch]);
 
