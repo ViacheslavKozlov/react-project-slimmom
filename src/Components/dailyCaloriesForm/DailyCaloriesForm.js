@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation } from "react-router";
+import { useHistory, useLocation } from "react-router";
 import style from "./DailyCaloriesForm.module.css";
 import Modal from "../modal/Modal";
 import { dailyRateSelector } from "../../redux/dailyRate/dailyRateSelectors";
 import { getDailyRateOperation } from "../../redux/dailyRate/dailyRateOperations";
 import { Button } from "../button/Button";
+import { getIsAuth } from "../../redux/auth/authSelectors";
 
 const initialState = {
   weight: JSON.parse(localStorage.getItem("weight")) || "",
@@ -20,12 +21,15 @@ const DailyCaloriesForm = () => {
   const [userData, setUserData] = useState(initialState);
 
   const [modal, setModalOpen] = useState(false);
+  const [isAuth, setAuth] = useState(true);
 
   const dailyRate = useSelector(dailyRateSelector);
 
-  const dispatch = useDispatch();
+  // const isAuth = useSelector(getIsAuth);
 
+  const dispatch = useDispatch();
   const location = useLocation();
+  const history = useHistory();
 
   const toggleModal = () => {
     setModalOpen((prev) => !prev);
@@ -33,16 +37,23 @@ const DailyCaloriesForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(getDailyRateOperation(userData));
-
-    localStorage.removeItem("weight");
-    localStorage.removeItem("height");
-    localStorage.removeItem("age");
-    localStorage.removeItem("desiredWeight");
-    localStorage.removeItem("bloodType");
+    console.log(dailyRate.id);
+    if (isAuth) {
+      dispatch(getDailyRateOperation(userData, dailyRate.id));
+    } else {
+      dispatch(getDailyRateOperation(userData));
+    }
+    if (location.pathname === "/") {
+      localStorage.removeItem("weight");
+      localStorage.removeItem("height");
+      localStorage.removeItem("age");
+      localStorage.removeItem("desiredWeight");
+      localStorage.removeItem("bloodType");
+    }
 
     setUserData({ ...initialState });
     if (location.pathname === "/calculator") {
+      history.push("/diary");
       return;
     }
     toggleModal();
@@ -82,7 +93,7 @@ const DailyCaloriesForm = () => {
                 id="userHeight"
                 type="number"
                 required
-                autoComplete="off"
+                // autoComplete="off"
                 min="100"
                 max="250"
                 // pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -97,7 +108,7 @@ const DailyCaloriesForm = () => {
                 id="userAge"
                 type="number"
                 required
-                autoComplete="off"
+                // autoComplete="off"
                 min="18"
                 max="100"
                 onChange={onHandleChange}
@@ -110,7 +121,7 @@ const DailyCaloriesForm = () => {
                 className={style.inputItem}
                 id="userWeight"
                 type="number"
-                autoComplete="off"
+                // autoComplete="off"
                 required
                 min="20"
                 max="500"
@@ -126,7 +137,7 @@ const DailyCaloriesForm = () => {
                 id="userDesiredWeight"
                 type="number"
                 required
-                autoComplete="off"
+                // autoComplete="off"
                 min="20"
                 max="500"
                 onChange={onHandleChange}

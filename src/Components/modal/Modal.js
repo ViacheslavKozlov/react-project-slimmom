@@ -4,8 +4,8 @@ import style from "./Modal.module.css";
 
 const Modal = ({ toggleModal, dailyRate }) => {
   const history = useHistory();
+  // console.log(dailyRate.notAllowedProducts);
   useEffect(() => {
-    // console.log(dailyRate.notAllowedProducts.length);
     window.addEventListener("keydown", onHandleEscape);
     const body = document.querySelector("body");
     body.style.overflow = "hidden";
@@ -40,9 +40,9 @@ const Modal = ({ toggleModal, dailyRate }) => {
                 <h3 className={style.modal_bottom_title}>
                   Продукты, которые вам не рекомендуется употреблять.
                 </h3>
-                {dailyRate.notAllowedProducts.length !== 0 ? (
+                {dailyRate.notAllowedProducts?.length !== 0 ? (
                   <ol>
-                    {dailyRate.notAllowedProducts.map((product) => (
+                    {dailyRate.notAllowedProducts?.map((product) => (
                       <li key={product}>{product}</li>
                     ))}
                   </ol>
