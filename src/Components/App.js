@@ -18,13 +18,13 @@ const App = () => {
 
   return (
     <>
-      {/* <ButtonAdd />
+      <ButtonAdd />
       <Button buttonName="dfghjkl" />
       <AuthContext.Provider value={[isAuth, setIsAuth]}>
         <Header />
         <Main />
-      </AuthContext.Provider> */}
-      {/* <DiaryAddProductForm /> */}
+      </AuthContext.Provider>{" "}
+      <DiaryAddProductForm />
       <DairyPage />
     </>
   );
