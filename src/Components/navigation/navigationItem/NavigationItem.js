@@ -1,5 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import styles from "./NavigationItem.module.css";
+import logo from "../../../images/logo-desc-min.jpg";
 
 const NavigationItem = ({
   name,
@@ -14,17 +16,24 @@ const NavigationItem = ({
       {((!isPrivate && !isRestricted) ||
         (isPrivate && !isRestricted && isAuth) ||
         (!isPrivate && isRestricted && !isAuth)) && (
-        <li>
+        <li className={styles.item}>
           {name !== "Home" ? (
-            <NavLink to={path} exact={exact}>
+            <NavLink
+              to={path}
+              exact={exact}
+              className={styles.link}
+              activeClassName={styles.activeLink}
+            >
               {name}
             </NavLink>
           ) : (
-            <NavLink to={path} exact={exact}>
-              <img src="../../../images/logo-desc-min.jpg" alt="Logo"></img>
-              <p>
-                Slim<span>Mom</span>
-              </p>
+            <NavLink
+              to={path}
+              exact={exact}
+              className={styles.link}
+              activeClassName={styles.activeLink}
+            >
+              <img src={logo} alt="Logo" className={styles.logo}></img>
             </NavLink>
           )}
         </li>
