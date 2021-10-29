@@ -1,12 +1,13 @@
-import React, { Suspense, useContext } from "react";
+import React, { Suspense } from "react";
+import { useSelector } from "react-redux";
 import { Switch } from "react-router-dom";
+import { getIsAuth } from "../../redux/auth/authSelectors";
 import { mainRoutes } from "../../routes/mainRoutes";
 import PrivateRoute from "../../routes/PrivateRoute";
 import PublicRoute from "../../routes/PublicRoute";
-import { AuthContext } from "../App";
 
 const Main = () => {
-  const [isAuth] = useContext(AuthContext);
+  const isAuth = useSelector(getIsAuth);
 
   return (
     <Suspense fallback={<h2>loading</h2>}>

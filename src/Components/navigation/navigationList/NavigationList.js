@@ -1,17 +1,21 @@
-import React, { useContext, useState } from "react";
+import React from "react";
+// import { useLocation } from "react-router-dom";
 import useDeviceSizes from "../../../hooks/useDeviceSizec";
 import { mainRoutes } from "../../../routes/mainRoutes";
-import { AuthContext } from "../../App";
+
 import NavigationItem from "../navigationItem/NavigationItem";
 import NavModal from "../navModal/NavModal";
 import styles from "./NavigationList.module.css";
 
-const NavigationList = ({ routes = mainRoutes, showModal, toggleModal }) => {
+const NavigationList = ({
+  routes = mainRoutes,
+  showModal,
+  toggleModal,
+  isAuth,
+}) => {
   const { isTabletDevice } = useDeviceSizes();
+  // const location = useLocation();
 
-  const [isAuth, setIsAuth] = useContext(AuthContext);
-
-  const toggle = () => setIsAuth((prev) => !prev);
   return (
     <div className={styles.container}>
       <ul className={styles.listMain}>
@@ -20,16 +24,24 @@ const NavigationList = ({ routes = mainRoutes, showModal, toggleModal }) => {
             {isTabletDevice && isPrivate ? (
               <>
                 {showModal && (
-                  <NavModal>
-                    <NavigationItem
-                      key={path}
-                      path={path}
-                      name={name}
-                      exact={exact}
-                      isPrivate={isPrivate}
-                      isRestricted={isRestricted}
-                      isAuth={isAuth}
-                    />
+                  <NavModal showModal={showModal} toggleModal={toggleModal}>
+                    {routes.map(
+                      ({ name, path, exact, isPrivate, isRestricted }) => (
+                        <>
+                          {path !== "/" && (
+                            <NavigationItem
+                              key={path}
+                              path={path}
+                              name={name}
+                              exact={exact}
+                              isPrivate={isPrivate}
+                              isRestricted={isRestricted}
+                              isAuth={isAuth}
+                            />
+                          )}
+                        </>
+                      )
+                    )}
                   </NavModal>
                 )}
               </>
@@ -53,15 +65,11 @@ const NavigationList = ({ routes = mainRoutes, showModal, toggleModal }) => {
           <li className={styles.itemUser}>
             <span>User</span>
           </li>
-          <li onClick={toggle} className={styles.item}>
+          <li className={styles.item}>
             <span>Выйти</span>
           </li>
         </ul>
       )}
-
-      <button onClick={toggle} type="button">
-        isAuth
-      </button>
     </div>
   );
 };

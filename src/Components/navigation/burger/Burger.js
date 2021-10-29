@@ -1,11 +1,10 @@
 import React from "react";
-import { useDispatch } from "react-redux";
-import sprite from "../../../icons/sprite.svg";
-import { toggleModalOperation } from "../../../redux/navModal/navModalOperations";
 
-const Burger = () => {
-  const dispatch = useDispatch();
-  const toggleModal = dispatch(toggleModalOperation());
+import sprite from "../../../icons/sprite.svg";
+
+const Burger = ({toggleModal}) => {
+ 
+
   return (
     <>
       <button type="button" onClick={toggleModal}>
