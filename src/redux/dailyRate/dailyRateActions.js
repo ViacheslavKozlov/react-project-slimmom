@@ -4,6 +4,29 @@ const getDailyRateRequest = createAction("dailyRate/getDailyRateRequest");
 const getDailyRateSucces = createAction("dailyRate/getDailyRateSucces");
 const getDailyRateError = createAction("dailyRate/getDailyRateError");
 
+const getDailyRateByDateRequest = createAction(
+  "dailyRate/getDailyRatByDateeRequest"
+);
+const getDailyRateByDateSucces = createAction(
+  "dailyRate/getDailyRateByDateSucces"
+);
+const getDailyRateByDateError = createAction(
+  "dailyRate/getDailyRateByDateError"
+);
+
+const getUserInfoRequest = createAction("dailyRate/getDailyRatByDateeRequest");
+const getUserInfoSucces = createAction("dailyRate/getUserInfoSucces");
+const getUserInfoError = createAction("dailyRate/getUserInfoError");
+
 const setLoader = createAction("dailyRate/setLoader");
 
-export { getDailyRateRequest, getDailyRateSucces, getDailyRateError, setLoader };
+export {
+  getDailyRateRequest,
+  getDailyRateSucces,
+  getDailyRateError,
+  setLoader,
+  getDailyRateByDateRequest,
+  getDailyRateByDateSucces,
+  getDailyRateByDateError,
+  getUserInfoSucces,
+};

@@ -13,7 +13,7 @@ const persistConfig = {
   key: "refresh",
   version: 1,
   storage,
-  whitelist: ["refreshToken", "sid"],
+  whitelist: ["accessToken", "refreshToken", "sid"],
 };
 
 const userInfo = createReducer(

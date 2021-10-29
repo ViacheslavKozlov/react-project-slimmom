@@ -1,14 +1,16 @@
 import axios from "axios";
 import {
+  getDailyRateByDateSucces,
   getDailyRateError,
   getDailyRateRequest,
   getDailyRateSucces,
+  getUserInfoSucces,
 } from "./dailyRateActions";
 
 const BASE_URL = "https://slimmom-backend.goit.global";
 
 const token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MTdhNGRkYzUyODE5ZjAwMDQ1NzVhMDIiLCJzaWQiOiI2MTdhNmQwM2E2Zjk3NjY4ZjdmYzU5NTMiLCJpYXQiOjE2MzU0MTMyNTEsImV4cCI6MTYzNTQxNjg1MX0.4F_UipdMKIEHsKNl8SJVUBZl23-eagamZ4Mb6aF4oZ4";
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MTdhZTQ5Y2E2Zjk3NjY4ZjdmYzU5ODAiLCJzaWQiOiI2MTdiOGU3Y2E2Zjk3NjY4ZjdmYzU5OGEiLCJpYXQiOjE2MzU0ODczNTYsImV4cCI6MTYzNTQ5MDk1Nn0.cF25a_t-Cb8DPW682HrSWQ0hbZWokKdDecKEOWCBju0";
 
 // {
 //   "email": "dnbdimka@gmail.com",
@@ -23,6 +25,17 @@ const token =
 //         })
 //         .then((response) => setProducts(response.data));
 //   }, [value]);
+
+const getUserInfoOperation = () => async (dispatch) => {
+  // dispatch(getDailyRateRequest());
+  try {
+    const response = await axios.get(`${BASE_URL}/user`);
+
+    dispatch(getUserInfoSucces({ ...response.data }));
+  } catch (error) {
+    dispatch(getDailyRateError(error.message));
+  }
+};
 
 const getDailyRateOperation =
   (userData, id = "") =>
@@ -50,4 +63,23 @@ const getDailyRateOperation =
     }
   };
 
-export { getDailyRateOperation };
+const getDailyRateByDateOperation =
+  (date = "2020-12-31") =>
+  async (dispatch) => {
+    // dispatch(getDailyRateRequest());
+    try {
+      const response = await axios.post(`${BASE_URL}/day/info`, date, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      dispatch(getDailyRateByDateSucces({ ...response.data }));
+    } catch (error) {
+      dispatch(getDailyRateError(error.message));
+    }
+  };
+
+export {
+  getDailyRateOperation,
+  getDailyRateByDateOperation,
+  getUserInfoOperation,
+};

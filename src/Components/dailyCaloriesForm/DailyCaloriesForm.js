@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation } from "react-router";
+import { useHistory, useLocation } from "react-router";
 import style from "./DailyCaloriesForm.module.css";
 import Modal from "../modal/Modal";
 import { dailyRateSelector } from "../../redux/dailyRate/dailyRateSelectors";
@@ -28,8 +28,8 @@ const DailyCaloriesForm = () => {
   // const isAuth = useSelector(getIsAuth);
 
   const dispatch = useDispatch();
-
   const location = useLocation();
+  const history = useHistory();
 
   const toggleModal = () => {
     setModalOpen((prev) => !prev);
@@ -37,21 +37,23 @@ const DailyCaloriesForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(dailyRate.id);
     if (isAuth) {
-      const id = "617a4645a6f97668f7fc593f";
-      dispatch(getDailyRateOperation(userData, id));
+      dispatch(getDailyRateOperation(userData, dailyRate.id));
     } else {
       dispatch(getDailyRateOperation(userData));
     }
-
-    // localStorage.removeItem("weight");
-    // localStorage.removeItem("height");
-    // localStorage.removeItem("age");
-    // localStorage.removeItem("desiredWeight");
-    // localStorage.removeItem("bloodType");
+    if (location.pathname === "/") {
+      localStorage.removeItem("weight");
+      localStorage.removeItem("height");
+      localStorage.removeItem("age");
+      localStorage.removeItem("desiredWeight");
+      localStorage.removeItem("bloodType");
+    }
 
     setUserData({ ...initialState });
     if (location.pathname === "/calculator") {
+      history.push("/diary");
       return;
     }
     toggleModal();
