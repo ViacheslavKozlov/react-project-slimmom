@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import useDeviceSizes from "../../hooks/useDeviceSizec";
 import { AuthContext } from "../App";
 import Burger from "./burger/Burger";
@@ -7,16 +7,16 @@ import NavigationList from "./navigationList/NavigationList";
 const Navigation = () => {
   const [isAuth] = useContext(AuthContext);
   const { isTabletDevice } = useDeviceSizes();
-  const [showModal, setShowModal] = useState(false);
+  // const [showModal, setShowModal] = useState(false);
 
-  const toggleModal = () => {
-    setShowModal((prev) => !prev);
-  };
+  // const toggleModal = () => {
+  //   setShowModal((prev) => !prev);
+  // };
 
   return (
     <>
-      {<NavigationList showModal={showModal} toggleModal={toggleModal} />}
-      {isTabletDevice && isAuth && <Burger toggleModal={toggleModal} />}
+      {<NavigationList />}
+      {isTabletDevice && isAuth && <Burger />}
     </>
   );
 };

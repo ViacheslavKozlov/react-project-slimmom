@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 
 import Navigation from "../navigation/Navigation";
 
 const Header = () => {
-  const [showModal, setShowModal] = useState(false);
+  // const [showModal, setShowModal] = useState(false);
 
-  const toggleModal = () => setShowModal((prev) => !prev);
+  // const toggleModal = () => setShowModal((prev) => !prev);
 
   return (
     <>

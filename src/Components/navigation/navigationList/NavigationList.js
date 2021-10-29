@@ -20,7 +20,7 @@ const NavigationList = ({ routes = mainRoutes, showModal, toggleModal }) => {
             {isTabletDevice && isPrivate ? (
               <>
                 {showModal && (
-                  <NavModal toggleModal={toggleModal}>
+                  <NavModal>
                     <NavigationItem
                       key={path}
                       path={path}

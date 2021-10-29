@@ -27,7 +27,7 @@ const store = configureStore({
     authData: authRedusers,
     error: errorReducer,
     isLoading: isLoadingReduser,
-    showModal: showModalReducer,
+    // showModal: showModalReducer,
   },
   middleware: middleware,
   devTools: process.env.NODE_ENV === "development",
