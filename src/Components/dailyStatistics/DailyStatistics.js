@@ -7,25 +7,28 @@ import { dailyRateSelector } from "../../redux/dailyRate/dailyRateSelectors";
 import style from "./DailyStatistics.module.css";
 
 const date = {
-  date: "2021-10-28",
+  date: "2021-10-29",
 };
 
 const DailyStatistics = () => {
   const location = useLocation();
   const dailyRate = useSelector(dailyRateSelector);
   const dispatch = useDispatch();
-  console.log(dailyRate);
+  console.log(dailyRate.notAllowedProducts);
 
   useEffect(() => {
     // if (location.pathname === "/calculator") {
     //   return;
     // }
+
     dispatch(getDailyRateByDateOperation(date));
   }, [location.pathname, dispatch]);
 
   return (
     <div className={style.statistics_wrapper}>
-      {/* <h3 className={style.statistics_title}>Сводка за {date}</h3> */}
+      <h3 className={style.statistics_title}>
+        Сводка за {dailyRate.todayDate}
+      </h3>
       <div className={style.statistics_box}>
         <div className={style.statistic_box}>
           <p className={style.statistic_text}>Осталось</p>
@@ -60,7 +63,7 @@ const DailyStatistics = () => {
       </div>
       <h3 className={style.statistics_title}>Нерекомендуемые продукты</h3>
       <div className={style.statistics_box}>
-        {dailyRate.notAllowedProducts ? (
+        {dailyRate.notAllowedProducts?.length !== 0 ? (
           <ul className={style.statistic_list}>
             {dailyRate.notAllowedProducts?.map((product) => (
               <li className={style.statistic_text} key={product}>

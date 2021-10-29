@@ -21,11 +21,11 @@ const DailyCaloriesForm = () => {
   const [userData, setUserData] = useState(initialState);
 
   const [modal, setModalOpen] = useState(false);
-  const [isAuth, setAuth] = useState(true);
+  // const [isAuth, setAuth] = useState(true);
 
   const dailyRate = useSelector(dailyRateSelector);
 
-  // const isAuth = useSelector(getIsAuth);
+  const isAuth = useSelector(getIsAuth);
 
   const dispatch = useDispatch();
   const location = useLocation();
@@ -37,7 +37,6 @@ const DailyCaloriesForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(dailyRate.id);
     if (isAuth) {
       dispatch(getDailyRateOperation(userData, dailyRate.id));
     } else {
@@ -49,13 +48,14 @@ const DailyCaloriesForm = () => {
       localStorage.removeItem("age");
       localStorage.removeItem("desiredWeight");
       localStorage.removeItem("bloodType");
+      setUserData({ ...initialState });
     }
 
-    setUserData({ ...initialState });
     if (location.pathname === "/calculator") {
       history.push("/diary");
       return;
     }
+
     toggleModal();
   };
 

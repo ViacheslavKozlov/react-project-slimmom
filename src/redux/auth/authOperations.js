@@ -48,6 +48,7 @@ export const authLogin = (userData) => (dispatch) => {
     .then(({ data }) => {
       dispatch(loginAuthSuccess(data));
       token.set(data.accessToken);
+      // dispatch(getUserInfoOperation());
     })
     .catch((error) => dispatch(loginAuthError(error.response.data.message)));
 };
