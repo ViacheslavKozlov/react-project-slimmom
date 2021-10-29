@@ -51,4 +51,5 @@ export const mainRoutes = [
     isPrivate: false,
     isRestricted: true,
   },
+  
 ];

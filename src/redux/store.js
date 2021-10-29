@@ -9,9 +9,7 @@ import {
   REGISTER,
 } from "redux-persist";
 import { rootReducer } from "./rootReducer";
-import authRedusers from "./auth/authReducers";
-import errorReducer from "./errorReducer/errorReducer";
-import isLoadingReduser from "./isLoadingReduser/isLoadingReduser";
+
 
 const middleware = (getDefaultMiddleware) =>
   getDefaultMiddleware({
@@ -23,9 +21,7 @@ const middleware = (getDefaultMiddleware) =>
 const store = configureStore({
   reducer: {
     rootReducer,
-    authData: authRedusers,
-    error: errorReducer,
-    isLoading: isLoadingReduser,
+    
   },
   middleware: middleware,
   devTools: process.env.NODE_ENV === "development",
