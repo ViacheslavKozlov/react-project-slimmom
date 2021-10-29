@@ -10,7 +10,6 @@ import {
 } from "redux-persist";
 import { rootReducer } from "./rootReducer";
 
-
 const middleware = (getDefaultMiddleware) =>
   getDefaultMiddleware({
     serializableCheck: {
@@ -19,10 +18,7 @@ const middleware = (getDefaultMiddleware) =>
   });
 
 const store = configureStore({
-  reducer: {
-    rootReducer,
-    
-  },
+  reducer: rootReducer,
   middleware: middleware,
   devTools: process.env.NODE_ENV === "development",
 });
