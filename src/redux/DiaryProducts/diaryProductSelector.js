@@ -1,6 +1,7 @@
 // import { createSelector } from "reselect";
 
-export const getEatenProducts = (state) => state.eatenProducts;
+export const getEatenProducts = (state, date) =>
+  state.products.items.filter((item) => item.date === date);
 
 // export const getContactItems = (state) => state.contacts.items;
 

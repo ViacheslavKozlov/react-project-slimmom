@@ -13,12 +13,10 @@ const middleware = getDefaultMiddleware =>
   });
 
 const store = configureStore({
-  reducer: {
+  reducer: 
     rootReducer,
-    authData: authRedusers,
-    error: errorReducer,
-    isLoading: isLoadingReduser,
-  },
+
+  
   middleware: middleware,
   devTools: process.env.NODE_ENV === "development"
 });

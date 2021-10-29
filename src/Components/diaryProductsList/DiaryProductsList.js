@@ -2,18 +2,26 @@ import React from "react";
 import DiaryProductsListItem from "./diaryProductsListItem/DiaryProductsListItem";
 import { useSelector } from "react-redux";
 import { getEatenProducts } from "../../redux/DiaryProducts/diaryProductSelector";
+import moment from "moment";
 
-const DiaryProductsList = () => {
-  const eatenProducts = useSelector(getEatenProducts);
+const DiaryProductsList = ({ date }) => {
+  const currentDate = moment(date).format("YYYY-MM-DD");
+  const eatenProductsByDay = useSelector(
+    (state) => getEatenProducts(state, currentDate)[0]
+  );
+  console.log(`eatenProducts`, eatenProductsByDay?.eatenProducts);
   return (
     <>
       <ul className="list">
-        {eatenProducts &&
-          eatenProducts.map((eatenProduct) => (
-            <DiaryProductsListItem
-              key={eatenProduct.id}
-              eatenProduct={eatenProduct}
-            />
+        {eatenProductsByDay?.eatenProducts?.length &&
+          eatenProductsByDay.eatenProducts.map((eatenProductByDay) => (
+            <>
+              {console.log(eatenProductByDay)}
+              <DiaryProductsListItem
+                key={eatenProductByDay.id}
+                eatenProduct={eatenProductByDay}
+              />
+            </>
           ))}
       </ul>
     </>

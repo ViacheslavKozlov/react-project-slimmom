@@ -11,11 +11,14 @@ import {
   getProductsSuccess,
   getProductsError,
 } from "./diaryProductActions";
+import errorReducer from "../errorReducer/errorReducer";
+import isLoadingReduser from "../isLoadingReduser/isLoadingReduser";
+import authRedusers from "../../redux/auth/authReducers";
 
 const productReducer = createReducer([], {
   [addProductSuccess]: (state, action) => [...state, action.payload],
   // [deleteProductSuccess]: (state, action) =>
-  //   state.filter(() => contact.id !== action.payload),
+  //   state.filter(() => product._id !== action.payload),
   [getProductsSuccess]: (_, action) => action.payload,
 });
 
@@ -34,18 +37,19 @@ const loadingReducer = createReducer(false, {
 });
 
 // const errorReducer = createReducer("", {
-//   [addContactError]: (_, action) => action.payload,
-//   [deleteContactError]: (_, action) => action.payload,
-//   [getContactsError]: (_, action) => action.payload,
+//   [addProductError]: (_, action) => action.payload,
+//   [deleteProductError]: (_, action) => action.payload,
+//   [getProductsError]: (_, action) => action.payload,
 
-//   [addContactRequest]: () => "",
-//   [deleteContactRequest]: () => "",
-//   [getContactsRequest]: () => "",
-//   [signOutSuccess]: () => "",
+//   [addProductRequest]: () => "",
+//   [deleteProductRequest]: () => "",
+//   [getProductsRequest]: () => "",
 // });
 
 export const productDailyReducer = combineReducers({
-  products: productReducer,
+  items: productReducer,
   loading: loadingReducer,
-  //   error: errorReducer,
+  authData: authRedusers,
+  error: errorReducer,
+  isLoading: isLoadingReduser,
 });

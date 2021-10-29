@@ -18,4 +18,5 @@ const dailyRateConfig = {
 export const rootReducer = combineReducers({
   dailyRate: persistReducer(dailyRateConfig, dailyRateReducer),
   days: productDailyReducer,
+  products: productDailyReducer,
 });

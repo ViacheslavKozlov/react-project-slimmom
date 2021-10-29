@@ -1,16 +1,17 @@
 import React, { useState } from "react";
 import DatePicker from "react-date-picker";
 
-export default function DiaryDateСalendar() {
-  const [value, updateValue] = useState(new Date());
+export default function DiaryDateСalendar({ date, setDate }) {
+  // const [value, updateValue] = useState(new Date());
 
   const onChange = (date) => {
-    updateValue(date);
+    setDate(date);
+    // updateValue(date);
   };
 
   return (
     <div>
-      <DatePicker onChange={onChange} value={value} />
+      <DatePicker onChange={onChange} value={date} />
     </div>
   );
 }
