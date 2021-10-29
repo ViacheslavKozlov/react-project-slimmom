@@ -9,19 +9,16 @@ const DiaryProductsList = ({ date }) => {
   const eatenProductsByDay = useSelector(
     (state) => getEatenProducts(state, currentDate)[0]
   );
-  console.log(`eatenProducts`, eatenProductsByDay?.eatenProducts);
+
   return (
     <>
       <ul className="list">
         {eatenProductsByDay?.eatenProducts?.length &&
           eatenProductsByDay.eatenProducts.map((eatenProductByDay) => (
-            <>
-              {console.log(eatenProductByDay)}
-              <DiaryProductsListItem
-                key={eatenProductByDay.id}
-                eatenProduct={eatenProductByDay}
-              />
-            </>
+            <DiaryProductsListItem
+              key={eatenProductByDay.id}
+              eatenProduct={eatenProductByDay}
+            />
           ))}
       </ul>
     </>

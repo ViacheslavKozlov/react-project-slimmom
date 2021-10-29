@@ -4,12 +4,34 @@ import {
   getDailyRateError,
   getDailyRateRequest,
   getDailyRateSucces,
+  getDailyRateByDateSucces,
+  getUserInfoSucces,
+  getUserInfoError,
+  getDailyRateByDateError,
 } from "./dailyRateActions";
+import { loginAuthSuccess, registerAuthSuccess } from "../auth/authActions";
+// const initialState = {};
 
-const dailyCaloriesReducer = createReducer(
+export const dailyCaloriesReducer = createReducer(
   {},
   {
-    [getDailyRateSucces]: (_, action) => action.payload,
+    [getDailyRateSucces]: (state, { payload }) => ({
+      ...state,
+      notAllowedProducts: payload.notAllowedProducts,
+      dailyRate: payload.dailyRate,
+    }),
+    [getDailyRateByDateSucces]: (state, { payload }) => ({
+      ...state,
+      ...payload,
+    }),
+    [loginAuthSuccess]: (_, { payload }) => ({
+      username: payload.user.username,
+      id: payload.user.id,
+      userData: payload.user.userData,
+    }),
+    // [getDailyRateRequest]: () => {},
+    [registerAuthSuccess]: () => ({}),
+    // [loginAuthSuccess]: () => ({}),
   }
 );
 
@@ -20,7 +42,9 @@ const dailyRateLoaderReducer = createReducer(false, {
 });
 
 const dailyCaloriesErrorReducer = createReducer("", {
-  [getDailyRateError]: (_, action) => action.payload,
+  [getDailyRateError]: (_, { payload }) => payload,
+  [getUserInfoError]: (_, { payload }) => payload,
+  [getDailyRateByDateError]: (_, { payload }) => payload,
   [getDailyRateRequest]: () => "",
   [getDailyRateSucces]: () => "",
 });

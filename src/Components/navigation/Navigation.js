@@ -1,41 +1,33 @@
-import React, { useContext } from "react";
-import { mainRoutes } from "../../routes/mainRoutes";
-import { AuthContext } from "../App";
-import NavigationItem from "./navigationItem/NavigationItem";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import useDeviceSizes from "../../hooks/useDeviceSizec";
+import { getIsAuth } from "../../redux/auth/authSelectors";
 
-const Navigation = ({ routes = mainRoutes }) => {
-  const [isAuth, setIsAuth] = useContext(AuthContext);
+import Burger from "./burger/Burger";
+import NavigationList from "./navigationList/NavigationList";
 
-  const toggle = () => setIsAuth((prev) => !prev);
+const Navigation = () => {
+  const isAuth = useSelector(getIsAuth);
+  const { isTabletDevice } = useDeviceSizes();
+  const [showModal, setShowModal] = useState(false);
+
+  const toggleModal = () => {
+    setShowModal((prev) => !prev);
+  };
+
   return (
     <>
-      <ul>
-        {routes.map(({ name, path, exact, isPrivate, isRestricted }) => (
-          <NavigationItem
-            key={path}
-            path={path}
-            name={name}
-            exact={exact}
-            isPrivate={isPrivate}
-            isRestricted={isRestricted}
-            isAuth={isAuth}
-          />
-        ))}
-
-        {isAuth && (
-          <ul>
-            <li onClick={toggle}>
-              <span>Выйти</span>
-            </li>
-          </ul>
-        )}
-
-        <li>
-          <button onClick={toggle}>isAuth</button>
-        </li>
-      </ul>
+      {
+        <NavigationList
+          showModal={showModal}
+          toggleModal={toggleModal}
+          isAuth={isAuth}
+        />
+      }
+      {isTabletDevice && isAuth && <Burger toggleModal={toggleModal} />}
     </>
   );
 };
 
 export default Navigation;
+

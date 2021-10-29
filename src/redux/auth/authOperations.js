@@ -15,6 +15,7 @@ import {
 } from "./authActions";
 import { apiBaseURL, register, login, logout, refresh } from "../../bk.json";
 import axios from "axios";
+import { getUserInfoOperation } from "../dailyRate/dailyRateOperations";
 
 axios.defaults.baseURL = apiBaseURL;
 

@@ -1,12 +1,11 @@
 import React from "react";
 
-import { useDispatch } from "react-redux";
-import { deleteContact } from "../../../redux/DiaryProducts/diaryProductOperations";
+// import { useDispatch } from "react-redux";
+// import { deleteContact } from "../../../redux/DiaryProducts/diaryProductOperations";
 
 const DiaryProductsListItem = ({ eatenProduct }) => {
-  const dispatch = useDispatch();
   // const deleteContactItem = () => dispatch(deleteContact(eatenProduct.id));
-  console.log(eatenProduct);
+
   return (
     <>
       <li className="data">

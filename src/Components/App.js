@@ -3,18 +3,18 @@ import { useDispatch } from "react-redux";
 import DairyPage from "../pages/DairyPage";
 import { getProducts } from "../redux/DiaryProducts/diaryProductOperations";
 import { Button, ButtonAdd } from "./button/Button";
-import DiaryAddProductForm from "./diaryAddProductForm/DiaryAddProductForm";
+// import DiaryAddProductForm from "./diaryAddProductForm/DiaryAddProductForm";
 import Header from "./header/Header";
 import Main from "./main/Main";
 
 export const AuthContext = React.createContext();
 
 const App = () => {
-  const [isAuth, setIsAuth] = useState(false);
+  const [isAuth, setIsAuth] = useState(true);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getProducts());
-  }, []);
+  }, [dispatch]);
 
   return (
     <>
@@ -24,7 +24,7 @@ const App = () => {
         <Header />
         <Main />
       </AuthContext.Provider>{" "}
-      <DiaryAddProductForm />
+      {/* <DiaryAddProductForm /> */}
       <DairyPage />
     </>
   );

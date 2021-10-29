@@ -2,18 +2,18 @@ import axios from "axios";
 import { BASE_URL } from "../../service/Api";
 import {
   addProductRequest,
-  addProductSuccess,
-  addProductError,
-  deleteProductRequest,
-  deleteProductSuccess,
-  deleteProductError,
+  // addProductSuccess,
+  // addProductError,
+  // deleteProductRequest,
+  // deleteProductSuccess,
+  // deleteProductError,
   getProductsRequest,
   getProductsSuccess,
-  getProductError,
+  // getProductError,
 } from "./diaryProductActions";
 
 const token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MTc5NGE5N2E2Zjk3NjY4ZjdmYzU5MTQiLCJzaWQiOiI2MTdiYjc5YWE2Zjk3NjY4ZjdmYzU5OTQiLCJpYXQiOjE2MzU0OTc4ODMsImV4cCI6MTYzNTUwMTQ4M30.5J6RlBWEnzWiUX7K2tIpPFoMP4rXc6VSFmokbvf2-WM";
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MTc5NGE5N2E2Zjk3NjY4ZjdmYzU5MTQiLCJzaWQiOiI2MTdiZGQ4MGE2Zjk3NjY4ZjdmYzU5YWMiLCJpYXQiOjE2MzU1MDc1ODQsImV4cCI6MTYzNTUxMTE4NH0.6MQKKBu3uHYU0-ctxjRvmTsWLgx3Qt_ukbMuuY6LxHU";
 
 export const addProduct = (product) => (dispatch, getState) => {
   // const localId = getState().authorization.tokens.localId;
