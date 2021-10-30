@@ -15,7 +15,6 @@ import {
 } from "./authActions";
 import { apiBaseURL, register, login, logout, refresh } from "../../bk.json";
 import axios from "axios";
-import { getUserInfoOperation } from "../dailyRate/dailyRateOperations";
 
 axios.defaults.baseURL = apiBaseURL;
 
@@ -24,7 +23,7 @@ const token = {
     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
   },
   unset() {
-    axios.defaults.headers.common.Authorization = "";
+    axios.defaults.headers.common["Authorization"] = "";
   },
 };
 
@@ -48,7 +47,6 @@ export const authLogin = (userData) => (dispatch) => {
     .then(({ data }) => {
       dispatch(loginAuthSuccess(data));
       token.set(data.accessToken);
-      // dispatch(getUserInfoOperation());
     })
     .catch((error) => dispatch(loginAuthError(error.response.data.message)));
 };

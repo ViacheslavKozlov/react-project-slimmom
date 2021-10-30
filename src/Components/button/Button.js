@@ -2,19 +2,24 @@ import React from "react";
 import sprite from "../../icons/sprite.svg";
 import styles from "./Buttot.module.css";
 
-const Button = ({ buttonName, type }) => {
+const Button = ({ buttonName, type, onClick }) => {
   return (
-    <button className={`${styles.btn} ${styles.btn_orange}`} type={type}>
+    <button
+      className={`${styles.btn} ${styles.btn_orange}`}
+      type={type}
+      onClick={onClick}
+    >
       {buttonName}
     </button>
   );
 };
 
-const ButtonAdd = ({ type }) => {
+const ButtonAdd = ({ type, onClick }) => {
   return (
     <button
       className={`${styles.btn_add} ${styles.btn_orange_add}`}
       type={type}
+      onClick={onClick}
     >
       <svg width="20" height="20" fill="white">
         <use href={sprite + "#add"} />

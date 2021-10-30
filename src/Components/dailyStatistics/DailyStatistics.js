@@ -20,9 +20,10 @@ const DailyStatistics = () => {
     // if (location.pathname === "/calculator") {
     //   return;
     // }
-
-    dispatch(getDailyRateByDateOperation(date));
-  }, [location.pathname, dispatch]);
+    if (dailyRate.dailyRate) {
+      dispatch(getDailyRateByDateOperation(date));
+    }
+  }, [location.pathname, dispatch, dailyRate.dailyRate]);
 
   return (
     <div className={style.statistics_wrapper}>
