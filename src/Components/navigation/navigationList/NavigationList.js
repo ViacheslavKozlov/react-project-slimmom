@@ -1,20 +1,22 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 // import { useLocation } from "react-router-dom";
 import useDeviceSizes from "../../../hooks/useDeviceSizec";
+import { authLogout } from "../../../redux/auth/authOperations";
 import { mainRoutes } from "../../../routes/mainRoutes";
 
 import NavigationItem from "../navigationItem/NavigationItem";
 import NavModal from "../navModal/NavModal";
 import styles from "./NavigationList.module.css";
 
-const NavigationList = ({
-  routes = mainRoutes,
-  showModal,
-  toggleModal,
-  isAuth,
-}) => {
+const NavigationList = ({ routes = mainRoutes, showModal, toggleModal, isAuth }) => {
   const { isTabletDevice } = useDeviceSizes();
   // const location = useLocation();
+  const dispatch = useDispatch();
+
+  const logout = () => {
+    dispatch(authLogout());
+  };
 
   return (
     <div className={styles.container}>
@@ -25,23 +27,21 @@ const NavigationList = ({
               <>
                 {showModal && (
                   <NavModal showModal={showModal} toggleModal={toggleModal}>
-                    {routes.map(
-                      ({ name, path, exact, isPrivate, isRestricted }) => (
-                        <>
-                          {path !== "/" && (
-                            <NavigationItem
-                              key={path}
-                              path={path}
-                              name={name}
-                              exact={exact}
-                              isPrivate={isPrivate}
-                              isRestricted={isRestricted}
-                              isAuth={isAuth}
-                            />
-                          )}
-                        </>
-                      )
-                    )}
+                    {routes.map(({ name, path, exact, isPrivate, isRestricted }) => (
+                      <>
+                        {path !== "/" && (
+                          <NavigationItem
+                            key={path}
+                            path={path}
+                            name={name}
+                            exact={exact}
+                            isPrivate={isPrivate}
+                            isRestricted={isRestricted}
+                            isAuth={isAuth}
+                          />
+                        )}
+                      </>
+                    ))}
                   </NavModal>
                 )}
               </>
@@ -66,7 +66,10 @@ const NavigationList = ({
             <span>User</span>
           </li>
           <li className={styles.item}>
-            <span>Выйти</span>
+            {/* <span>Выйти</span> */}
+            <button type="button" onClick={logout}>
+              logout
+            </button>
           </li>
         </ul>
       )}
