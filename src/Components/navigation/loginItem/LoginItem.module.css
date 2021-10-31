@@ -5,26 +5,40 @@ ol {
   margin: 0;
 }
 
-.listSecondary {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 115px;
-}
+@media screen and (min-width: 1280px) {
+  .btn {
+    font-family: Gotham Pro;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 13px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 0;
+    border: none;
+    background-color: white;
+  }
 
-.itemUser {
-  text-decoration: none;
-  color: var(--headline-txt-color);
-  font-family: Gotham Pro;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 14px;
-  line-height: 13px;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-}
+  .listSecondary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 115px;
+  }
 
-.item {
+  .itemUser {
+    text-decoration: none;
+    color: var(--headline-txt-color);
+    font-family: Gotham Pro;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 13px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .item {
     text-decoration: none;
     color: var(--main-txt-color);
     font-family: Gotham Pro;
@@ -62,3 +76,4 @@ ol {
   .item:not(:last-child) {
     margin-right: 22px;
   }
+}

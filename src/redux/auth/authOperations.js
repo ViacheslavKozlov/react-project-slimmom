@@ -15,7 +15,6 @@ import {
 } from "./authActions";
 import { apiBaseURL, register, login, logout, refresh } from "../../bk.json";
 import axios from "axios";
-import { getUserInfoOperation } from "../dailyRate/dailyRateOperations";
 
 axios.defaults.baseURL = apiBaseURL;
 
@@ -85,5 +84,5 @@ export const authRefresh = (refreshToken, sid) => (dispatch) => {
       );
       axios("/user").then(({ data }) => dispatch(getUserSuccess(data)));
     })
-    .catch((error) => dispatch(refreshAuthError(error.response.data.message)));
+    .catch((error) => dispatch(refreshAuthError(error.message)));
 };

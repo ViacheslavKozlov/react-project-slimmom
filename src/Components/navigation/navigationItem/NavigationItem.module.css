@@ -1,55 +1,79 @@
-@media screen and (min-width:1024px) {
-    .link {
-  text-decoration: none;
-  color: var(--main-txt-color);
-  font-family: Gotham Pro;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 14px;
-  line-height: 13px;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-}
-.link:hover {
-  color: var(--headline-txt-color);
-}
+@media screen and (min-width: 768px) {
+  .link {
+    text-decoration: none;
+    color: var(--main-txt-color);
+    font-family: Gotham Pro;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 13px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
 
-.activeLink {
-  color: var(--headline-txt-color);
-}
+  .activeLink {
+    color: var(--headline-txt-color);
+  }
 
-.logo {
-  position: relative;
-  bottom: 20px;
+  .logo {
+    position: relative;
+    bottom: 20px;
 
-  width: 166px;
-  height: 66px;
+    width: 166px;
+    height: 66px;
+  }
 }
 
-.item:first-child::after {
-  position: absolute;
-  width: 32px;
-  height: 0px;
-  left: 248px;
-  top: 122px;
-  transform: rotate(90deg);
+@media screen and (min-width: 1280px) {
+  .link {
+    text-decoration: none;
+    color: var(--main-txt-color);
+    font-family: Gotham Pro;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 13px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .link:hover {
+    color: var(--headline-txt-color);
+  }
 
-  content: "";
-  display: block;
-  margin-left: 10px;
+  .activeLink {
+    color: var(--headline-txt-color);
+  }
 
-  border: 2px solid #e0e0e0;
+  .logo {
+    position: relative;
+    bottom: 20px;
+
+    width: 166px;
+    height: 66px;
+  }
+
+  .item:first-child::after {
+    position: absolute;
+    width: 32px;
+    height: 0px;
+    left: 248px;
+    top: 122px;
+    transform: rotate(90deg);
+
+    content: "";
+    display: block;
+    margin-left: 10px;
+
+    border: 2px solid #e0e0e0;
+  }
+
+  .item:not(:last-child) {
+    margin-right: 14px;
+  }
+
+  .item:first-child {
+    margin-right: 22px;
+  }
 }
-
-.item:not(:last-child) {
-  margin-right: 14px;
-}
-
-.item:first-child {
-  margin-right: 22px;
-}
-}
-
-
 
 @import "../../../utils/vars.css";

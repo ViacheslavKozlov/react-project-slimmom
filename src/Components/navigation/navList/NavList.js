@@ -1,5 +1,4 @@
 import React from "react";
-// import { mainRoutes } from "../../../routes/mainRoutes";
 import NavigationItem from "../navigationItem/NavigationItem";
 import styles from "./NavList.module.css";
 

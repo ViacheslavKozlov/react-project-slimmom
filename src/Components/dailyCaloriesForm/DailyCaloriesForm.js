@@ -7,25 +7,32 @@ import { dailyRateSelector } from "../../redux/dailyRate/dailyRateSelectors";
 import { getDailyRateOperation } from "../../redux/dailyRate/dailyRateOperations";
 import { Button } from "../button/Button";
 import { getIsAuth } from "../../redux/auth/authSelectors";
+import Wrapper from "../wrapper/Wrapper";
 
+// const initialState = {
+//   weight: JSON.parse(localStorage.getItem("weight")) || "",
+//   height: JSON.parse(localStorage.getItem("height")) || "",
+//   age: JSON.parse(localStorage.getItem("age")) || "",
+//   desiredWeight: JSON.parse(localStorage.getItem("desiredWeight")) || "",
+//   bloodType: JSON.parse(localStorage.getItem("bloodType")) || 1,
+// };
 const initialState = {
-  weight: JSON.parse(localStorage.getItem("weight")) || "",
-  height: JSON.parse(localStorage.getItem("height")) || "",
-  age: JSON.parse(localStorage.getItem("age")) || "",
-  desiredWeight: JSON.parse(localStorage.getItem("desiredWeight")) || "",
-  // bloodType: 1,
-  bloodType: JSON.parse(localStorage.getItem("bloodType")) || 1,
+  weight: "",
+  height: "",
+  age: "",
+  desiredWeight: "",
+  bloodType: 1,
 };
 
 const DailyCaloriesForm = () => {
   const [userData, setUserData] = useState(initialState);
 
   const [modal, setModalOpen] = useState(false);
-  const [isAuth, setAuth] = useState(true);
+  // const [isAuth, setAuth] = useState(true);
 
   const dailyRate = useSelector(dailyRateSelector);
 
-  // const isAuth = useSelector(getIsAuth);
+  const isAuth = useSelector(getIsAuth);
 
   const dispatch = useDispatch();
   const location = useLocation();
@@ -37,132 +44,184 @@ const DailyCaloriesForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(dailyRate.id);
     if (isAuth) {
       dispatch(getDailyRateOperation(userData, dailyRate.id));
     } else {
       dispatch(getDailyRateOperation(userData));
     }
     if (location.pathname === "/") {
-      localStorage.removeItem("weight");
-      localStorage.removeItem("height");
-      localStorage.removeItem("age");
-      localStorage.removeItem("desiredWeight");
-      localStorage.removeItem("bloodType");
+      // localStorage.removeItem("weight");
+      // localStorage.removeItem("height");
+      // localStorage.removeItem("age");
+      // localStorage.removeItem("desiredWeight");
+      // localStorage.removeItem("bloodType");
+      setUserData({ ...initialState });
     }
 
-    setUserData({ ...initialState });
     if (location.pathname === "/calculator") {
       history.push("/diary");
       return;
     }
+    window.scrollBy(0, 0);
     toggleModal();
   };
-
+  const onHandleBlur = (e) => {
+    const input = e.target;
+    if (input.value !== "") {
+      input.classList.add(style.not_empty);
+    }
+    if (input.value === "") {
+      input.classList.remove(style.not_empty);
+    }
+  };
   const onHandleChange = (e) => {
     const { value, name } = e.target;
-    // console.log(Number(""));
+
     if (value === "") {
       setUserData((prev) => ({ ...prev, [name]: value }));
-      localStorage.setItem([name], JSON.stringify(value));
+      // localStorage.setItem([name], JSON.stringify(value));
       return;
     }
     setUserData((prev) => ({ ...prev, [name]: Number(value) }));
-    // if (type === "radio") {
-    //   return;
-    // }
-    localStorage.setItem([name], JSON.stringify(Number(value)));
+    // localStorage.setItem([name], JSON.stringify(Number(value)));
   };
 
   const { weight, height, age, desiredWeight, bloodType } = userData;
   return (
     <>
-      {modal && <Modal toggleModal={toggleModal} dailyRate={dailyRate} />}
-      <div className={`${style.form_wrapper} container`}>
-        <h1 className={style.form_title}>
-          {location.pathname === "/calculator"
-            ? "Узнай свою суточную норму калорий"
-            : "Просчитай свою суточную норму калорий прямо сейчас"}
-        </h1>
-        <form className={style.form} onSubmit={handleSubmit}>
-          <div className={style.inputs_wrapper}>
-            <div className={style.inputs_box_first}>
-              {/* <label>Рост</label> */}
-              <input
-                className={style.inputItem}
-                id="userHeight"
-                type="number"
-                required
-                // autoComplete="off"
-                min="100"
-                max="250"
-                // pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-                onChange={onHandleChange}
-                placeholder="Рост *"
-                name="height"
-                value={height}
-              />
-
-              <input
-                className={style.inputItem}
-                id="userAge"
-                type="number"
-                required
-                // autoComplete="off"
-                min="18"
-                max="100"
-                onChange={onHandleChange}
-                placeholder="Возраст *"
-                name="age"
-                value={age}
-              />
-
-              <input
-                className={style.inputItem}
-                id="userWeight"
-                type="number"
-                // autoComplete="off"
-                required
-                min="20"
-                max="500"
-                onChange={onHandleChange}
-                placeholder="Текущий вес *"
-                name="weight"
-                value={weight}
-              />
-            </div>
-            <div className={style.inputs_box_second}>
-              <input
-                className={style.inputItem}
-                id="userDesiredWeight"
-                type="number"
-                required
-                // autoComplete="off"
-                min="20"
-                max="500"
-                onChange={onHandleChange}
-                placeholder="Желаемый вес *"
-                name="desiredWeight"
-                value={desiredWeight}
-              />
-
-              <p>Группа крови *</p>
-              <div className={style.inputRadioWrapper}>
-                <label>
+      <Wrapper>
+        {modal && <Modal toggleModal={toggleModal} dailyRate={dailyRate} />}
+        <div className={`${style.form_wrapper} container`}>
+          <h1 className={style.form_title}>
+            {location.pathname === "/calculator"
+              ? "Узнай свою суточную норму калорий"
+              : "Просчитай свою суточную норму калорий прямо сейчас"}
+          </h1>
+          <form className={style.form} onSubmit={handleSubmit}>
+            <div className={style.inputs_wrapper}>
+              <div className={style.inputs_box_first}>
+                {/* <label>Рост</label> */}
+                <div className={style.input_box}>
                   <input
-                    type="radio"
-                    className={style.radioInput}
-                    checked={bloodType === 1}
-                    name="bloodType"
-                    value="1"
+                    className={style.input_item}
+                    id="userHeight"
+                    type="number"
+                    required
+                    // autoComplete="off"
+                    min="100"
+                    max="250"
+                    pattern="^[ 0-9]+$"
                     onChange={onHandleChange}
+                    onBlur={onHandleBlur}
+                    // placeholder="Рост *"
+                    name="height"
+                    value={height}
                   />
-                  1
-                </label>
-                <label>
+                  <label>Рост *</label>
+                </div>
+                <div className={style.input_box}>
+                  <input
+                    className={style.input_item}
+                    id="userAge"
+                    type="number"
+                    required
+                    // autoComplete="off"
+                    min="18"
+                    max="100"
+                    onChange={onHandleChange}
+                    onBlur={onHandleBlur}
+                    // placeholder="Возраст *"
+                    name="age"
+                    value={age}
+                  />
+                  <label>Возраст *</label>
+                </div>
+                <div className={style.input_box}>
+                  <input
+                    className={style.input_item}
+                    id="userWeight"
+                    type="number"
+                    // autoComplete="off"
+                    required
+                    min="20"
+                    max="500"
+                    onChange={onHandleChange}
+                    onBlur={onHandleBlur}
+                    // placeholder="Текущий вес *"
+                    name="weight"
+                    value={weight}
+                  />
+                  <label>Текущий вес *</label>
+                </div>
+              </div>
+              <div className={style.inputs_box_second}>
+                <div className={style.input_box}>
+                  <input
+                    className={style.input_item}
+                    id="userDesiredWeight"
+                    type="number"
+                    required
+                    // autoComplete="off"
+                    min="20"
+                    max="500"
+                    onChange={onHandleChange}
+                    onBlur={onHandleBlur}
+                    // placeholder="Желаемый вес *"
+                    name="desiredWeight"
+                    value={desiredWeight}
+                  />
+                  <label>Желаемый вес *</label>
+                </div>
+                <p>Группа крови *</p>
+                <div className={style.input_radio_wrapper}>
+                  <div class={style.form_radio}>
+                    <input
+                      id="radio-1"
+                      type="radio"
+                      checked={bloodType === 1}
+                      name="bloodType"
+                      value="1"
+                      onChange={onHandleChange}
+                    />
+                    <label htmlFor="radio-1"> 1</label>
+                  </div>
+                  <div class={style.form_radio}>
+                    <input
+                      id="radio-2"
+                      type="radio"
+                      checked={bloodType === 2}
+                      name="bloodType"
+                      value="2"
+                      onChange={onHandleChange}
+                    />
+                    <label htmlFor="radio-2"> 2</label>
+                  </div>
+                  <div class={style.form_radio}>
+                    <input
+                      id="radio-3"
+                      type="radio"
+                      checked={bloodType === 3}
+                      name="bloodType"
+                      value="3"
+                      onChange={onHandleChange}
+                    />
+                    <label htmlFor="radio-3"> 3</label>
+                  </div>
+                  <div class={style.form_radio}>
+                    <input
+                      id="radio-4"
+                      type="radio"
+                      checked={bloodType === 4}
+                      name="bloodType"
+                      value="4"
+                      onChange={onHandleChange}
+                    />
+                    <label htmlFor="radio-4"> 4</label>
+                  </div>
+                  {/* <label>
                   <input
                     type="radio"
-                    className={style.radioInput}
+                    className={style.radio_input}
                     checked={bloodType === 2}
                     name="bloodType"
                     value="2"
@@ -173,7 +232,7 @@ const DailyCaloriesForm = () => {
                 <label>
                   <input
                     type="radio"
-                    className={style.radioInput}
+                    className={style.radio_input}
                     checked={bloodType === 3}
                     name="bloodType"
                     value="3"
@@ -184,23 +243,21 @@ const DailyCaloriesForm = () => {
                 <label>
                   <input
                     type="radio"
-                    className={style.radioInput}
+                    className={style.radio_input}
                     checked={bloodType === 4}
                     name="bloodType"
                     value="4"
                     onChange={onHandleChange}
                   />
                   4
-                </label>
+                </label> */}
+                </div>
               </div>
+              <Button buttonName="Похудеть" type={"submit"} />
             </div>
-            {/* <Button buttonName="Похудеть" /> */}
-          </div>
-          <button className={style.formbtn} type="submit">
-            Похудеть
-          </button>
-        </form>
-      </div>
+          </form>
+        </div>
+      </Wrapper>
     </>
   );
 };

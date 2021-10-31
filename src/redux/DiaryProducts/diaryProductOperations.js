@@ -2,8 +2,8 @@ import axios from "axios";
 import { BASE_URL } from "../../service/Api";
 import {
   addProductRequest,
-  // addProductSuccess,
-  // addProductError,
+  addProductSuccess,
+  addProductError,
   // deleteProductRequest,
   // deleteProductSuccess,
   // deleteProductError,
@@ -12,19 +12,19 @@ import {
   // getProductError,
 } from "./diaryProductActions";
 
-const token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MTc5NGE5N2E2Zjk3NjY4ZjdmYzU5MTQiLCJzaWQiOiI2MTdiZGQ4MGE2Zjk3NjY4ZjdmYzU5YWMiLCJpYXQiOjE2MzU1MDc1ODQsImV4cCI6MTYzNTUxMTE4NH0.6MQKKBu3uHYU0-ctxjRvmTsWLgx3Qt_ukbMuuY6LxHU";
+// const token =
+//   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MTc5NGE5N2E2Zjk3NjY4ZjdmYzU5MTQiLCJzaWQiOiI2MTdlNmQzM2E2Zjk3NjY4ZjdmYzVhMjkiLCJpYXQiOjE2MzU2NzU0NDMsImV4cCI6MTYzNTY3OTA0M30.nCrIAFfdo-azzNoMw_NmusE-iWJNrJQ5PQ1RSfUEgN8";
 
 export const addProduct = (product) => (dispatch, getState) => {
+  console.log(product);
   // const localId = getState().authorization.tokens.localId;
   // const idToken = getState().authorization.tokens.idToken;
   dispatch(addProductRequest());
 
-  axios.post(BASE_URL + `/day`, product, {
-    headers: { Authorization: `Bearer ${token}` },
-  });
-  // .then((product) => dispatch(addProductSuccess(product)))
-  // .catch((error) => dispatch(addProductError(error)));
+  axios
+    .post(BASE_URL + `/day`, product)
+    .then((product) => dispatch(addProductSuccess(product)))
+    .catch((error) => dispatch(addProductError(error)));
 };
 
 // export const deleteProduct = (contactId) => async (dispatch, getState) => {
@@ -46,9 +46,7 @@ export const getProducts = () => (dispatch) => {
   dispatch(getProductsRequest());
 
   axios
-    .get(BASE_URL + `/user`, {
-      headers: { Authorization: `Bearer ${token}` },
-    })
+    .get(BASE_URL + `/user`)
     .then((response) => dispatch(getProductsSuccess(response.data.days)));
   // .catch((error) => dispatch(getProductError(error)));
 };

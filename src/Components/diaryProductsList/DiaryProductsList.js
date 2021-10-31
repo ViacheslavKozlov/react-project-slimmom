@@ -3,6 +3,7 @@ import DiaryProductsListItem from "./diaryProductsListItem/DiaryProductsListItem
 import { useSelector } from "react-redux";
 import { getEatenProducts } from "../../redux/DiaryProducts/diaryProductSelector";
 import moment from "moment";
+import style from "../diaryProductsList/DiaryProductList.module.css";
 
 const DiaryProductsList = ({ date }) => {
   const currentDate = moment(date).format("YYYY-MM-DD");
@@ -13,13 +14,15 @@ const DiaryProductsList = ({ date }) => {
   return (
     <>
       <ul className="list">
-        {eatenProductsByDay?.eatenProducts?.length &&
-          eatenProductsByDay.eatenProducts.map((eatenProductByDay) => (
-            <DiaryProductsListItem
-              key={eatenProductByDay.id}
-              eatenProduct={eatenProductByDay}
-            />
-          ))}
+        <div className={style.scrollList}>
+          {eatenProductsByDay?.eatenProducts?.length &&
+            eatenProductsByDay.eatenProducts.map((eatenProductByDay) => (
+              <DiaryProductsListItem
+                key={eatenProductByDay.id}
+                eatenProduct={eatenProductByDay}
+              />
+            ))}
+        </div>
       </ul>
     </>
   );
