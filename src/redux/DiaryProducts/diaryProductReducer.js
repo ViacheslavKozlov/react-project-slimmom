@@ -18,7 +18,7 @@ import authRedusers from "../../redux/auth/authReducers";
 const productReducer = createReducer([], {
   [addProductSuccess]: (state, action) => [...state, action.payload],
   // [deleteProductSuccess]: (state, action) =>
-  //   state.filter(() => product._id !== action.payload),
+  //   state.filter((product) => product._id !== action.payload),
   [getProductsSuccess]: (_, action) => action.payload,
 });
 

@@ -12,7 +12,7 @@ const DairyPage = () => {
       <DiaryDateСalendar date={date} setDate={setDate} />
       <DiaryAddProductForm date={date} />
       <DiaryProductsList date={date} />
-      <RightSideBar />
+      {/* <RightSideBar /> */}
     </>
   );
 };

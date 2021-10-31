@@ -1,0 +1,90 @@
+.dairyItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btnDelete {
+  border-radius: 50%;
+  border: none;
+  background-color: transparent;
+}
+
+.dairyItemProduct {
+  width: 138px;
+  height: 16px;
+  text-align: left;
+  font-size: 14px;
+  line-height: 1.21;
+
+  @media screen and (min-width: 768px) {
+    width: 240px;
+    margin-left: 92px;
+  }
+
+  /* @media screen and (min-width: 1280px) {
+    margin-left: 92px;
+  } */
+}
+
+.dairyItemProduct:after {
+  content: "";
+  width: 138px;
+  display: inline-block;
+  height: 1px;
+  bottom: -10px;
+  background-color: #e0e0e0;
+  @media screen and (min-width: 1280px) {
+    bottom: -19px;
+  }
+}
+
+.dairyItemWeight {
+  width: 50px;
+  height: 16px;
+  text-align: right;
+  font-size: 14px;
+  line-height: 1.21;
+  color: #212121;
+
+  @media screen and (min-width: 768px) {
+    width: 105px;
+  }
+}
+
+.dairyItemWeight:after {
+  content: "";
+  width: 50px;
+  display: inline-block;
+  height: 1px;
+  bottom: -10px;
+  background-color: #e0e0e0;
+  @media screen and (min-width: 1280px) {
+    bottom: -19px;
+  }
+}
+
+.dairyItemCcal {
+  width: 60px;
+  height: 16px;
+  text-align: right;
+  font-size: 14px;
+  line-height: 1.21;
+  color: #212121;
+
+  @media screen and (min-width: 768px) {
+    width: 105px;
+  }
+}
+
+.dairyItemCcal:after {
+  content: "";
+  width: 60px;
+  display: inline-block;
+  height: 1px;
+  bottom: -10px;
+  background-color: #e0e0e0;
+  @media screen and (min-width: 1280px) {
+    bottom: -19px;
+  }
+}
