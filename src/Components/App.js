@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import DairyPage from "../pages/DairyPage";
 import { getProducts } from "../redux/DiaryProducts/diaryProductOperations";
-import {  authRefresh } from "../redux/auth/authOperations";
+import { authRefresh } from "../redux/auth/authOperations";
 import {
   getIsAuth,
   getRefreshToken,

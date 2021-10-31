@@ -12,11 +12,11 @@ const useDeviceSizes = () => {
     query: device.tablet,
   });
 
-  const isdescDevice = useMediaQuery({
+  const isDescDevice = useMediaQuery({
     query: device.desc,
   });
 
-  return { isMobileDevice, isTabletDevice, isdescDevice };
+  return { isMobileDevice, isTabletDevice, isDescDevice };
 };
 
 export default useDeviceSizes;
