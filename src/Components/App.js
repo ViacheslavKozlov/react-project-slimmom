@@ -18,8 +18,8 @@ const App = () => {
 
   return (
     <>
-      <ButtonAdd />
-      <Button buttonName="dfghjkl" />
+      {/* <ButtonAdd />
+      <Button buttonName="dfghjkl" /> */}
       <AuthContext.Provider value={[isAuth, setIsAuth]}>
         <Header />
         <Main />
