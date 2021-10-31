@@ -14,21 +14,22 @@ const DiaryAddProductForm = ({ date }) => {
   const [products, setProducts] = useState([]);
   const dispatch = useDispatch();
 
-  const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MTc5NGE5N2E2Zjk3NjY4ZjdmYzU5MTQiLCJzaWQiOiI2MTdiZGQ4MGE2Zjk3NjY4ZjdmYzU5YWMiLCJpYXQiOjE2MzU1MDc1ODQsImV4cCI6MTYzNTUxMTE4NH0.6MQKKBu3uHYU0-ctxjRvmTsWLgx3Qt_ukbMuuY6LxHU";
+  // const token =
+  //   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MTc5NGE5N2E2Zjk3NjY4ZjdmYzU5MTQiLCJzaWQiOiI2MTdlNmQzM2E2Zjk3NjY4ZjdmYzVhMjkiLCJpYXQiOjE2MzU2NzU0NDMsImV4cCI6MTYzNTY3OTA0M30.nCrIAFfdo-azzNoMw_NmusE-iWJNrJQ5PQ1RSfUEgN8";
 
   const onHandleChange = ({ target }) => {
     const { value, name } = target;
     name === "product" && setValue(value);
     name === "weight" && setWeight(value);
   };
-
+  // console.log(value);
   const currentDate = moment(date).format("YYYY-MM-DD");
 
   const getProductIdByName = () =>
     products.find(
       (product) => product.title.ru.toLowerCase() === value.toLowerCase()
     )._id;
+  // console.log(products);
 
   const onHandleSubmit = (e) => {
     e.preventDefault();
@@ -40,6 +41,7 @@ const DiaryAddProductForm = ({ date }) => {
       weight: Number(weight),
     };
     dispatch(addProduct(userEatenProduct));
+    console.log(addProduct(userEatenProduct));
     setValue("");
     setWeight("");
   };
@@ -61,9 +63,7 @@ const DiaryAddProductForm = ({ date }) => {
     // );
     value.length > 3 &&
       axios
-        .get(BASE_URL + `/product?search=${value}`, {
-          headers: { Authorization: `Bearer ${token}` },
-        })
+        .get(BASE_URL + `/product?search=${value}`)
         .then((response) => setProducts(response.data));
   }, [value]);
 
@@ -98,7 +98,7 @@ const DiaryAddProductForm = ({ date }) => {
               onChange={onHandleChange}
               list=""
               id=""
-              name="weigth"
+              name="weight"
               type="number"
               min="100"
               step="1"

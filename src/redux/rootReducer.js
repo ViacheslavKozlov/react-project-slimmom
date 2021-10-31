@@ -18,11 +18,16 @@ const dailyRateConfig = {
   storage,
 };
 
+const productsConfig = {
+  key: "products",
+  storage,
+};
+
 export const rootReducer = combineReducers({
   // dailyCalories: dailyCaloriesReducer,
   // dailyRate: persistReducer(dailyRateConfig, dailyRateReducer),
   dailyRate: dailyRateReducer,
-  days: productDailyReducer,
+  // days: productDailyReducer,
   products: productDailyReducer,
   authData: authRedusers,
   error: errorReducer,

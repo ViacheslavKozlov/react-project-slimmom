@@ -8,7 +8,6 @@
   border: 0;
   outline: 0;
   background: transparent;
-  border-bottom: 1px solid #9b9faa;
 
   font-family: Verdana;
   font-style: normal;
@@ -19,6 +18,15 @@
   color: #9b9faa;
 }
 
+.formFieldProduct:after {
+  content: "";
+  width: 290px;
+  display: inline-block;
+  height: 1px;
+  bottom: -10px;
+  background-color: #e0e0e0;
+}
+
 .formFieldWeigth {
   margin-top: 30px;
   width: 290px;
@@ -26,7 +34,6 @@
   border: 0;
   outline: 0;
   background: transparent;
-  border-bottom: 1px solid #9b9faa;
 
   font-family: Verdana;
   font-style: normal;
@@ -35,4 +42,13 @@
   line-height: 1.21;
   letter-spacing: 0.04em;
   color: #9b9faa;
+}
+
+.formFieldWeigth:after {
+  content: "";
+  width: 290px;
+  display: inline-block;
+  height: 3px;
+  bottom: -10px;
+  background-color: #e0e0e0;
 }
