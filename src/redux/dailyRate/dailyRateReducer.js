@@ -8,6 +8,7 @@ import {
   getUserInfoSucces,
   getUserInfoError,
   getDailyRateByDateError,
+  getDailyRateByDateRequest,
 } from "./dailyRateActions";
 import {
   getUserSuccess,
@@ -72,8 +73,11 @@ export const dailyCaloriesReducer = createReducer(
 
 const dailyRateLoaderReducer = createReducer(false, {
   [getDailyRateRequest]: () => true,
+  [getDailyRateByDateRequest]: () => true,
   [getDailyRateSucces]: () => false,
+  [getDailyRateByDateSucces]: () => false,
   [getDailyRateError]: () => false,
+  [getDailyRateByDateError]: () => false,
 });
 
 const dailyCaloriesErrorReducer = createReducer("", {
@@ -82,6 +86,8 @@ const dailyCaloriesErrorReducer = createReducer("", {
   [getDailyRateByDateError]: (_, { payload }) => payload,
   [getDailyRateRequest]: () => "",
   [getDailyRateSucces]: () => "",
+  [getDailyRateByDateSucces]: () => "",
+  [getDailyRateByDateRequest]: () => "",
 });
 
 export const dailyRateReducer = combineReducers({

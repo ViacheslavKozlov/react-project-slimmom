@@ -84,5 +84,5 @@ export const authRefresh = (refreshToken, sid) => (dispatch) => {
       );
       axios("/user").then(({ data }) => dispatch(getUserSuccess(data)));
     })
-    .catch((error) => dispatch(refreshAuthError(error.response.data.message)));
+    .catch((error) => dispatch(refreshAuthError(error.message)));
 };

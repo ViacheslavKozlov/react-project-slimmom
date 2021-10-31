@@ -1,8 +1,12 @@
 import React, { useEffect } from "react";
+import Loader from "react-loader-spinner";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router";
 import { getDailyRateByDateOperation } from "../../redux/dailyRate/dailyRateOperations";
-import { dailyRateSelector } from "../../redux/dailyRate/dailyRateSelectors";
+import {
+  dailyRateLoading,
+  dailyRateSelector,
+} from "../../redux/dailyRate/dailyRateSelectors";
 
 import style from "./DailyStatistics.module.css";
 
@@ -14,12 +18,9 @@ const DailyStatistics = () => {
   const location = useLocation();
   const dailyRate = useSelector(dailyRateSelector);
   const dispatch = useDispatch();
-  console.log(dailyRate.notAllowedProducts);
+  const isLoading = useSelector(dailyRateLoading);
 
   useEffect(() => {
-    // if (location.pathname === "/calculator") {
-    //   return;
-    // }
     if (dailyRate.dailyRate) {
       dispatch(getDailyRateByDateOperation(date));
     }
@@ -27,55 +28,65 @@ const DailyStatistics = () => {
 
   return (
     <div className={style.statistics_wrapper}>
-      <h3 className={style.statistics_title}>
-        Сводка за {dailyRate.todayDate}
-      </h3>
-      <div className={style.statistics_box}>
-        <div className={style.statistic_box}>
-          <p className={style.statistic_text}>Осталось</p>
-          <p className={style.statistic_text}>
-            {dailyRate.kcalLeft ? `${dailyRate.kcalLeft} ` : "000 "}
-            ккал
-          </p>
-        </div>
-        <div className={style.statistic_box}>
-          <p className={style.statistic_text}>Употреблено</p>
-          <p className={style.statistic_text}>
-            {dailyRate.kcalConsumed ? `${dailyRate.kcalConsumed} ` : "000 "}
-            ккал
-          </p>
-        </div>
-        <div className={style.statistic_box}>
-          <p className={style.statistic_text}>Дневная норма</p>
-          <p className={style.statistic_text}>
-            {dailyRate.dailyRate ? `${dailyRate.dailyRate} ` : "000 "}
-            ккал
-          </p>
-        </div>
-        <div className={style.statistic_box}>
-          <p className={style.statistic_text}>% от нормы</p>
-          <p className={style.statistic_text}>
-            {dailyRate.percentsOfDailyRate
-              ? Math.round(`${dailyRate.percentsOfDailyRate} `)
-              : "0 "}
-            %
-          </p>
-        </div>
-      </div>
-      <h3 className={style.statistics_title}>Нерекомендуемые продукты</h3>
-      <div className={style.statistics_box}>
-        {dailyRate.notAllowedProducts?.length !== 0 ? (
-          <ul className={style.statistic_list}>
-            {dailyRate.notAllowedProducts?.map((product) => (
-              <li className={style.statistic_text} key={product}>
-                {product}
-              </li>
-            ))}
-          </ul>
+      <>
+        {isLoading ? (
+          <Loader type="Oval" color="#fc842d" height={90} width={90} />
         ) : (
-          <p>Здесь будет отображаться Ваш рацион</p>
+          <>
+            <h3 className={style.statistics_title}>
+              Сводка за {dailyRate.todayDate}
+            </h3>
+            <div className={style.statistics_box}>
+              <div className={style.statistic_box}>
+                <p className={style.statistic_text}>Осталось</p>
+                <p className={style.statistic_text}>
+                  {dailyRate.kcalLeft ? `${dailyRate.kcalLeft} ` : "000 "}
+                  ккал
+                </p>
+              </div>
+              <div className={style.statistic_box}>
+                <p className={style.statistic_text}>Употреблено</p>
+                <p className={style.statistic_text}>
+                  {dailyRate.kcalConsumed
+                    ? `${dailyRate.kcalConsumed} `
+                    : "000 "}
+                  ккал
+                </p>
+              </div>
+              <div className={style.statistic_box}>
+                <p className={style.statistic_text}>Дневная норма</p>
+                <p className={style.statistic_text}>
+                  {dailyRate.dailyRate ? `${dailyRate.dailyRate} ` : "000 "}
+                  ккал
+                </p>
+              </div>
+              <div className={style.statistic_box}>
+                <p className={style.statistic_text}>% от нормы</p>
+                <p className={style.statistic_text}>
+                  {dailyRate.percentsOfDailyRate
+                    ? Math.round(`${dailyRate.percentsOfDailyRate} `)
+                    : "0 "}
+                  %
+                </p>
+              </div>
+            </div>
+            <h3 className={style.statistics_title}>Нерекомендуемые продукты</h3>
+            <div className={style.statistics_box}>
+              {dailyRate.notAllowedProducts?.length !== 0 ? (
+                <ul className={style.statistic_list}>
+                  {dailyRate.notAllowedProducts?.map((product) => (
+                    <li className={style.statistic_text} key={product}>
+                      {product}
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p>Здесь будет отображаться Ваш рацион</p>
+              )}
+            </div>
+          </>
         )}
-      </div>
+      </>
     </div>
   );
 };
