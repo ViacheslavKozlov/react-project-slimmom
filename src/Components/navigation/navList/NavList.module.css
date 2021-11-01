@@ -1,0 +1,23 @@
+ul,
+ol {
+  padding: 0;
+  list-style: none;
+  margin: 0;
+}
+@media screen and (min-width: 768px) {
+  .listMain {
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: center;
+    width: 612px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .listMain {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 385px;
+  }
+}

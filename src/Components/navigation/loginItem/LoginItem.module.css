@@ -1,31 +1,44 @@
-@media screen and (min-width: 768px) {
-  .link {
-    text-decoration: none;
-    color: var(--main-txt-color);
-    font-family: Gotham Pro;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 14px;
-    line-height: 13px;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-  }
-
-  .activeLink {
-    color: var(--headline-txt-color);
-  }
-
-  .logo {
-    position: relative;
-    bottom: 20px;
-
-    width: 166px;
-    height: 66px;
-  }
+ul,
+ol {
+  padding: 0;
+  list-style: none;
+  margin: 0;
 }
 
 @media screen and (min-width: 1280px) {
-  .link {
+  .btn {
+    font-family: Gotham Pro;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 13px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 0;
+    border: none;
+    background-color: white;
+  }
+
+  .listSecondary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 115px;
+  }
+
+  .itemUser {
+    text-decoration: none;
+    color: var(--headline-txt-color);
+    font-family: Gotham Pro;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 13px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .item {
     text-decoration: none;
     color: var(--main-txt-color);
     font-family: Gotham Pro;
@@ -36,28 +49,21 @@
     letter-spacing: 0.04em;
     text-transform: uppercase;
   }
-  .link:hover {
+
+  .item:hover {
+    cursor: pointer;
     color: var(--headline-txt-color);
   }
 
-  .activeLink {
-    color: var(--headline-txt-color);
+  .item:first-child {
+    margin-right: 20px;
   }
-
-  .logo {
-    position: relative;
-    bottom: 20px;
-
-    width: 166px;
-    height: 66px;
-  }
-
-  .item:first-child::after {
+  .item:last-child::before {
     position: absolute;
     width: 32px;
     height: 0px;
-    left: 248px;
-    top: 122px;
+    right: 170px;
+    top: 123px;
     transform: rotate(90deg);
 
     content: "";
@@ -68,12 +74,6 @@
   }
 
   .item:not(:last-child) {
-    margin-right: 14px;
-  }
-
-  .item:first-child {
     margin-right: 22px;
   }
 }
-
-@import "../../../utils/vars.css";
