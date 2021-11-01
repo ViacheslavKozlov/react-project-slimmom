@@ -6,10 +6,12 @@ import { Button } from "../button/Button";
 import { useHistory } from "react-router-dom";
 import Wrapper from "../wrapper/Wrapper";
 
+
 const AuthForm = ({ handleSubmit, btnName, btn_auth }) => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [name, setName] = useState("Slava");
+  const [email, setEmail] = useState("slava1@mail.com");
+  const [password, setPassword] = useState("xxxxxxxx");
+
 
   const onChange = e => {
     const { type, value } = e.target;
