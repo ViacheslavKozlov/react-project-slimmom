@@ -21,3 +21,123 @@
   cursor: pointer;
   background-color: rgb(189, 44, 0);
 }
+
+.registration_form {
+  margin: 0;
+
+  width: 290px;
+}
+
+@media screen and (min-width: 768px) {
+  .registration_form {
+    width: 382px;
+  }
+}
+
+.registration_title {
+  color: var(--active-color);
+  margin-top: 40px;
+  margin-bottom: 30px;
+  font-family: Verdana;
+  font-style: normal;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.44;
+}
+@media screen and (min-width: 768px) {
+  .registration_title {
+    margin-top: 157px;
+    margin-bottom: 60px;
+    font-size: 30px;
+    line-height: 1.2;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .registration_title {
+    margin-top: 95px;
+    margin-bottom: 68px;
+    font-size: 34px;
+    line-height: 1.2;
+  }
+}
+
+.registration_wrapper {
+  margin-right: 50px;
+}
+
+@media screen and (min-width: 768px) {
+  .registration_wrapper {
+    margin-right: 95px;
+  }
+}
+
+.registration_label {
+  color: var(--main-txt-color);
+  font-family: Verdana;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.22;
+  letter-spacing: 0.04em;
+  /* display: block; */
+  cursor: pointer;
+}
+
+.registration_line {
+  color: var(--not-bold-text-colour);
+  margin: 10px 0 25px 0;
+  color: #e0e0e0;
+}
+
+@media screen and (min-width: 768px) {
+  .registration_line {
+    margin: 19px 0 40px 0;
+  }
+}
+
+.registration_input {
+  color: var(--accent-colour);
+  font-family: Verdana;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.22;
+  letter-spacing: 0.04em;
+  width: 65%;
+  background-color: inherit;
+  border: none;
+  outline: none;
+}
+
+.btn_white {
+  background-color: #fff;
+  color: #fc842d;
+  margin-top: 20px;
+}
+
+@media screen and (min-width: 768px) {
+  .btn_white {
+    margin-top: 0;
+  }
+}
+
+.flex {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 290px;
+}
+@media screen and (min-width: 768px) {
+  .flex {
+    flex-direction: row;
+    width: 377px;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.registration_right {
+  margin-right: 25px;
+}
