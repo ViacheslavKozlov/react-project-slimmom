@@ -7,10 +7,25 @@ const modalRoot = document.querySelector("#modal");
 const NavModal = ({ children, toggleModal }) => {
   useEffect(() => {
     window.addEventListener("keydown", handleKeyDown);
+    const body = document.querySelector("body");
+    body.style.overflow = "hidden";
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
+      const body = document.querySelector("body");
+      body.style.overflow = "auto";
     };
   });
+
+  // useEffect(() => {
+  //   window.addEventListener("keydown", handleKeyDown);
+  //   const body = document.querySelector("body");
+  //   body.style.overflow = "hidden";
+  //   return () => {
+  //     window.removeEventListener("keydown", handleKeyDown);
+  //     const body = document.querySelector("body");
+  //     body.style.overflow = "auto";
+  //   };
+  // });
 
   const handleKeyDown = (e) => {
     if (e.code === "Escape") {
