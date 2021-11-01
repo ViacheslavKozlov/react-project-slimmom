@@ -50,7 +50,7 @@ export const getDayInfo = day => async (dispatch, getState) => {
   const token = getState().authData.accessToken;
   dispatch(getDayInfoRequest());
   try {
-    const { data } = await axios.post(BASE_URL + `/day/info`, day, { headers: { Authorization: `Bearer ${token}` } });
+    const { data } = await axios.post(`${BASE_URL}/day/info`, day, { headers: { Authorization: `Bearer ${token}` } });
     dispatch(getDayInfoSuccess(data));
   } catch (error) {
     dispatch(getDayInfoError(error.message));
