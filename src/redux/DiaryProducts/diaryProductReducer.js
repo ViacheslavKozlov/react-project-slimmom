@@ -9,16 +9,19 @@ import {
   deleteProductError,
   getProductsRequest,
   getProductsSuccess,
-  getProductsError
+  getProductsError,
 } from "./diaryProductActions";
 import errorReducer from "../errorReducer/errorReducer";
 import isLoadingReduser from "../isLoadingReduser/isLoadingReduser";
 
 const productReducer = createReducer([], {
-  [addProductSuccess]: (state, action) => [...state, action.payload],
+  [addProductSuccess]: (state, action) => [
+    ...state,
+    action.payload.eatenProduct,
+  ],
   // [deleteProductSuccess]: (state, action) =>
   //   state.filter((product) => product._id !== action.payload),
-  [getProductsSuccess]: (_, action) => action.payload
+  [getProductsSuccess]: (_, action) => action.payload,
 });
 
 const loadingReducer = createReducer(false, {
@@ -32,7 +35,7 @@ const loadingReducer = createReducer(false, {
 
   [deleteProductRequest]: () => true,
   [deleteProductSuccess]: () => false,
-  [deleteProductError]: () => false
+  [deleteProductError]: () => false,
 });
 
 // const errorReducer = createReducer("", {
@@ -50,5 +53,5 @@ export const productDailyReducer = combineReducers({
   loading: loadingReducer,
   // authData: persistedAuthReducer,
   error: errorReducer,
-  isLoading: isLoadingReduser
+  isLoading: isLoadingReduser,
 });
