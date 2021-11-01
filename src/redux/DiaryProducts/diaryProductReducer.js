@@ -13,7 +13,6 @@ import {
 } from "./diaryProductActions";
 import errorReducer from "../errorReducer/errorReducer";
 import isLoadingReduser from "../isLoadingReduser/isLoadingReduser";
-import authRedusers, { persistedAuthReducer } from "../../redux/auth/authReducers";
 
 const productReducer = createReducer([], {
   [addProductSuccess]: (state, action) => [...state, action.payload],

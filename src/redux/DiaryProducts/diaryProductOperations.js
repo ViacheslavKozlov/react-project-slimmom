@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useSelector } from "react-redux";
 import { BASE_URL } from "../../service/Api";
 import {
   addProductRequest,
@@ -11,40 +12,35 @@ import {
   getProductsRequest,
   getProductsSuccess,
   getDayInfoSuccess,
-  getDayInfoError
+  getDayInfoError,
+  deleteProductRequest,
+  deleteProductSuccess,
+  deleteProductError
   // getProductError,
 } from "./diaryProductActions";
-
-// const token =
-//   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MTc5NGE5N2E2Zjk3NjY4ZjdmYzU5MTQiLCJzaWQiOiI2MTdlNmQzM2E2Zjk3NjY4ZjdmYzVhMjkiLCJpYXQiOjE2MzU2NzU0NDMsImV4cCI6MTYzNTY3OTA0M30.nCrIAFfdo-azzNoMw_NmusE-iWJNrJQ5PQ1RSfUEgN8";
+import { diaryEatenProductId, diaryProductId } from "./diaryProductSelector";
 
 export const addProduct = product => (dispatch, getState) => {
-  console.log(product);
-  // const localId = getState().authorization.tokens.localId;
-  // const idToken = getState().authorization.tokens.idToken;
+  const token = getState().authData.accessToken;
   dispatch(addProductRequest());
 
   axios
-    .post(BASE_URL + `/day`, product)
+    .post(`${BASE_URL}/day`, product, { headers: { Authorization: `Bearer ${token}` } })
     .then(product => dispatch(addProductSuccess(product.data)))
     .catch(error => dispatch(addProductError(error)));
 };
 
-// export const deleteProduct = (contactId) => async (dispatch, getState) => {
-//   const localId = getState().authorization.tokens.localId;
-// const idToken = getState().authorization.tokens.idToken;
-//   dispatch(deleteProductRequest());
+export const deleteProduct = product => async (dispatch, getState) => {
+  const token = getState().authData.accessToken;
+  const productId = useSelector(diaryProductId());
+  const eatenProductId = useSelector(diaryEatenProductId());
 
-//   axios
-//     .delete(
-//       BASE_URL + `/${localId}/contacts/${contactId}.json?auth=${idToken}`,
-//       {
-//         headers: { Authorization: `Bearer ${idToken}` },
-//       }
-//     )
-//     .then(() => dispatch(deleteProductSuccess(contactId)))
-//     .catch((error) => dispatch(deleteProductError(error)));
-// };
+  dispatch(deleteProductRequest());
+  axios
+    .delete(`${BASE_URL}/day`, { headers: { Authorization: `Bearer ${token}` } })
+    .then(() => dispatch(deleteProductSuccess(productId, eatenProductId)))
+    .catch(error => dispatch(deleteProductError(error.message)));
+};
 
 export const getDayInfo = day => async (dispatch, getState) => {
   const token = getState().authData.accessToken;

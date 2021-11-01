@@ -1,8 +1,7 @@
-import { createReducer, combineReducers } from "@reduxjs/toolkit";
+import { createReducer } from "@reduxjs/toolkit";
 import storage from "redux-persist/lib/storage";
 import { persistReducer } from "redux-persist";
-import { registerAuthSuccess, loginAuthSuccess, logoutAuthSuccess, refreshAuthSuccess, getUserSuccess } from "./authActions";
-import { getUserInfoSuccess } from "../user/userActions";
+import { loginAuthSuccess, logoutAuthSuccess, refreshAuthSuccess } from "./authActions";
 
 const persistConfig = {
   key: "refresh",
@@ -37,30 +36,3 @@ const authReducer = createReducer(
 );
 
 export const persistedAuthReducer = persistReducer(persistConfig, authReducer);
-
-// const userInfo = createReducer(
-//   {},
-//   {
-//     [registerAuthSuccess]: (_, { payload }) => ({ user: payload }),
-//     [loginAuthSuccess]: (_, { payload }) => payload,
-//     [logoutAuthSuccess]: () => ({}),
-//     [refreshAuthSuccess]: (state, { payload }) => ({ ...state, ...payload }),
-//     [getUserSuccess]: (state, { payload }) => ({ ...state, user: payload }),
-//   }
-// );
-
-// const isAuthIn = createReducer(false, {
-//   // [registerAuthSuccess]: () => true,
-//   [loginAuthSuccess]: () => true,
-//   [logoutAuthSuccess]: () => false,
-//   [refreshAuthSuccess]: () => true,
-// });
-
-// const persistedUsersData = persistReducer(persistConfig, userInfo);
-
-// const userRedusers = combineReducers({
-//   userInfo: persistedUsersData,
-//   isAuthIn,
-// });
-
-// export default userRedusers;
