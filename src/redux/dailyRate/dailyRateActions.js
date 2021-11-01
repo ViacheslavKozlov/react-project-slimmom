@@ -14,7 +14,7 @@ const getDailyRateByDateError = createAction(
   "dailyRate/getDailyRateByDateError"
 );
 
-const getUserInfoRequest = createAction("dailyRate/getDailyRatByDateeRequest");
+const getUserInfoRequest = createAction("dailyRate/getUserInfoRequest");
 const getUserInfoSucces = createAction("dailyRate/getUserInfoSucces");
 const getUserInfoError = createAction("dailyRate/getUserInfoError");
 

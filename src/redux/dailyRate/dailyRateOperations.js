@@ -11,23 +11,6 @@ import {
 
 const BASE_URL = "https://slimmom-backend.goit.global";
 
-const token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MTdhZTQ5Y2E2Zjk3NjY4ZjdmYzU5ODAiLCJzaWQiOiI2MTdiOGU3Y2E2Zjk3NjY4ZjdmYzU5OGEiLCJpYXQiOjE2MzU0ODczNTYsImV4cCI6MTYzNTQ5MDk1Nn0.cF25a_t-Cb8DPW682HrSWQ0hbZWokKdDecKEOWCBju0";
-
-// {
-//   "email": "dnbdimka@gmail.com",
-//   "password": "qweqwe123"
-// }
-
-// "userId": "617a4645a6f97668f7fc593f",
-
-//  axios
-//         .get(BASE_URL + /product?search=${value}, {
-//           headers: { Authorization: Bearer ${token} },
-//         })
-//         .then((response) => setProducts(response.data));
-//   }, [value]);
-
 const getUserInfoOperation = () => async (dispatch) => {
   // dispatch(getDailyRateRequest());
   try {
@@ -62,18 +45,16 @@ const getDailyRateOperation =
     }
   };
 
-const getDailyRateByDateOperation =
-  (date = "2020-12-31") =>
-  async (dispatch) => {
-    // dispatch(getDailyRateRequest());
-    try {
-      const response = await axios.post(`${BASE_URL}/day/info`, date);
+const getDailyRateByDateOperation = (date) => async (dispatch) => {
+  // dispatch(getDailyRateRequest());
+  try {
+    const response = await axios.post(`${BASE_URL}/day/info`, date);
 
-      dispatch(getDailyRateByDateSucces({ ...response.data }));
-    } catch (error) {
-      dispatch(getDailyRateByDateError(error.message));
-    }
-  };
+    dispatch(getDailyRateByDateSucces({ ...response.data }));
+  } catch (error) {
+    dispatch(getDailyRateByDateError(error.message));
+  }
+};
 
 export {
   getDailyRateOperation,

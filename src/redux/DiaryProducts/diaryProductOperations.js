@@ -1,5 +1,6 @@
 import axios from "axios";
 import { BASE_URL } from "../../service/Api";
+// import { afterDeleteProductInfoDaySucces } from "../dailyRate/dailyRateActions";
 import {
   addProductRequest,
   addProductSuccess,
@@ -9,6 +10,10 @@ import {
   // deleteProductError,
   getProductsRequest,
   getProductsSuccess,
+  deleteProductSuccess,
+  deleteProductError,
+  changeCurrentDateSucces,
+  afterDeleteProductInfoDaySucces,
   // getProductError,
 } from "./diaryProductActions";
 
@@ -23,25 +28,25 @@ export const addProduct = (product) => (dispatch, getState) => {
 
   axios
     .post(BASE_URL + `/day`, product)
-    .then((product) => dispatch(addProductSuccess(product)))
-    .catch((error) => dispatch(addProductError(error)));
+    .then((response) => dispatch(addProductSuccess(response.data)))
+    .catch((error) => dispatch(addProductError(error.message)));
 };
 
-// export const deleteProduct = (contactId) => async (dispatch, getState) => {
-//   const localId = getState().authorization.tokens.localId;
-// const idToken = getState().authorization.tokens.idToken;
-//   dispatch(deleteProductRequest());
+export const deleteProductOperation = (data) => async (dispatch) => {
+  // dispatch(deleteProductRequest());
+  // console.log(data.eatenProductId);
+  console.log(data);
+  const newData = { data };
+  // console.log(newData.data.eatenProductId);
+  axios
+    .delete(BASE_URL + `/day`, newData)
+    .then((response) =>
+      dispatch(afterDeleteProductInfoDaySucces(response.data))
+    )
+    .then(() => dispatch(deleteProductSuccess(newData.data.eatenProductId)))
+    .catch((error) => dispatch(deleteProductError(error.message)));
+};
 
-//   axios
-//     .delete(
-//       BASE_URL + `/${localId}/contacts/${contactId}.json?auth=${idToken}`,
-//       {
-//         headers: { Authorization: `Bearer ${idToken}` },
-//       }
-//     )
-//     .then(() => dispatch(deleteProductSuccess(contactId)))
-//     .catch((error) => dispatch(deleteProductError(error)));
-// };
 export const getProducts = () => (dispatch) => {
   dispatch(getProductsRequest());
 
@@ -49,4 +54,9 @@ export const getProducts = () => (dispatch) => {
     .get(BASE_URL + `/user`)
     .then((response) => dispatch(getProductsSuccess(response.data.days)));
   // .catch((error) => dispatch(getProductError(error)));
+};
+
+export const changeDateOperation = (date) => async (dispatch) => {
+  // dispatch(getDailyRateRequest());
+  dispatch(changeCurrentDateSucces(date));
 };

@@ -15,6 +15,10 @@ import {
   loginAuthSuccess,
   registerAuthSuccess,
 } from "../auth/authActions";
+import {
+  addProductSuccess,
+  afterDeleteProductInfoDaySucces,
+} from "../DiaryProducts/diaryProductActions";
 // const initialState = {};
 
 export const dailyCaloriesReducer = createReducer(
@@ -41,10 +45,18 @@ export const dailyCaloriesReducer = createReducer(
       notAllowedProducts: payload.notAllowedProducts,
       dailyRate: payload.dailyRate,
     }),
-    [getDailyRateByDateSucces]: (state, { payload }) => ({
-      ...state,
-      ...payload,
-    }),
+
+    [getDailyRateByDateSucces]: (state, { payload }) => {
+      return {
+        ...state,
+        // date: payload.daySummary?.date,
+        kcalConsumed: payload.daySummary?.kcalConsumed || payload.kcalConsumed,
+        kcalLeft: payload.daySummary?.kcalLeft || payload.kcalLeft,
+        percentsOfDailyRate:
+          payload.daySummary?.percentsOfDailyRate ||
+          payload.percentsOfDailyRate,
+      };
+    },
     //login
     [loginAuthSuccess]: (_, { payload }) => ({
       username: payload.user.username,
@@ -61,6 +73,23 @@ export const dailyCaloriesReducer = createReducer(
         // dailyRate: payload.user.userData.dailyRate,
       },
     }),
+    [addProductSuccess]: (state, { payload }) => ({
+      ...state,
+      kcalConsumed: payload.daySummary?.kcalConsumed || payload.kcalConsumed,
+      kcalLeft: payload.daySummary?.kcalLeft || payload.kcalLeft,
+      percentsOfDailyRate:
+        payload.daySummary?.percentsOfDailyRate || payload.percentsOfDailyRate,
+    }),
+    [afterDeleteProductInfoDaySucces]: (state, { payload }) => ({
+      ...state,
+      kcalConsumed: payload.newDaySummary?.kcalConsumed,
+      kcalLeft: payload.newDaySummary?.kcalLeft,
+      percentsOfDailyRate: payload.newDaySummary?.percentsOfDailyRate,
+    }),
+    // [changeCurrentDateSucces]: (state, { payload }) => ({
+    //   ...state,
+    //   date: payload,
+    // }),
     // [getDailyRateRequest]: () => {},
     [getUserInfoSucces]: (state, { payload }) => ({
       ...state,

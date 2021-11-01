@@ -26,3 +26,23 @@ export const getProductsSuccess = createAction(
   "DiaryProducts/getProductSuccess"
 );
 export const getProductsError = createAction("DiaryProducts/getProductError");
+
+export const afterDeleteProductInfoDayRequest = createAction(
+  "DiaryProducts/afterDeleteProductInfoDayequest"
+);
+export const afterDeleteProductInfoDaySucces = createAction(
+  "DiaryProducts/afterDeleteProductInfoDaySucces"
+);
+export const afterDeleteProductInfoDayError = createAction(
+  "DiaryProducts/afterDeleteProductInfoDayError"
+);
+
+export const changeCurrentDateRequest = createAction(
+  "DiaryProducts/changeCurrentDateRequest"
+);
+export const changeCurrentDateSucces = createAction(
+  "DiaryProducts/changeCurrentDateSucces"
+);
+export const changeCurrentDateError = createAction(
+  "DiaryProducts/changeCurrentDateError"
+);

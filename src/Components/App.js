@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import DairyPage from "../pages/DairyPage";
+import DairyPage from "../pages/DiaryPage";
 import { getProducts } from "../redux/DiaryProducts/diaryProductOperations";
-import {  authRefresh } from "../redux/auth/authOperations";
+import { authRefresh } from "../redux/auth/authOperations";
 import {
   getIsAuth,
   getRefreshToken,
@@ -37,7 +37,7 @@ const App = () => {
         <Main />
       </AuthContext.Provider>{" "}
       {/* <DiaryAddProductForm /> */}
-      <DairyPage />
+      {/* <DairyPage /> */}
     </>
   );
 };

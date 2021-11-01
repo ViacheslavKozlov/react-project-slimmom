@@ -7,24 +7,45 @@ import {
   dailyRateLoading,
   dailyRateSelector,
 } from "../../redux/dailyRate/dailyRateSelectors";
+import moment from "moment";
 
 import style from "./DailyStatistics.module.css";
+import { dairyProductsSelector } from "../../redux/DiaryProducts/diaryProductSelector";
 
-const date = {
-  date: "2021-10-29",
-};
+// const date = {
+//   date: "2021-10-31",
+// };
 
 const DailyStatistics = () => {
   const location = useLocation();
   const dailyRate = useSelector(dailyRateSelector);
-  const dispatch = useDispatch();
+  const diaryProduct = useSelector(dairyProductsSelector);
   const isLoading = useSelector(dailyRateLoading);
+  const dispatch = useDispatch();
+  // const currentDate = moment(date).format("YYYY-MM-DD");
+  // console.log(date);
+  const todayDate = moment(new Date()).format("YYYY-MM-DD");
 
   useEffect(() => {
-    if (dailyRate.dailyRate) {
-      dispatch(getDailyRateByDateOperation(date));
+    if (diaryProduct.date > todayDate) {
+      return;
     }
-  }, [location.pathname, dispatch, dailyRate.dailyRate]);
+    if (diaryProduct.date < todayDate) {
+      // alert("В этот день Вы не вели дневник");
+      dispatch(getDailyRateByDateOperation({ date: diaryProduct.date }));
+      return;
+    }
+    if (dailyRate.dailyRate) {
+      // dispatch(getDailyRateByDateOperation(date));
+      dispatch(getDailyRateByDateOperation({ date: todayDate }));
+    }
+  }, [
+    // location.pathname,
+    dispatch,
+    dailyRate.dailyRate,
+    diaryProduct.date,
+    todayDate,
+  ]);
 
   return (
     <div className={style.statistics_wrapper}>
@@ -34,13 +55,15 @@ const DailyStatistics = () => {
         ) : (
           <>
             <h3 className={style.statistics_title}>
-              Сводка за {dailyRate.todayDate}
+              Сводка за {moment(diaryProduct.date).format("DD.MM.YYYY")}
             </h3>
             <div className={style.statistics_box}>
               <div className={style.statistic_box}>
                 <p className={style.statistic_text}>Осталось</p>
                 <p className={style.statistic_text}>
-                  {dailyRate.kcalLeft ? `${dailyRate.kcalLeft} ` : "000 "}
+                  {dailyRate.kcalLeft
+                    ? `${Math.round(dailyRate.kcalLeft)} `
+                    : "000 "}
                   ккал
                 </p>
               </div>
@@ -48,7 +71,7 @@ const DailyStatistics = () => {
                 <p className={style.statistic_text}>Употреблено</p>
                 <p className={style.statistic_text}>
                   {dailyRate.kcalConsumed
-                    ? `${dailyRate.kcalConsumed} `
+                    ? `${Math.round(dailyRate.kcalConsumed)} `
                     : "000 "}
                   ккал
                 </p>
@@ -56,7 +79,9 @@ const DailyStatistics = () => {
               <div className={style.statistic_box}>
                 <p className={style.statistic_text}>Дневная норма</p>
                 <p className={style.statistic_text}>
-                  {dailyRate.dailyRate ? `${dailyRate.dailyRate} ` : "000 "}
+                  {dailyRate.dailyRate
+                    ? `${Math.round(dailyRate.dailyRate)} `
+                    : "000 "}
                   ккал
                 </p>
               </div>
@@ -64,7 +89,7 @@ const DailyStatistics = () => {
                 <p className={style.statistic_text}>% от нормы</p>
                 <p className={style.statistic_text}>
                   {dailyRate.percentsOfDailyRate
-                    ? Math.round(`${dailyRate.percentsOfDailyRate} `)
+                    ? `${Math.round(dailyRate.percentsOfDailyRate)} `
                     : "0 "}
                   %
                 </p>
