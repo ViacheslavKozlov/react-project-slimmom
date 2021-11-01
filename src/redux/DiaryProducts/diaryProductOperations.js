@@ -23,7 +23,7 @@ export const addProduct = (product) => (dispatch, getState) => {
 
   axios
     .post(BASE_URL + `/day`, product)
-    .then((product) => dispatch(addProductSuccess(product)))
+    .then((product) => dispatch(addProductSuccess(product.data)))
     .catch((error) => dispatch(addProductError(error)));
 };
 

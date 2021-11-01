@@ -38,6 +38,17 @@ const Modal = ({ toggleModal, dailyRate }) => {
               <Loader type="Oval" color="#fc842d" height={90} width={90} />
             ) : (
               <>
+                <button
+                  className={style.modal_closeBtn}
+                  type="button"
+                  data-action="close-modal"
+                  onClick={toggleModal}
+                >
+                  X
+                  <svg width="12" height="12">
+                    <use href="../../../icons/sprite.svg#close"></use>
+                  </svg>
+                </button>
                 <h2 className={style.modal_title}>
                   Ваша рекомендуемая суточная норма калорий составляет
                 </h2>
