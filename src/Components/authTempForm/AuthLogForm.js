@@ -4,9 +4,9 @@ import styles from "./AuthLogForm.module.css";
 import { mainRoutes } from "../../routes/mainRoutes";
 
 const AuthForm = ({ handleSubmit, btnName }) => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [name, setName] = useState("Slava");
+  const [email, setEmail] = useState("slava1@mail.com");
+  const [password, setPassword] = useState("xxxxxxxx");
 
   const onChange = e => {
     const { type, value } = e.target;

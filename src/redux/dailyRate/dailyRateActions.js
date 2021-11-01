@@ -4,15 +4,11 @@ const getDailyRateRequest = createAction("dailyRate/getDailyRateRequest");
 const getDailyRateSucces = createAction("dailyRate/getDailyRateSucces");
 const getDailyRateError = createAction("dailyRate/getDailyRateError");
 
-const getDailyRateByDateRequest = createAction(
-  "dailyRate/getDailyRatByDateeRequest"
-);
-const getDailyRateByDateSucces = createAction(
-  "dailyRate/getDailyRateByDateSucces"
-);
-const getDailyRateByDateError = createAction(
-  "dailyRate/getDailyRateByDateError"
-);
+const setUserData = createAction("dailyRate/setUserData");
+
+const getDailyRateByDateRequest = createAction("dailyRate/getDailyRatByDateeRequest");
+const getDailyRateByDateSucces = createAction("dailyRate/getDailyRateByDateSucces");
+const getDailyRateByDateError = createAction("dailyRate/getDailyRateByDateError");
 
 const getUserInfoRequest = createAction("dailyRate/getDailyRatByDateeRequest");
 const getUserInfoSucces = createAction("dailyRate/getUserInfoSucces");
@@ -31,4 +27,5 @@ export {
   getUserInfoSucces,
   getUserInfoRequest,
   getUserInfoError,
+  setUserData
 };

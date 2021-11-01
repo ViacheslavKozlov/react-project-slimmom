@@ -3,30 +3,35 @@ import { useDispatch, useSelector } from "react-redux";
 import DairyPage from "../pages/DairyPage";
 import { getProducts } from "../redux/DiaryProducts/diaryProductOperations";
 import { authRefresh } from "../redux/auth/authOperations";
-import {
-  getIsAuth,
-  getRefreshToken,
-  getSid,
-} from "../redux/auth/authSelectors";
+import { getIsAuth, getRefreshToken, getSid } from "../redux/auth/authSelectors";
 // import { Button, ButtonAdd } from "./button/Button";
 // import DiaryAddProductForm from "./diaryAddProductForm/DiaryAddProductForm";
 import Header from "./header/Header";
 import Main from "./main/Main";
+import { getUserInfo } from "../redux/user/userOperation";
 
 export const AuthContext = React.createContext();
 
 const App = () => {
   const [isAuth, setIsAuth] = useState(true);
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getProducts());
-  }, [dispatch]);
   const isAuthIn = useSelector(getIsAuth);
   const refreshToken = useSelector(getRefreshToken);
   const sid = useSelector(getSid);
-  useEffect(() => {
-    !isAuthIn && refreshToken && dispatch(authRefresh(refreshToken, sid));
-  }, [dispatch, isAuthIn, refreshToken, sid]);
+  // console.log(isAuthIn);
+
+  useEffect(
+    () => {
+      isAuthIn && dispatch(getUserInfo());
+    },
+    [dispatch, isAuthIn]
+  );
+  useEffect(
+    () => {
+      !isAuthIn && refreshToken && dispatch(authRefresh(refreshToken, sid));
+    },
+    [dispatch, isAuthIn, refreshToken, sid]
+  );
 
   return (
     <>

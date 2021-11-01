@@ -20,9 +20,9 @@ const Modal = ({ toggleModal, dailyRate }) => {
       body.style.overflow = "auto";
     };
   });
-  const onHandleEscape = (e) => e.code === "Escape" && toggleModal();
+  const onHandleEscape = e => e.code === "Escape" && toggleModal();
 
-  const onOverlayClick = (e) => e.target === e.currentTarget && toggleModal();
+  const onOverlayClick = e => e.target === e.currentTarget && toggleModal();
 
   const onHandelBtnClick = () => {
     history.push("/register");
@@ -38,9 +38,7 @@ const Modal = ({ toggleModal, dailyRate }) => {
               <Loader type="Oval" color="#fc842d" height={90} width={90} />
             ) : (
               <>
-                <h2 className={style.modal_title}>
-                  Ваша рекомендуемая суточная норма калорий составляет
-                </h2>
+                <h2 className={style.modal_title}>Ваша рекомендуемая суточная норма калорий составляет</h2>
 
                 <p className={style.modal_calories_value}>
                   {dailyRate.dailyRate}
@@ -48,24 +46,13 @@ const Modal = ({ toggleModal, dailyRate }) => {
                 </p>
 
                 <div className={style.modal_bottom}>
-                  <h3 className={style.modal_bottom_title}>
-                    Продукты, которые вам не рекомендуется употреблять.
-                  </h3>
+                  <h3 className={style.modal_bottom_title}>Продукты, которые вам не рекомендуется употреблять.</h3>
                   {isLoading ? (
-                    <Loader
-                      type="Oval"
-                      color="#fc842d"
-                      height={40}
-                      width={40}
-                    />
+                    <Loader type="Oval" color="#fc842d" height={40} width={40} />
                   ) : (
                     <>
                       {dailyRate.notAllowedProducts?.length !== 0 ? (
-                        <ol>
-                          {dailyRate.notAllowedProducts?.map((product) => (
-                            <li key={product}>{product}</li>
-                          ))}
-                        </ol>
+                        <ol>{dailyRate.notAllowedProducts?.map(product => <li key={product}>{product}</li>)}</ol>
                       ) : (
                         <p>Можно всё!</p>
                       )}
@@ -73,11 +60,7 @@ const Modal = ({ toggleModal, dailyRate }) => {
                   )}
                 </div>
 
-                <Button
-                  buttonName="Начать худеть"
-                  type={"button"}
-                  onClick={onHandelBtnClick}
-                >
+                <Button buttonName="Начать худеть" type={"button"} onClick={onHandelBtnClick}>
                   Начать худеть
                 </Button>
               </>
