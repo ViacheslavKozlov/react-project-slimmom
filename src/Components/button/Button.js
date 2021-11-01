@@ -2,10 +2,10 @@ import React from "react";
 import sprite from "../../icons/sprite.svg";
 import styles from "./Buttot.module.css";
 
-const Button = ({ buttonName, type, onClick }) => {
+const Button = ({ buttonName, type, onClick, btn_auth }) => {
   return (
     <button
-      className={`${styles.btn} ${styles.btn_orange}`}
+      className={`${styles.btn} ${styles.btn_orange} ${btn_auth}`}
       type={type}
       onClick={onClick}
     >
