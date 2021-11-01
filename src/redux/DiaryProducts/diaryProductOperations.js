@@ -8,14 +8,14 @@ import {
   // deleteProductSuccess,
   // deleteProductError,
   getProductsRequest,
-  getProductsSuccess,
+  getProductsSuccess
   // getProductError,
 } from "./diaryProductActions";
 
 // const token =
 //   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MTc5NGE5N2E2Zjk3NjY4ZjdmYzU5MTQiLCJzaWQiOiI2MTdlNmQzM2E2Zjk3NjY4ZjdmYzVhMjkiLCJpYXQiOjE2MzU2NzU0NDMsImV4cCI6MTYzNTY3OTA0M30.nCrIAFfdo-azzNoMw_NmusE-iWJNrJQ5PQ1RSfUEgN8";
 
-export const addProduct = (product) => (dispatch, getState) => {
+export const addProduct = product => (dispatch, getState) => {
   console.log(product);
   // const localId = getState().authorization.tokens.localId;
   // const idToken = getState().authorization.tokens.idToken;
@@ -23,8 +23,8 @@ export const addProduct = (product) => (dispatch, getState) => {
 
   axios
     .post(BASE_URL + `/day`, product)
-    .then((product) => dispatch(addProductSuccess(product)))
-    .catch((error) => dispatch(addProductError(error)));
+    .then(product => dispatch(addProductSuccess(product.data)))
+    .catch(error => dispatch(addProductError(error)));
 };
 
 // export const deleteProduct = (contactId) => async (dispatch, getState) => {
@@ -42,11 +42,9 @@ export const addProduct = (product) => (dispatch, getState) => {
 //     .then(() => dispatch(deleteProductSuccess(contactId)))
 //     .catch((error) => dispatch(deleteProductError(error)));
 // };
-export const getProducts = () => (dispatch) => {
+export const getProducts = () => dispatch => {
   dispatch(getProductsRequest());
 
-  axios
-    .get(BASE_URL + `/user`)
-    .then((response) => dispatch(getProductsSuccess(response.data.days)));
+  axios.get(BASE_URL + `/user`).then(response => dispatch(getProductsSuccess(response.data.days)));
   // .catch((error) => dispatch(getProductError(error)));
 };

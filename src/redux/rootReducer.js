@@ -3,9 +3,10 @@ import storage from "redux-persist/lib/storage";
 import persistReducer from "redux-persist/lib/persistReducer";
 import { productDailyReducer } from "./DiaryProducts/diaryProductReducer";
 import { dailyRateReducer } from "./dailyRate/dailyRateReducer";
-import authRedusers from "./auth/authReducers";
+import authRedusers, { persistedAuthReducer } from "./auth/authReducers";
 import errorReducer from "./errorReducer/errorReducer";
 import isLoadingReduser from "./isLoadingReduser/isLoadingReduser";
+import { dayReducer, userReducer } from "./user/userReducers";
 
 // const authConfig = {
 //   key: "auth",
@@ -15,21 +16,23 @@ import isLoadingReduser from "./isLoadingReduser/isLoadingReduser";
 
 const dailyRateConfig = {
   key: "dailyRate",
-  storage,
+  storage
 };
 
 const productsConfig = {
   key: "products",
-  storage,
+  storage
 };
 
 export const rootReducer = combineReducers({
-  // dailyCalories: dailyCaloriesReducer,
-  // dailyRate: persistReducer(dailyRateConfig, dailyRateReducer),
+  authData: persistedAuthReducer,
   dailyRate: dailyRateReducer,
-  // days: productDailyReducer,
   products: productDailyReducer,
-  authData: authRedusers,
   error: errorReducer,
   isLoading: isLoadingReduser,
+  user: userReducer,
+  days: dayReducer
+  // dailyCalories: dailyCaloriesReducer,
+  // dailyRate: persistReducer(dailyRateConfig, dailyRateReducer),
+  // days: productDailyReducer,
 });
