@@ -4,11 +4,14 @@ import {
   addProductRequest,
   addProductSuccess,
   addProductError,
+  getDayInfoRequest,
   // deleteProductRequest,
   // deleteProductSuccess,
   // deleteProductError,
   getProductsRequest,
-  getProductsSuccess
+  getProductsSuccess,
+  getDayInfoSuccess,
+  getDayInfoError
   // getProductError,
 } from "./diaryProductActions";
 
@@ -42,9 +45,14 @@ export const addProduct = product => (dispatch, getState) => {
 //     .then(() => dispatch(deleteProductSuccess(contactId)))
 //     .catch((error) => dispatch(deleteProductError(error)));
 // };
-export const getProducts = () => dispatch => {
-  dispatch(getProductsRequest());
 
-  axios.get(BASE_URL + `/user`).then(response => dispatch(getProductsSuccess(response.data.days)));
-  // .catch((error) => dispatch(getProductError(error)));
+export const getDayInfo = day => async (dispatch, getState) => {
+  const token = getState().authData.accessToken;
+  dispatch(getDayInfoRequest());
+  try {
+    const { data } = await axios.post(BASE_URL + `/day/info`, day, { headers: { Authorization: `Bearer ${token}` } });
+    dispatch(getDayInfoSuccess(data));
+  } catch (error) {
+    dispatch(getDayInfoError(error.message));
+  }
 };

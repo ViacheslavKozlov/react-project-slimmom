@@ -1,7 +1,8 @@
 import { createReducer, combineReducers } from "@reduxjs/toolkit";
 import { loginAuthSuccess, logoutAuthSuccess, registerAuthSuccess } from "../auth/authActions";
 import { getDailyRateSucces, setUserData } from "../dailyRate/dailyRateActions";
-import { addProductSuccess } from "../DiaryProducts/diaryProductActions";
+import { addProductSuccess, getDayInfoSuccess } from "../DiaryProducts/diaryProductActions";
+import { getUserInfoSuccess } from "./userActions";
 
 const userInfo = createReducer(
   {
@@ -20,6 +21,11 @@ const userInfo = createReducer(
       email: "",
       username: "",
       id: ""
+    }),
+    [getUserInfoSuccess]: (_, { payload }) => ({
+      email: payload.email,
+      username: payload.username,
+      id: payload.id
     })
   }
 );
@@ -49,7 +55,8 @@ const userData = createReducer(
       ...state,
       dailyRate: payload.dailyRate,
       notAllowedProducts: payload.notAllowedProducts
-    })
+    }),
+    [getUserInfoSuccess]: (state, { payload }) => ({ ...state, ...payload.userData })
   }
 );
 
@@ -99,8 +106,15 @@ const day = createReducer(
     date: "",
     daySummary: ""
   },
+
   {
-    [addProductSuccess]: (state, { payload }) => ({ ...state, ...payload.day })
+    [addProductSuccess]: (state, { payload }) => ({ ...state, ...payload.day }),
+    [getDayInfoSuccess]: (_, { payload }) => ({
+      id: payload.id || "",
+      eatenProducts: payload.eatenProducts || [],
+      date: payload.date || "",
+      daySummary: payload.daySummary || ""
+    })
   }
 );
 
@@ -115,11 +129,17 @@ const daySummary = createReducer(
     id: ""
   },
   {
-    [addProductSuccess]: (state, { payload }) => ({ ...state, ...payload.daySummary })
+    [addProductSuccess]: (state, { payload }) => ({ ...state, ...payload.daySummary }),
+    [getDayInfoSuccess]: (state, { payload }) => ({ ...state, ...payload.daySummary })
   }
 );
 
+const days = createReducer([], {
+  [getUserInfoSuccess]: (_, { payload }) => payload.days
+});
+
 export const dayReducer = combineReducers({
   day,
-  daySummary
+  daySummary,
+  days
 });

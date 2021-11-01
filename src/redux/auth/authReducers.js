@@ -2,6 +2,7 @@ import { createReducer, combineReducers } from "@reduxjs/toolkit";
 import storage from "redux-persist/lib/storage";
 import { persistReducer } from "redux-persist";
 import { registerAuthSuccess, loginAuthSuccess, logoutAuthSuccess, refreshAuthSuccess, getUserSuccess } from "./authActions";
+import { getUserInfoSuccess } from "../user/userActions";
 
 const persistConfig = {
   key: "refresh",
