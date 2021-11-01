@@ -46,3 +46,11 @@ export const changeCurrentDateSucces = createAction(
 export const changeCurrentDateError = createAction(
   "DiaryProducts/changeCurrentDateError"
 );
+
+export const getDayInfoRequest = createAction(
+  "DiaryProducts/getDayInfoRequest"
+);
+export const getDayInfoSuccess = createAction(
+  "DiaryProducts/getDayInfoSuccess"
+);
+export const getDayInfoError = createAction("DiaryProducts/getDayInfoError");

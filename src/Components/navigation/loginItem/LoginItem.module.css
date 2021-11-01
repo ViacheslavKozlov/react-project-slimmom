@@ -5,6 +5,74 @@ ol {
   margin: 0;
 }
 
+@media screen and (min-width: 768px) {
+  .listSecondary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 320px;
+  }
+
+  .itemUser {
+    text-decoration: none;
+    color: var(--headline-txt-color);
+    font-family: Gotham Pro;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 13px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .item {
+    text-decoration: none;
+    color: var(--main-txt-color);
+    font-family: Gotham Pro;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 13px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-left: 22px;
+  }
+
+  .item::before {
+    position: absolute;
+    width: 32px;
+    height: 0px;
+    right: 261px;
+    top: 56px;
+    transform: rotate(90deg);
+
+    content: "";
+    display: block;
+    margin-left: 10px;
+
+    border: 2px solid #e0e0e0;
+  }
+
+  .btn {
+    outline: none;
+    border: none;
+    background-color: white;
+    color: var(--headline-txt-color);
+    font-family: Gotham Pro;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 13px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .item:hover {
+    cursor: pointer;
+    color: var(--headline-txt-color);
+  }
+}
+
 @media screen and (min-width: 1280px) {
   .btn {
     font-family: Gotham Pro;

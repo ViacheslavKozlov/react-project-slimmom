@@ -7,9 +7,7 @@ import styles from "./LoginItem.module.css";
 const LoginItem = () => {
   const dispatch = useDispatch();
   const logout = () => dispatch(authLogout());
-  const user = useSelector(
-    (state) => state?.authData?.userInfo?.user?.username
-  );
+  const user = useSelector((state) => state?.user?.userInfo?.username);
   console.log(user);
 
   return (

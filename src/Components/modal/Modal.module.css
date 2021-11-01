@@ -149,6 +149,14 @@
 
     color: var(--headline-txt-color);
   }
+  .modal_closeBtn {
+    position: absolute;
+    right: 25px;
+    top: 25px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+  }
 }
 
 @media screen and (min-width: 1280px) {

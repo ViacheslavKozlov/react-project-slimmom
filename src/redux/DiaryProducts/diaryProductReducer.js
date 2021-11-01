@@ -15,7 +15,8 @@ import {
 } from "./diaryProductActions";
 // import errorReducer from "../errorReducer/errorReducer";
 import isLoadingReduser from "../isLoadingReduser/isLoadingReduser";
-import authRedusers from "../../redux/auth/authReducers";
+
+// import authRedusers from "../../redux/auth/authReducers";
 import { getDailyRateByDateSucces } from "../dailyRate/dailyRateActions";
 
 const productReducer = createReducer(
@@ -84,7 +85,7 @@ const errorReducer = createReducer("", {
 export const productDailyReducer = combineReducers({
   response: productReducer,
   loading: loadingReducer,
-  authData: authRedusers,
+  // authData: persistedAuthReducer,
   error: errorReducer,
   isLoading: isLoadingReduser,
 });

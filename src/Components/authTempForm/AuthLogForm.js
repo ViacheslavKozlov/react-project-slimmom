@@ -2,76 +2,108 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import styles from "./AuthLogForm.module.css";
 import { mainRoutes } from "../../routes/mainRoutes";
+import { Button } from "../button/Button";
+import { useHistory } from "react-router-dom";
+import Wrapper from "../wrapper/Wrapper";
 
-const AuthForm = ({ handleSubmit, btnName }) => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+const AuthForm = ({ handleSubmit, btnName, btn_auth }) => {
+  const [name, setName] = useState("Slava");
+  const [email, setEmail] = useState("slava1@mail.com");
+  const [password, setPassword] = useState("xxxxxxxx");
 
-  const onChange = e => {
+  const onChange = (e) => {
     const { type, value } = e.target;
     type === "text" && setName(value);
     type === "email" && setEmail(value);
     type === "password" && setPassword(value);
   };
-  const onSubmit = e => {
+  const onSubmit = (e) => {
     e.preventDefault();
     handleSubmit({ username: name, email, password });
   };
+  const history = useHistory();
+
   return (
-    <form onSubmit={onSubmit}>
-      {btnName === mainRoutes[4].name && (
-        <label>
-          name:{" "}
-          <input
-            type="text"
-            autoComplete="off"
-            placeholder="type here..."
-            onChange={onChange}
-            value={name}
-            required
-            // pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-            // title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
-            className={styles.input}
-          />
-        </label>
-      )}
-      <label>
-        email:{" "}
-        <input
-          type="email"
-          autoComplete="off"
-          placeholder="type here..."
-          onChange={onChange}
-          value={email}
-          required
-          className={styles.input}
-        />
-      </label>
-      <label>
-        password:{" "}
-        <input
-          type="password"
-          autoComplete="off"
-          placeholder="type here..."
-          onChange={onChange}
-          value={password}
-          required
-          // pattern="^[A-Za-z]+\d+.*$"
-          // title="Пароль должен включать только цифры и буквы"
-          className={styles.input}
-        />
-      </label>
-      <button type="submit" className={styles.btn}>
+    <Wrapper>
+      <h1 className={styles.registration_title}>{btnName}</h1>
+      <form onSubmit={onSubmit} className={styles.registration_form}>
+        <div>
+          {btnName === mainRoutes[4].name && (
+            <label className={styles.registration_label}>
+              Імя *{" "}
+              <input
+                type="text"
+                autoComplete="off"
+                placeholder=""
+                onChange={onChange}
+                value={name}
+                required
+                // pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+                // title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
+                className={styles.registration_input}
+              />
+              <hr className={styles.registration_line} />
+            </label>
+          )}
+          <label className={styles.registration_label}>
+            Логин *{" "}
+            <input
+              type="email"
+              autoComplete="off"
+              placeholder=""
+              onChange={onChange}
+              value={email}
+              required
+              className={styles.registration_input}
+            />
+            <hr className={styles.registration_line} />
+          </label>
+          <label className={styles.registration_label}>
+            Пароль *{" "}
+            <input
+              type="password"
+              autoComplete="off"
+              placeholder=""
+              onChange={onChange}
+              value={password}
+              required
+              // pattern="^[A-Za-z]+\d+.*$"
+              // title="Пароль должен включать только цифры и буквы"
+              className={styles.registration_input}
+            />
+            <hr className={styles.registration_line} />
+          </label>
+
+          {/* <button type="submit" className={styles.btn}>
         {btnName}
-      </button>
-    </form>
+      </button> */}
+        </div>
+      </form>
+      <div className={styles.flex}>
+        <Button
+          type={"submit"}
+          buttonName={btnName}
+          onClick={onSubmit}
+        ></Button>
+        {btnName === mainRoutes[3].name && (
+          <Button
+            btn_auth={styles.btn_white}
+            onClick={() => {
+              let path = `/singup`;
+              history.push(path);
+            }}
+            type={`button`}
+            buttonName={`Регистрация`}
+          />
+        )}
+      </div>
+    </Wrapper>
   );
 };
 
 AuthForm.propTypes = {
   handleSubmit: PropTypes.func,
-  btnName: PropTypes.string
+  btnName: PropTypes.string,
 };
 
 export default AuthForm;

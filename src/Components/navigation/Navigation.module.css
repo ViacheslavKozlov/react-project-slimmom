@@ -6,6 +6,8 @@
     padding-right: 87px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    width: 608px;
   }
 
   .horizontalLine {
@@ -23,5 +25,6 @@
     padding-right: 115px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
   }
 }
