@@ -50,7 +50,6 @@ const Navigation = () => {
           )}
           {isAuth && (
             <>
-              <Burger toggleModal={toggleModal} />
               <NavList
                 routes={mainRoutes.filter((item) => item.path === "/")}
                 isAuth={isAuth}
@@ -72,6 +71,8 @@ const Navigation = () => {
       )}
 
       {isAuth && <LoginItem />}
+
+      {!isDescDevice && isAuth && <Burger toggleModal={toggleModal} />}
 
       {/* {
         <NavigationList

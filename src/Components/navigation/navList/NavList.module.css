@@ -7,9 +7,8 @@ ol {
 @media screen and (min-width: 768px) {
   .listMain {
     display: flex;
-    /* justify-content: space-between; */
+    justify-content: space-between;
     align-items: center;
-    width: 612px;
   }
 }
 
@@ -18,6 +17,5 @@ ol {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 385px;
   }
 }
