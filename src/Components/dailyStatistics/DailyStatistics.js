@@ -17,7 +17,7 @@ import { dairyProductsSelector } from "../../redux/DiaryProducts/diaryProductSel
 // };
 
 const DailyStatistics = () => {
-  const location = useLocation();
+  // const location = useLocation();
   const dailyRate = useSelector(dailyRateSelector);
   const diaryProduct = useSelector(dairyProductsSelector);
   const isLoading = useSelector(dailyRateLoading);

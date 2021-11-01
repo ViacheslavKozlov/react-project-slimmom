@@ -1,7 +1,9 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { deleteProductOperation } from "../../../redux/DiaryProducts/diaryProductOperations";
 import style from "./DairyProductsListItem.module.css";
+import moment from "moment";
+import { dairyProductsSelector } from "../../../redux/DiaryProducts/diaryProductSelector";
 
 // import { useDispatch } from "react-redux";
 // import { deleteContact } from "../../../redux/DiaryProducts/diaryProductOperations";
@@ -13,6 +15,8 @@ const DiaryProductsListItem = ({
   id,
   onRemoveProductById,
 }) => {
+  const diaryProduct = useSelector(dairyProductsSelector);
+  const todayDate = moment(new Date()).format("YYYY-MM-DD");
   const onDeleteClick = () => onRemoveProductById(id);
 
   return (
@@ -21,14 +25,18 @@ const DiaryProductsListItem = ({
         <p className={style.dairyItemProduct}>{title}</p>
         <p className={style.dairyItemWeight}>{weight} г </p>
         <p className={style.dairyItemCcal}>{Math.round(kcal)} ккал</p>
-        <button
-          className={style.btnDelete}
-          type="button"
-          // id={_id}
-          onClick={onDeleteClick}
-        >
-          X
-        </button>
+        {diaryProduct.date === todayDate ? (
+          <button
+            className={style.btnDelete}
+            type="button"
+            // id={_id}
+            onClick={onDeleteClick}
+          >
+            X
+          </button>
+        ) : (
+          <> </>
+        )}
       </li>
     </>
   );

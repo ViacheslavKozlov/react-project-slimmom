@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import DatePicker from "react-date-picker";
 import moment from "moment";
 import { useDispatch } from "react-redux";
@@ -21,8 +21,6 @@ export default function DiaryDateСalendar({ date, setDate }) {
       );
       return;
     }
-    console.log(date);
-    console.log(currentDate);
 
     dispatch(changeDateOperation(currentDate));
     // updateValue(date);

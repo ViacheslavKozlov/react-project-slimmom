@@ -40,7 +40,7 @@ const DiaryProductsList = ({ date }) => {
               ))}
             </>
           ) : (
-            <p>Вы ничего не добавили</p>
+            <p>Вы ничего не добавляли</p>
           )}
           {/* {eatenProductsByDay?.eatenProducts?.length &&
             eatenProductsByDay.eatenProducts.map((eatenProductByDay) => (
