@@ -52,7 +52,6 @@ const Modal = ({ toggleModal, dailyRate }) => {
                 <h2 className={style.modal_title}>
                   Ваша рекомендуемая суточная норма калорий составляет
                 </h2>
-
                 <p className={style.modal_calories_value}>
                   {dailyRate.dailyRate}
                   <span>ккал</span>

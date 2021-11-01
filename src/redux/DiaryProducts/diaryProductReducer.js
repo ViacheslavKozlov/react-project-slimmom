@@ -13,7 +13,6 @@ import {
 } from "./diaryProductActions";
 import errorReducer from "../errorReducer/errorReducer";
 import isLoadingReduser from "../isLoadingReduser/isLoadingReduser";
-import authRedusers from "../../redux/auth/authReducers";
 
 const productReducer = createReducer([], {
   [addProductSuccess]: (state, action) => [
@@ -52,7 +51,7 @@ const loadingReducer = createReducer(false, {
 export const productDailyReducer = combineReducers({
   items: productReducer,
   loading: loadingReducer,
-  // authData: authRedusers,
+  // authData: persistedAuthReducer,
   error: errorReducer,
-  // isLoading: isLoadingReduser,
+  isLoading: isLoadingReduser,
 });

@@ -7,6 +7,7 @@ import {
   getDailyRateSucces,
   getUserInfoError,
   getUserInfoSucces,
+  setUserData
 } from "./dailyRateActions";
 
 const BASE_URL = "https://slimmom-backend.goit.global";
@@ -28,7 +29,7 @@ const token =
 //         .then((response) => setProducts(response.data));
 //   }, [value]);
 
-const getUserInfoOperation = () => async (dispatch) => {
+const getUserInfoOperation = () => async dispatch => {
   // dispatch(getDailyRateRequest());
   try {
     const response = await axios.get(`${BASE_URL}/user`);
@@ -39,44 +40,34 @@ const getUserInfoOperation = () => async (dispatch) => {
   }
 };
 
-const getDailyRateOperation =
-  (userData, id = "") =>
-  async (dispatch) => {
-    dispatch(getDailyRateRequest());
-    try {
-      const response = await axios.post(
-        `${BASE_URL}/daily-rate/${id}`,
-        userData
-      );
-      if (response.data.notAllowedProducts.length >= 5) {
-        const normData = {
-          ...response.data,
-          notAllowedProducts: response.data.notAllowedProducts.slice(0, 5),
-        };
-        dispatch(getDailyRateSucces(normData));
-        return;
-      }
-      dispatch(getDailyRateSucces({ ...response.data }));
-    } catch (error) {
-      dispatch(getDailyRateError(error.message));
+const getDailyRateOperation = (userData, id = "") => async dispatch => {
+  dispatch(getDailyRateRequest());
+  try {
+    const response = await axios.post(`${BASE_URL}/daily-rate/${id}`, userData);
+    if (response.data.notAllowedProducts.length >= 5) {
+      const normData = {
+        ...response.data,
+        notAllowedProducts: response.data.notAllowedProducts.slice(0, 5)
+      };
+      dispatch(setUserData(userData));
+      dispatch(getDailyRateSucces(normData));
+      return;
     }
-  };
-
-const getDailyRateByDateOperation =
-  (date = "2020-12-31") =>
-  async (dispatch) => {
-    // dispatch(getDailyRateRequest());
-    try {
-      const response = await axios.post(`${BASE_URL}/day/info`, date);
-
-      dispatch(getDailyRateByDateSucces({ ...response.data }));
-    } catch (error) {
-      dispatch(getDailyRateByDateError(error.message));
-    }
-  };
-
-export {
-  getDailyRateOperation,
-  getDailyRateByDateOperation,
-  getUserInfoOperation,
+    dispatch(getDailyRateSucces({ ...response.data }));
+  } catch (error) {
+    dispatch(getDailyRateError(error.message));
+  }
 };
+
+const getDailyRateByDateOperation = (date = "2020-12-31") => async dispatch => {
+  // dispatch(getDailyRateRequest());
+  try {
+    const response = await axios.post(`${BASE_URL}/day/info`, date);
+
+    dispatch(getDailyRateByDateSucces({ ...response.data }));
+  } catch (error) {
+    dispatch(getDailyRateByDateError(error.message));
+  }
+};
+
+export { getDailyRateOperation, getDailyRateByDateOperation, getUserInfoOperation };
