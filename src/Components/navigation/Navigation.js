@@ -70,18 +70,9 @@ const Navigation = () => {
         </>
       )}
 
-      {isAuth && <LoginItem />}
+      {isDescDevice && isAuth && <LoginItem />}
 
       {!isDescDevice && isAuth && <Burger toggleModal={toggleModal} />}
-
-      {/* {
-        <NavigationList
-          showModal={showModal}
-          toggleModal={toggleModal}
-          isAuth={isAuth}
-        />
-      }
-      {isTabletDevice && isAuth && <Burger toggleModal={toggleModal} />} */}
     </div>
   );
 };

@@ -8,7 +8,6 @@ const LoginItem = () => {
   const dispatch = useDispatch();
   const logout = () => dispatch(authLogout());
   const user = useSelector((state) => state?.user?.userInfo?.username);
-  console.log(user);
 
   return (
     <ul className={styles.listSecondary}>
