@@ -5,6 +5,16 @@ button {
   list-style: none;
   margin: 0;
 }
+.goBackBtn {
+  position: relative;
+  right: 500px;
+  width: 15px;
+  height: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+}
 
 .listSecondary {
   display: flex;
