@@ -12,14 +12,14 @@ const DiaryPage = () => {
 
   return (
     <>
-      <div className={isDescDevice ? "row" : "column"}>
-        <DiaryDateСalendar date={date} setDate={setDate} />
-        <DiaryAddProductForm date={date} />
-        <DiaryProductsList date={date} />
+      {/* <div className={isDescDevice ? "row" : "column"}> */}
+      <DiaryDateСalendar date={date} setDate={setDate} />
+      <DiaryAddProductForm date={date} />
+      <DiaryProductsList date={date} />
 
-        <DailyStatistics date={date} />
-        {/* <RightSideBar /> */}
-      </div>
+      <DailyStatistics date={date} />
+      {/* <RightSideBar /> */}
+      {/* </div> */}
     </>
   );
 };

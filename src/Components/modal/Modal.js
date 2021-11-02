@@ -5,6 +5,7 @@ import style from "./Modal.module.css";
 import Loader from "react-loader-spinner";
 import { dailyRateLoading } from "../../redux/dailyRate/dailyRateSelectors";
 import { useSelector } from "react-redux";
+import sprite from "../../icons/sprite.svg";
 
 const Modal = ({ toggleModal, dailyRate }) => {
   const history = useHistory();
@@ -46,7 +47,7 @@ const Modal = ({ toggleModal, dailyRate }) => {
                 >
                   X
                   <svg width="12" height="12">
-                    <use href="../../icons/sprite.svg#close"></use>
+                    <use href={sprite + "#close"}></use>
                   </svg>
                 </button>
                 <h2 className={style.modal_title}>
