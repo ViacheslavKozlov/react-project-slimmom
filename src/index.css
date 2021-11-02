@@ -6,7 +6,9 @@
   --active-color: #fc842d;
   --calories-color: #264061;
 }
-
+body {
+  box-sizing: border-box;
+}
 /* how to use in modules:
 myComponent.module.css
 

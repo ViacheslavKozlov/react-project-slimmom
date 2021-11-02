@@ -1,26 +1,42 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteProductOperation } from "../../../redux/DiaryProducts/diaryProductOperations";
 import style from "./DairyProductsListItem.module.css";
+import moment from "moment";
+import { dairyProductsSelector } from "../../../redux/DiaryProducts/diaryProductSelector";
 
 // import { useDispatch } from "react-redux";
 // import { deleteContact } from "../../../redux/DiaryProducts/diaryProductOperations";
 
-const DiaryProductsListItem = ({ eatenProduct }) => {
-  // const deleteContactItem = () => dispatch(deleteContact(eatenProduct.id));
+const DiaryProductsListItem = ({
+  title,
+  weight,
+  kcal,
+  id,
+  onRemoveProductById,
+}) => {
+  const diaryProduct = useSelector(dairyProductsSelector);
+  const todayDate = moment(new Date()).format("YYYY-MM-DD");
+  const onDeleteClick = () => onRemoveProductById(id);
 
   return (
     <>
       <li className={style.dairyItem}>
-        <p className={style.dairyItemProduct}>{eatenProduct.title}</p>
-        <p className={style.dairyItemWeight}>{eatenProduct.weight} г </p>
-        <p className={style.dairyItemCcal}>{eatenProduct.kcal} ккал</p>
-        <button
-          className={style.btnDelete}
-          type="button"
-          id={eatenProduct._id}
-          // onClick={deleteContactItem}
-        >
-          X
-        </button>
+        <p className={style.dairyItemProduct}>{title}</p>
+        <p className={style.dairyItemWeight}>{weight} г </p>
+        <p className={style.dairyItemCcal}>{Math.round(kcal)} ккал</p>
+        {diaryProduct.date === todayDate ? (
+          <button
+            className={style.btnDelete}
+            type="button"
+            // id={_id}
+            onClick={onDeleteClick}
+          >
+            X
+          </button>
+        ) : (
+          <> </>
+        )}
       </li>
     </>
   );

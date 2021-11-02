@@ -75,6 +75,12 @@
 
   color: var(--headline-txt-color);
 }
+.modal_bottom ol li {
+  color: var(--main-txt-color);
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 1.2;
+}
 @media screen and (min-width: 768px) {
   .backdrop {
     position: fixed;
@@ -150,5 +156,11 @@
     border: none;
     background: transparent;
     cursor: pointer;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .modal_container {
+    width: 690px;
   }
 }
