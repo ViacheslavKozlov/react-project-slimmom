@@ -46,7 +46,7 @@ const Modal = ({ toggleModal, dailyRate }) => {
                 >
                   X
                   <svg width="12" height="12">
-                    <use href="../../../icons/sprite.svg#close"></use>
+                    <use href="../../icons/sprite.svg#close"></use>
                   </svg>
                 </button>
                 <h2 className={style.modal_title}>
