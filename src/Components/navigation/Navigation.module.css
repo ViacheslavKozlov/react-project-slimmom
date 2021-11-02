@@ -1,8 +1,4 @@
 .container {
-  padding-top: 17px;
-  padding-bottom: 19px;
-  padding-left: 69px;
-  padding-right: 87px;
   display: flex;
   align-items: center;
   justify-content: space-between;

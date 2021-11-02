@@ -1,6 +1,7 @@
 import React from "react";
 import LoginItem from "../navigation/loginItem/LoginItem";
 import styles from "./Header.module.css";
+import Wrapper from "../wrapper/Wrapper";
 
 import Navigation from "../navigation/Navigation";
 import { useSelector } from "react-redux";
@@ -11,12 +12,14 @@ const Header = () => {
   const isAuth = useSelector(getIsAuth);
   const { isMobileDevice } = useDeviceSizes();
   return (
-    <div className={styles.container}>
-      <Navigation />
+    <>
+      <Wrapper>
+        <Navigation />
+      </Wrapper>
       <div className={styles.colorLine}>
-                {isMobileDevice && isAuth && <LoginItem />}
+        {isMobileDevice && isAuth && <LoginItem />}
       </div>
-    </div>
+    </>
   );
 };
 

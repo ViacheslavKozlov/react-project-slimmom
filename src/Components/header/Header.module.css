@@ -4,6 +4,7 @@
   justify-content: flex-end;
   background-color: var(--header-secondNav-color);
   height: 40px;
+  width: 100vw;
 }
 
 @import "../../utils/vars.css";
