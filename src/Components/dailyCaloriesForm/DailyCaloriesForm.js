@@ -8,6 +8,7 @@ import { getDailyRateOperation } from "../../redux/dailyRate/dailyRateOperations
 import { Button } from "../button/Button";
 import { getIsAuth } from "../../redux/auth/authSelectors";
 import Wrapper from "../wrapper/Wrapper";
+import { userInfo } from "../../redux/user/userSelectors";
 
 // const initialState = {
 //   weight: JSON.parse(localStorage.getItem("weight")) || "",
@@ -31,6 +32,7 @@ const DailyCaloriesForm = () => {
   // const [isAuth, setAuth] = useState(true);
 
   const dailyRate = useSelector(dailyRateSelector);
+  const userId = useSelector(userInfo).id;
 
   const isAuth = useSelector(getIsAuth);
 
@@ -45,7 +47,7 @@ const DailyCaloriesForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (isAuth) {
-      dispatch(getDailyRateOperation(userData, dailyRate.id));
+      dispatch(getDailyRateOperation(userData, userId));
     } else {
       dispatch(getDailyRateOperation(userData));
     }

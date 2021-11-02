@@ -10,7 +10,7 @@ import { isOpenAddFormModal } from "../redux/isOpen/IsOpenSelector";
 import { ButtonAdd } from "../Components/button/Button";
 import { useDispatch } from "react-redux";
 import { toggleFrom } from "../redux/isOpen/IsOpenAction";
-import styles from './DiaryPage.module.css'
+import styles from "./DiaryPage.module.css";
 
 const DiaryPage = () => {
   const [date, setDate] = useState(new Date());

@@ -17,7 +17,7 @@ import { dairyProductsSelector } from "../../redux/DiaryProducts/diaryProductSel
 // };
 
 const DailyStatistics = () => {
-  // const location = useLocation();
+  const location = useLocation();
   const dailyRate = useSelector(dailyRateSelector);
   const diaryProduct = useSelector(dairyProductsSelector);
   const isLoading = useSelector(dailyRateLoading);
@@ -26,26 +26,13 @@ const DailyStatistics = () => {
   // console.log(date);
   const todayDate = moment(new Date()).format("YYYY-MM-DD");
 
+  //Срабатывает только на странице калькулятор
   useEffect(() => {
-    if (diaryProduct.date > todayDate) {
-      return;
-    }
-    if (diaryProduct.date < todayDate) {
-      // alert("В этот день Вы не вели дневник");
-      dispatch(getDailyRateByDateOperation({ date: diaryProduct.date }));
-      return;
-    }
-    if (dailyRate.dailyRate) {
+    if (location.pathname === "/calculator" && dailyRate.dailyRate) {
       // dispatch(getDailyRateByDateOperation(date));
       dispatch(getDailyRateByDateOperation({ date: todayDate }));
     }
-  }, [
-    // location.pathname,
-    dispatch,
-    dailyRate.dailyRate,
-    diaryProduct.date,
-    todayDate,
-  ]);
+  }, [location.pathname, dispatch, todayDate, dailyRate.dailyRate]);
 
   return (
     <div className={style.statistics_wrapper}>
@@ -55,7 +42,11 @@ const DailyStatistics = () => {
         ) : (
           <>
             <h3 className={style.statistics_title}>
-              Сводка за {moment(diaryProduct.date).format("DD.MM.YYYY")}
+              {diaryProduct.date ? (
+                <>Сводка за {moment(diaryProduct.date).format("DD.MM.YYYY")}</>
+              ) : (
+                <>Нет статистики за этот день.</>
+              )}
             </h3>
             <div className={style.statistics_box}>
               <div className={style.statistic_box}>
