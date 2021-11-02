@@ -10,7 +10,7 @@ import { addProduct } from "../../redux/DiaryProducts/diaryProductOperations";
 import { dairyProductsSelector } from "../../redux/DiaryProducts/diaryProductSelector";
 import Wrapper from "../wrapper/Wrapper";
 
-const DiaryAddProductForm = ({ date }) => {
+const DiaryAddProductForm = ({ date, toggle }) => {
   const [value, setValue] = useState("");
   const [weight, setWeight] = useState("");
   const [products, setProducts] = useState([]);
@@ -98,7 +98,9 @@ const DiaryAddProductForm = ({ date }) => {
                 />
               </label>
             </div>
-            <Button buttonName="Добавить" type="submit" />
+            <div className={style.btnAddFormMobile}>
+              <Button buttonName="Добавить" type="submit" onClick={toggle()} />
+            </div>
           </form>
         ) : (
           <></>

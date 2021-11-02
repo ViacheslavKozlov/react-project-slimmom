@@ -1,5 +1,5 @@
 .addProductInputForm {
-  padding: 200px 15px 60px 15px;
+  padding: 80px 15px 60px 15px;
 }
 
 .formFieldProduct {
@@ -51,4 +51,8 @@
   height: 3px;
   bottom: -10px;
   background-color: #e0e0e0;
+}
+
+.btnAddFormMobile {
+  text-align: center;
 }
