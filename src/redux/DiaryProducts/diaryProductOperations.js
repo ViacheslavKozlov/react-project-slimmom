@@ -29,11 +29,13 @@ import { diaryEatenProductId, diaryProductId } from "./diaryProductSelector";
 
 export const addProduct = (product) => (dispatch, getState) => {
   // const localId = getState().authorization.tokens.localId;
-  // const idToken = getState().authorization.tokens.idToken;
+  const token = getState().authData.accessToken;
   dispatch(addProductRequest());
 
   axios
-    .post(BASE_URL + `/day`, product)
+    .post(BASE_URL + `/day`, product, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
     .then((response) => dispatch(addProductSuccess(response.data)))
     .catch((error) => dispatch(addProductError(error.message)));
 };
