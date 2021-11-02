@@ -18,14 +18,13 @@
   display: flex;
   flex-grow: 1;
   flex-shrink: 0;
-  border: white;
+  border: none;
 }
 .react-date-picker__inputGroup {
   min-width: calc((4px * 3) + 0.54em * 8 + 0.217em * 2);
   flex-grow: 1;
   padding: 0 2px;
   box-sizing: content-box;
-  font-size: 18px;
 }
 .react-date-picker__inputGroup__divider {
   padding: 1px 0;
@@ -41,11 +40,6 @@
   font: inherit;
   box-sizing: content-box;
   -moz-appearance: textfield;
-  font-weight: bold;
-  font-size: 34px;
-  line-height: 41px;
-
-  color: #212121;
 }
 .react-date-picker__inputGroup__input::-webkit-outer-spin-button,
 .react-date-picker__inputGroup__input::-webkit-inner-spin-button {
