@@ -5,6 +5,7 @@ import { persistedAuthReducer } from "./auth/authReducers";
 import errorReducer from "./errorReducer/errorReducer";
 import isLoadingReduser from "./isLoadingReduser/isLoadingReduser";
 import { dayReducer, userReducer } from "./user/userReducers";
+import toggleFormReducer from "./isOpen/IsOpenReducer";
 
 export const rootReducer = combineReducers({
   authData: persistedAuthReducer,
@@ -13,5 +14,6 @@ export const rootReducer = combineReducers({
   error: errorReducer,
   isLoading: isLoadingReduser,
   user: userReducer,
-  days: dayReducer
+  days: dayReducer,
+  mobileFormState: toggleFormReducer,
 });
