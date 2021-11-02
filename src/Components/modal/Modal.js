@@ -45,7 +45,6 @@ const Modal = ({ toggleModal, dailyRate }) => {
                   data-action="close-modal"
                   onClick={toggleModal}
                 >
-                  X
                   <svg width="12" height="12">
                     <use href={sprite + "#close"}></use>
                   </svg>

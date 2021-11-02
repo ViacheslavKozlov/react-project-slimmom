@@ -8,6 +8,7 @@ import style from "./DiaryAddForm.module.css";
 import moment from "moment";
 import { addProduct } from "../../redux/DiaryProducts/diaryProductOperations";
 import { dairyProductsSelector } from "../../redux/DiaryProducts/diaryProductSelector";
+import Wrapper from "../wrapper/Wrapper";
 
 const DiaryAddProductForm = ({ date }) => {
   const [value, setValue] = useState("");
@@ -18,9 +19,6 @@ const DiaryAddProductForm = ({ date }) => {
   const diaryProduct = useSelector(dairyProductsSelector);
   // const currentDate = moment(date).format("YYYY-MM-DD");
   const todayDate = moment(new Date()).format("YYYY-MM-DD");
-
-  // const token =
-  //   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MTc5NGE5N2E2Zjk3NjY4ZjdmYzU5MTQiLCJzaWQiOiI2MTdlNmQzM2E2Zjk3NjY4ZjdmYzVhMjkiLCJpYXQiOjE2MzU2NzU0NDMsImV4cCI6MTYzNTY3OTA0M30.nCrIAFfdo-azzNoMw_NmusE-iWJNrJQ5PQ1RSfUEgN8";
 
   const onHandleChange = ({ target }) => {
     const { value, name } = target;
@@ -58,52 +56,54 @@ const DiaryAddProductForm = ({ date }) => {
 
   return (
     <>
-      {diaryProduct.date === todayDate ? (
-        <form onSubmit={onHandleSubmit}>
-          <div className={style.addProductInputForm}>
-            <label htmlFor="myBrowser">
-              <input
-                value={value}
-                className={style.formFieldProduct}
-                onChange={onHandleChange}
-                list="productList"
-                id="myBrowser"
-                name="product"
-                type="text"
-                autoFocus
-                placeholder="Введите название продукта"
-              />
-            </label>
-            <datalist id="productList">
-              {products.map((product) => (
-                <option
-                  key={product._id}
-                  id={product._id}
-                  value={product.title.ru}
+      <Wrapper>
+        {diaryProduct.date === todayDate ? (
+          <form onSubmit={onHandleSubmit}>
+            <div className={style.addProductInputForm}>
+              <label htmlFor="myBrowser">
+                <input
+                  value={value}
+                  className={style.formFieldProduct}
+                  onChange={onHandleChange}
+                  list="productList"
+                  id="myBrowser"
+                  name="product"
+                  type="text"
+                  autoFocus
+                  placeholder="Введите название продукта"
                 />
-              ))}
-            </datalist>
-            <label htmlFor="myBrowser">
-              <input
-                className={style.formFieldWeigth}
-                onChange={onHandleChange}
-                list=""
-                id=""
-                name="weight"
-                type="number"
-                min="100"
-                step="1"
-                value={weight}
-                autoFocus
-                placeholder="Граммы"
-              />
-            </label>
-          </div>
-          <Button buttonName="Добавить" type="submit" />
-        </form>
-      ) : (
-        <></>
-      )}
+              </label>
+              <datalist id="productList">
+                {products.map((product) => (
+                  <option
+                    key={product._id}
+                    id={product._id}
+                    value={product.title.ru}
+                  />
+                ))}
+              </datalist>
+              <label htmlFor="myBrowser">
+                <input
+                  className={style.formFieldWeigth}
+                  onChange={onHandleChange}
+                  list=""
+                  id=""
+                  name="weight"
+                  type="number"
+                  min="100"
+                  step="1"
+                  value={weight}
+                  autoFocus
+                  placeholder="Граммы"
+                />
+              </label>
+            </div>
+            <Button buttonName="Добавить" type="submit" />
+          </form>
+        ) : (
+          <></>
+        )}
+      </Wrapper>
     </>
   );
 };

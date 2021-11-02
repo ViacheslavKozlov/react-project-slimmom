@@ -1,5 +1,9 @@
-.logo {
+.logo_without_slim {
   width: 46px;
+  height: 44px;
+}
+.logo {
+  width: 162px;
   height: 44px;
 }
 
