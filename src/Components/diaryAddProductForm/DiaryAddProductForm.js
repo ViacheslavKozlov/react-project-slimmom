@@ -9,7 +9,7 @@ import moment from "moment";
 import { addProduct } from "../../redux/DiaryProducts/diaryProductOperations";
 import { dairyProductsSelector } from "../../redux/DiaryProducts/diaryProductSelector";
 
-const DiaryAddProductForm = ({ date }) => {
+const DiaryAddProductForm = ({ date, getState }) => {
   const [value, setValue] = useState("");
   const [weight, setWeight] = useState("");
   const [products, setProducts] = useState([]);
@@ -18,6 +18,8 @@ const DiaryAddProductForm = ({ date }) => {
   const diaryProduct = useSelector(dairyProductsSelector);
   // const currentDate = moment(date).format("YYYY-MM-DD");
   const todayDate = moment(new Date()).format("YYYY-MM-DD");
+
+  const token = getState().authData.accessToken;
 
   // const token =
   //   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MTc5NGE5N2E2Zjk3NjY4ZjdmYzU5MTQiLCJzaWQiOiI2MTdlNmQzM2E2Zjk3NjY4ZjdmYzVhMjkiLCJpYXQiOjE2MzU2NzU0NDMsImV4cCI6MTYzNTY3OTA0M30.nCrIAFfdo-azzNoMw_NmusE-iWJNrJQ5PQ1RSfUEgN8";
