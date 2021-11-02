@@ -1,21 +1,32 @@
-ul,
+/* ul,
 ol {
   padding: 0;
   list-style: none;
   margin: 0;
+} */
+.listPrivate {
+  display: flex;
+  flex-direction: column;
 }
+
+.list {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 @media screen and (min-width: 768px) {
-  .listMain {
+  .list {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
   }
 }
 
 @media screen and (min-width: 1280px) {
-  .listMain {
+  .list {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
   }
-}
+} ;

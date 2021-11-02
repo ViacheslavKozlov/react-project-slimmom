@@ -1,215 +1,95 @@
-ul,
+/* ul,
 ol,
 button {
   padding: 0;
   list-style: none;
   margin: 0;
-}
+} */
 .goBackBtn {
-  position: relative;
-  right: 500px;
+  margin-right: 125px;
   width: 15px;
   height: 15px;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.goBackBtn button {
+  cursor: pointer;
   border: none;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
 }
 
 .listSecondary {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  margin-right: 20px;
-}
-
-.item {
-  text-decoration: none;
-  color: var(--main-txt-color);
-  font-family: Gotham Pro;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 14px;
-  line-height: 13px;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  margin-left: 13px;
 }
 
 .itemUser {
   text-decoration: none;
   color: var(--headline-txt-color);
-  font-family: Gotham Pro;
+  font-family: Verdana;
   font-style: normal;
   font-weight: bold;
   font-size: 14px;
-  line-height: 13px;
+  line-height: 1.07;
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
 
 .btn {
+  cursor: pointer;
+  padding: 0;
   outline: none;
   border: none;
   background-color: unset;
-  color: var(--headline-txt-color);
-  font-family: Gotham Pro;
+  color: var(--main-txt-color);
+  font-family: Verdana;
   font-style: normal;
   font-weight: bold;
   font-size: 14px;
-  line-height: 13px;
+  line-height: 1.07;
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
-
-.item::before {
-  width: 35px;
-  position: absolute;
-  top: 110px;
-  right: 60px;
-  transform: rotate(90deg);
-
-  content: "";
-  display: block;
-  margin-right: 12px;
-
-  border: 2px solid var(--linear-color);
+.btn:hover,
+:focus {
+  color: var(--headline-txt-color);
 }
+
+.verticalLine {
+  display: flex;
+  align-items: center;
+  height: 32px;
+  border-left: 2px solid var(--linear-color);
+  margin-left: 15px;
+  padding-left: 15px;
+}
+
+/* .item::before {
+  width: 35px;
+  position: relative;
+  content: "";
+  border: 2px solid var(--linear-color);
+} */
 
 @media screen and (min-width: 768px) {
   .listSecondary {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-left: 320px;
-    height: 50px;
-  }
-
-  .itemUser {
-    text-decoration: none;
-    color: var(--headline-txt-color);
-    font-family: Gotham Pro;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 14px;
-    line-height: 13px;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-  }
-
-  .item {
-    text-decoration: none;
-    color: var(--main-txt-color);
-    font-family: Gotham Pro;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 14px;
-    line-height: 13px;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    margin-left: 22px;
-  }
-
-  .item::before {
-    /* width: 35px; */
-    transform: rotate(90deg);
-
-    content: "";
-    display: inline;
-    /* margin-left: ; */
-
-    border: 2px solid #e0e0e0;
-  }
-
-  .btn {
-    outline: none;
-    border: none;
-    background-color: unset;
-    color: var(--headline-txt-color);
-    font-family: Gotham Pro;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 14px;
-    line-height: 13px;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-  }
-
-  .item:hover {
-    cursor: pointer;
-    color: var(--headline-txt-color);
+    margin-left: 120px;
   }
 }
 
 @media screen and (min-width: 1280px) {
-  .btn {
-    font-family: Gotham Pro;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 14px;
-    line-height: 13px;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    padding: 0;
-    border: none;
-    background-color: white;
-  }
-
   .listSecondary {
-    display: flex;
-    justify-content: space-between;
     align-items: center;
-    width: 115px;
-  }
-
-  .itemUser {
-    text-decoration: none;
-    color: var(--headline-txt-color);
-    font-family: Gotham Pro;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 14px;
-    line-height: 13px;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-  }
-
-  .item {
-    text-decoration: none;
-    color: var(--main-txt-color);
-    font-family: Gotham Pro;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 14px;
-    line-height: 13px;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-  }
-
-  .item:hover {
-    cursor: pointer;
-    color: var(--headline-txt-color);
-  }
-
-  .item:first-child {
-    margin-right: 20px;
-  }
-  .item:last-child::before {
-    position: absolute;
-    width: 32px;
-    height: 0px;
-    right: 170px;
-    top: 123px;
-    transform: rotate(90deg);
-
-    content: "";
-    display: block;
-    margin-left: 10px;
-
-    border: 2px solid #e0e0e0;
-  }
-
-  .item:not(:last-child) {
-    margin-right: 22px;
   }
 }
+@import "../../../utils/vars.css";

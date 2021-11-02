@@ -10,17 +10,23 @@ import useDeviceSizes from "../../hooks/useDeviceSizec";
 
 const Header = () => {
   const isAuth = useSelector(getIsAuth);
-  const { isMobileDevice } = useDeviceSizes();
+  const { isMobileDevice, isTabletDevice } = useDeviceSizes();
   return (
-    <>
+    <div className={styles.MainContainer}>
       <Wrapper>
         <Navigation />
       </Wrapper>
-      <div className={styles.colorLine}>
-        {isMobileDevice && isAuth && <LoginItem />}
-      </div>
-    </>
+      {isMobileDevice && isAuth && (
+        <div className={styles.colorLine}>
+          <Wrapper>{<LoginItem />}</Wrapper>
+        </div>
+      )}
+      {isMobileDevice && !isAuth && <div className={styles.shrinkLine}></div>}
+      {isTabletDevice && <div className={styles.shrinkLine}></div>}
+    </div>
   );
 };
 
 export default Header;
+
+//

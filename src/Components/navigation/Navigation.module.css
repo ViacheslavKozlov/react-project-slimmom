@@ -2,9 +2,10 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin: 0 auto;
 }
 
-.backGroundLine {
+/* .backGroundLine {
   content: "";
   position: relative;
   background-color: grey;
@@ -14,10 +15,10 @@
   display: flex;
   align-items: center;
   flex-direction: column-reverse;
-  width: 120px;
-}
+  
+} */
 
-@media screen and (min-width: 768px) {
+/* @media screen and (min-width: 768px) {
   .container {
     padding-top: 17px;
     padding-bottom: 19px;
@@ -34,9 +35,9 @@
     transform: rotate(90deg);
     border: 2px solid #e0e0e0;
   }
-}
+} */
 
-@media screen and (min-width: 1280px) {
+/* @media screen and (min-width: 1280px) {
   .container {
     padding-top: 82px;
     padding-bottom: 143px;
@@ -46,4 +47,4 @@
     justify-content: space-between;
     align-items: center;
   }
-}
+} */

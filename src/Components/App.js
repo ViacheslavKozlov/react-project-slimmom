@@ -3,7 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import DairyPage from "../pages/DiaryPage";
 import { getProducts } from "../redux/DiaryProducts/diaryProductOperations";
 import { authRefresh, token } from "../redux/auth/authOperations";
-import { getIsAuth, getRefreshToken, getSid } from "../redux/auth/authSelectors";
+import {
+  getIsAuth,
+  getRefreshToken,
+  getSid,
+} from "../redux/auth/authSelectors";
 // import { Button, ButtonAdd } from "./button/Button";
 // import DiaryAddProductForm from "./diaryAddProductForm/DiaryAddProductForm";
 import Header from "./header/Header";
@@ -20,13 +24,10 @@ const App = () => {
   const sid = useSelector(getSid);
   // console.log(isAuthIn);
 
-  useEffect(
-    () => {
-      isAuthIn && token.set(isAuthIn);
-      isAuthIn && dispatch(getUserInfo());
-    },
-    [dispatch, isAuthIn]
-  );
+  useEffect(() => {
+    isAuthIn && token.set(isAuthIn);
+    isAuthIn && dispatch(getUserInfo());
+  }, [dispatch, isAuthIn]);
 
   // useEffect(
   //   () => {
