@@ -108,7 +108,7 @@ const day = createReducer(
   },
 
   {
-    [addProductSuccess]: (state, { payload }) => ({ ...state, ...payload.day }),
+    [addProductSuccess]: (state, { payload }) => (payload.day ? { ...state, ...payload.day } : { ...state, ...payload.newDay }),
     [getDayInfoSuccess]: (_, { payload }) => ({
       id: payload.id || "",
       eatenProducts: payload.eatenProducts || [],
@@ -129,7 +129,8 @@ const daySummary = createReducer(
     id: ""
   },
   {
-    [addProductSuccess]: (state, { payload }) => ({ ...state, ...payload.daySummary }),
+    [addProductSuccess]: (state, { payload }) =>
+      payload.daySummary ? { ...state, ...payload.daySummary } : { ...state, ...payload.newDaySummary },
     [getDayInfoSuccess]: (state, { payload }) => ({ ...state, ...payload.daySummary })
   }
 );

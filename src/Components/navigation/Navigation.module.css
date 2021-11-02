@@ -1,3 +1,26 @@
+.container {
+  padding-top: 17px;
+  padding-bottom: 19px;
+  padding-left: 69px;
+  padding-right: 87px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.backGroundLine {
+  content: "";
+  position: relative;
+  background-color: grey;
+}
+
+.secondContainer {
+  display: flex;
+  align-items: center;
+  flex-direction: column-reverse;
+  width: 120px;
+}
+
 @media screen and (min-width: 768px) {
   .container {
     padding-top: 17px;

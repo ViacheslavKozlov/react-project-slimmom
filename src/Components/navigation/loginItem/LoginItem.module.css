@@ -1,8 +1,69 @@
 ul,
-ol {
+ol,
+button {
   padding: 0;
   list-style: none;
   margin: 0;
+}
+
+.listSecondary {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-right: 20px;
+}
+
+.item {
+  text-decoration: none;
+  color: var(--main-txt-color);
+  font-family: Gotham Pro;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 13px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-left: 13px;
+}
+
+.itemUser {
+  text-decoration: none;
+  color: var(--headline-txt-color);
+  font-family: Gotham Pro;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 13px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.btn {
+  outline: none;
+  border: none;
+  background-color: unset;
+  color: var(--headline-txt-color);
+  font-family: Gotham Pro;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 13px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.item::before {
+  width: 35px;
+  position: absolute;
+  top: 110px;
+  right: 60px;
+  transform: rotate(90deg);
+
+  content: "";
+  display: block;
+  margin-right: 12px;
+
+  border: 2px solid var(--linear-color);
 }
 
 @media screen and (min-width: 768px) {
@@ -11,6 +72,7 @@ ol {
     justify-content: space-between;
     align-items: center;
     margin-left: 320px;
+    height: 50px;
   }
 
   .itemUser {
@@ -39,16 +101,12 @@ ol {
   }
 
   .item::before {
-    position: absolute;
-    width: 32px;
-    height: 0px;
-    right: 261px;
-    top: 56px;
+    /* width: 35px; */
     transform: rotate(90deg);
 
     content: "";
-    display: block;
-    margin-left: 10px;
+    display: inline;
+    /* margin-left: ; */
 
     border: 2px solid #e0e0e0;
   }
@@ -56,7 +114,7 @@ ol {
   .btn {
     outline: none;
     border: none;
-    background-color: white;
+    background-color: unset;
     color: var(--headline-txt-color);
     font-family: Gotham Pro;
     font-style: normal;
