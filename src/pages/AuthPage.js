@@ -7,6 +7,7 @@ import AuthTempForm from "../Components/authTempForm";
 
 const AuthPage = () => {
   const dispatch = useDispatch();
+
   const { pathname } = useLocation();
   const handleSubmit = (userData) => {
     pathname === mainRoutes[4].path

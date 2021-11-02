@@ -19,6 +19,11 @@ const AuthForm = ({ handleSubmit, btnName, btn_auth }) => {
   };
   const onSubmit = (e) => {
     e.preventDefault();
+    // console.log(handleSubmit({ username: name, email, password }))
+    // console.log(handleSubmit())
+    // if ()
+    // let path = `/calculator`;
+    // history.push(path);
     handleSubmit({ username: name, email, password });
   };
   const history = useHistory();
@@ -45,6 +50,7 @@ const AuthForm = ({ handleSubmit, btnName, btn_auth }) => {
               <hr className={styles.registration_line} />
             </label>
           )}
+
           <label className={styles.registration_label}>
             Логин *{" "}
             <input
@@ -58,6 +64,7 @@ const AuthForm = ({ handleSubmit, btnName, btn_auth }) => {
             />
             <hr className={styles.registration_line} />
           </label>
+
           <label className={styles.registration_label}>
             Пароль *{" "}
             <input
@@ -73,30 +80,23 @@ const AuthForm = ({ handleSubmit, btnName, btn_auth }) => {
             />
             <hr className={styles.registration_line} />
           </label>
+        </div>
+        <div className={styles.flex}>
+          <Button type={"submit"} buttonName={btnName} />
 
-          {/* <button type="submit" className={styles.btn}>
-        {btnName}
-      </button> */}
+          {btnName === mainRoutes[3].name && (
+            <Button
+              btn_auth={styles.btn_white}
+              onClick={() => {
+                let path = `/register`;
+                history.push(path);
+              }}
+              type={`button`}
+              buttonName={`Регистрация`}
+            />
+          )}
         </div>
       </form>
-      <div className={styles.flex}>
-        <Button
-          type={"submit"}
-          buttonName={btnName}
-          onClick={onSubmit}
-        ></Button>
-        {btnName === mainRoutes[3].name && (
-          <Button
-            btn_auth={styles.btn_white}
-            onClick={() => {
-              let path = `/singup`;
-              history.push(path);
-            }}
-            type={`button`}
-            buttonName={`Регистрация`}
-          />
-        )}
-      </div>
     </Wrapper>
   );
 };
