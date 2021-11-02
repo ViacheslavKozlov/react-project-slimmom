@@ -1,6 +1,7 @@
 import axios from "axios";
 import { getUserInfoError, getUserInfoRequest, getUserInfoSuccess } from "./userActions";
 import { BASE_URL } from "../../service/Api";
+import { authRefresh } from "../auth/authOperations";
 
 export const getUserInfo = () => async (dispatch, getState) => {
   try {
@@ -10,6 +11,10 @@ export const getUserInfo = () => async (dispatch, getState) => {
     console.log(data);
     dispatch(getUserInfoSuccess(data));
   } catch (error) {
+    if (error.response.status === 401) {
+      await dispatch(authRefresh());
+      getState().authData.accessToken && dispatch(getUserInfo());
+    }
     dispatch(getUserInfoError(error.message));
   }
 };

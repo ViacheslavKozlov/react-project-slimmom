@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import DairyPage from "../pages/DiaryPage";
 import { getProducts } from "../redux/DiaryProducts/diaryProductOperations";
-import { authRefresh } from "../redux/auth/authOperations";
+import { authRefresh, token } from "../redux/auth/authOperations";
 import { getIsAuth, getRefreshToken, getSid } from "../redux/auth/authSelectors";
 // import { Button, ButtonAdd } from "./button/Button";
 // import DiaryAddProductForm from "./diaryAddProductForm/DiaryAddProductForm";
@@ -22,16 +22,18 @@ const App = () => {
 
   useEffect(
     () => {
+      isAuthIn && token.set(isAuthIn);
       isAuthIn && dispatch(getUserInfo());
     },
     [dispatch, isAuthIn]
   );
-  useEffect(
-    () => {
-      !isAuthIn && refreshToken && dispatch(authRefresh(refreshToken, sid));
-    },
-    [dispatch, isAuthIn, refreshToken, sid]
-  );
+
+  // useEffect(
+  //   () => {
+  //     !isAuthIn && refreshToken && dispatch(authRefresh(refreshToken, sid));
+  //   },
+  //   [dispatch, isAuthIn, refreshToken, sid]
+  // );
 
   return (
     <>
