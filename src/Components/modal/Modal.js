@@ -72,9 +72,13 @@ const Modal = ({ toggleModal, dailyRate }) => {
                     <>
                       {dailyRate.notAllowedProducts?.length !== 0 ? (
                         <ol>
-                          {dailyRate.notAllowedProducts?.map((product) => (
-                            <li key={product}>{product}</li>
-                          ))}
+                          {dailyRate.notAllowedProducts?.map(
+                            (product, index) => (
+                              <li key={product}>
+                                {`${index + 1}. ${product}`}
+                              </li>
+                            )
+                          )}
                         </ol>
                       ) : (
                         <p>Можно всё!</p>
