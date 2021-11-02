@@ -9,7 +9,7 @@ import { isOpenAddFormModal } from "../redux/isOpen/IsOpenSelector";
 import { ButtonAdd } from "../Components/button/Button";
 import { useDispatch } from "react-redux";
 import { toggleFrom } from "../redux/isOpen/IsOpenAction";
-import style from "./DiaryPage.module.css";
+import styles from "./DiaryPage.module.css";
 
 const DiaryPage = () => {
   const [date, setDate] = useState(new Date());
@@ -25,18 +25,18 @@ const DiaryPage = () => {
     <>
       {!isOpen ? (
         <>
-          <div className={style.mobileProductList}>
-            <div>
+          <div className={styles.mobileProductList}>
+            <div className={styles.mobileDiaryDateСalendar}>
               <DiaryDateСalendar date={date} setDate={setDate} />
             </div>
-            <div>
+            <div className={styles.mobileDiaryDateСalendar}>
               <DiaryProductsList date={date} />
             </div>
           </div>
-          <div className={style.btnAddFormMobile}>
+          <div className={styles.btnAddFormMobile}>
             <ButtonAdd onClick={toggle} />
           </div>
-          <div className={style.statContainer}>
+          <div className={styles.statContainer}>
             <DailyStatistics date={date} />
           </div>
         </>
@@ -49,13 +49,13 @@ const DiaryPage = () => {
   ) : (
     <>
       {isDescDevice ? (
-        <div className={style.mainContainer}>
-          <div className={style.formContainer}>
+        <div className={styles.mainContainer}>
+          <div className={styles.formContainer}>
             <DiaryDateСalendar date={date} setDate={setDate} />
             <DiaryAddProductForm date={date} toggle={toggle} />
             <DiaryProductsList date={date} />
           </div>
-          <div className={style.statContainer}>
+          <div className={styles.statContainer}>
             <DailyStatistics date={date} />
           </div>
         </div>

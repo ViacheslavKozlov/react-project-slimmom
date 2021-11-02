@@ -1,6 +1,14 @@
 .mobileProductList {
-  min-width: 287px;
-  max-height: 261px;
+  height: 1024px;
+}
+.mobileDiaryDateСalendar {
+  margin-top: 40px;
+}
+.mobileDiaryDateСalendar {
+}
+.btnAddFormMobile {
+}
+.statContainer {
 }
 
 @media screen and (min-width: 1280px) {

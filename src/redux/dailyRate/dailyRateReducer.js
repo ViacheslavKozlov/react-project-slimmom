@@ -5,40 +5,51 @@ import {
   getDailyRateRequest,
   getDailyRateSucces,
   getDailyRateByDateSucces,
-  getUserInfoSucces,
   getUserInfoError,
   getDailyRateByDateError,
   getDailyRateByDateRequest,
 } from "./dailyRateActions";
 import {
-  getUserSuccess,
   loginAuthSuccess,
+  logoutAuthSuccess,
   registerAuthSuccess,
 } from "../auth/authActions";
 import {
   addProductSuccess,
   afterDeleteProductInfoDaySucces,
 } from "../DiaryProducts/diaryProductActions";
+import { getUserInfoSuccess } from "../user/userActions";
 // const initialState = {};
 
 export const dailyCaloriesReducer = createReducer(
-  {},
+  {
+    dailyRate: null,
+    kcalConsumed: null,
+    kcalLeft: null,
+    percentsOfDailyRate: null,
+    notAllowedProducts: [],
+  },
   {
     //refresh
-    [getUserSuccess]: (_, { payload }) => ({
-      username: payload.username,
-      id: payload.id,
-      notAllowedProducts: payload.userData.notAllowedProducts.slice(0, 5),
-      dailyRate: payload.userData.dailyRate,
-      userData: {
-        weight: payload.userData.weight,
-        height: payload.userData.height,
-        age: payload.userData.height,
-        bloodType: payload.userData.bloodType,
-        desiredWeight: payload.userData.desiredWeight,
-        // dailyRate: payload.user.userData.dailyRate,
-      },
-    }),
+    // [getUserSuccess]: (_, { payload }) => ({
+    //   username: payload.username,
+    //   id: payload.id,
+    //   notAllowedProducts: payload.userData.notAllowedProducts.slice(0, 5),
+    //   dailyRate: payload.userData.dailyRate,
+    //   userData: {
+    //     weight: payload.userData.weight,
+    //     height: payload.userData.height,
+    //     age: payload.userData.height,
+    //     bloodType: payload.userData.bloodType,
+    //     desiredWeight: payload.userData.desiredWeight,
+    //     // dailyRate: payload.user.userData.dailyRate,
+    //   },
+    // }),
+    // [getUserInfoSuccess]: (state, { payload }) => ({
+    //   ...state,
+    //   notAllowedProducts: payload.userData.notAllowedProducts,
+    //   dailyRate: payload.userData.dailyRate || null,
+    // }),
     //onSubmit
     [getDailyRateSucces]: (state, { payload }) => ({
       ...state,
@@ -46,35 +57,43 @@ export const dailyCaloriesReducer = createReducer(
       dailyRate: payload.dailyRate,
     }),
 
-    [getDailyRateByDateSucces]: (state, { payload }) => {
-      return {
-        ...state,
-        // date: payload.daySummary?.date,
-        kcalConsumed: payload.daySummary?.kcalConsumed || payload.kcalConsumed,
-        kcalLeft: payload.daySummary?.kcalLeft || payload.kcalLeft,
-        percentsOfDailyRate:
-          payload.daySummary?.percentsOfDailyRate ||
-          payload.percentsOfDailyRate,
-      };
-    },
+    [getDailyRateByDateSucces]: (state, { payload }) =>
+      payload.daySummary
+        ? {
+            ...state,
+            dailyRate: payload.daySummary.dailyRate,
+            kcalConsumed: payload.daySummary.kcalConsumed,
+            kcalLeft: payload.daySummary.kcalLeft,
+            percentsOfDailyRate: payload.daySummary.percentsOfDailyRate,
+          }
+        : {
+            ...state,
+            dailyRate: payload.dailyRate,
+            kcalConsumed: payload.kcalConsumed,
+            kcalLeft: payload.kcalLeft,
+            percentsOfDailyRate: payload.percentsOfDailyRate,
+          },
+
     //login
-    [loginAuthSuccess]: (_, { payload }) => ({
-      username: payload.user.username,
-      id: payload.user.id,
-      todayDate: payload.todaySummary.date,
-      notAllowedProducts: payload.user.userData.notAllowedProducts.slice(0, 5),
-      dailyRate: payload.user.userData.dailyRate,
-      userData: {
-        weight: payload.user.userData.weight,
-        height: payload.user.userData.height,
-        age: payload.user.userData.height,
-        bloodType: payload.user.userData.bloodType,
-        desiredWeight: payload.user.userData.desiredWeight,
-        // dailyRate: payload.user.userData.dailyRate,
-      },
+    [getUserInfoSuccess]: (state, { payload }) => ({
+      ...state,
+      // username: payload.user.username,
+      // id: payload.user.id,
+      // todayDate: payload.todaySummary.date,
+      notAllowedProducts: payload.userData.notAllowedProducts.slice(0, 5),
+      dailyRate: payload.userData.dailyRate || null,
+      // userData: {
+      //   weight: payload.user.userData.weight,
+      //   height: payload.user.userData.height,
+      //   age: payload.user.userData.height,
+      //   bloodType: payload.user.userData.bloodType,
+      //   desiredWeight: payload.user.userData.desiredWeight,
+      //   // dailyRate: payload.user.userData.dailyRate,
+      // },
     }),
     [addProductSuccess]: (state, { payload }) => ({
       ...state,
+      dailyRate: payload.daySummary?.dailyRate || payload.dailyRate,
       kcalConsumed: payload.daySummary?.kcalConsumed || payload.kcalConsumed,
       kcalLeft: payload.daySummary?.kcalLeft || payload.kcalLeft,
       percentsOfDailyRate:
@@ -90,12 +109,21 @@ export const dailyCaloriesReducer = createReducer(
     //   ...state,
     //   date: payload,
     // }),
-    // [getDailyRateRequest]: () => {},
-    [getUserInfoSucces]: (state, { payload }) => ({
-      ...state,
-      userData: payload.userData,
+
+    [registerAuthSuccess]: () => ({
+      dailyRate: null,
+      kcalConsumed: null,
+      kcalLeft: null,
+      percentsOfDailyRate: null,
+      notAllowedProducts: [],
     }),
-    [registerAuthSuccess]: () => ({}),
+    [logoutAuthSuccess]: () => ({
+      dailyRate: null,
+      kcalConsumed: null,
+      kcalLeft: null,
+      percentsOfDailyRate: null,
+      notAllowedProducts: [],
+    }),
     // [loginAuthSuccess]: () => ({}),
   }
 );

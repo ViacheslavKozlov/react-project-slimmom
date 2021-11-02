@@ -4,6 +4,7 @@ import { deleteProductOperation } from "../../../redux/DiaryProducts/diaryProduc
 import style from "./DairyProductsListItem.module.css";
 import moment from "moment";
 import { dairyProductsSelector } from "../../../redux/DiaryProducts/diaryProductSelector";
+import Wrapper from "../../wrapper/Wrapper";
 
 // import { useDispatch } from "react-redux";
 // import { deleteContact } from "../../../redux/DiaryProducts/diaryProductOperations";
@@ -21,23 +22,25 @@ const DiaryProductsListItem = ({
 
   return (
     <>
-      <li className={style.dairyItem}>
-        <p className={style.dairyItemProduct}>{title}</p>
-        <p className={style.dairyItemWeight}>{weight} г </p>
-        <p className={style.dairyItemCcal}>{Math.round(kcal)} ккал</p>
-        {diaryProduct.date === todayDate ? (
-          <button
-            className={style.btnDelete}
-            type="button"
-            // id={_id}
-            onClick={onDeleteClick}
-          >
-            X
-          </button>
-        ) : (
-          <> </>
-        )}
-      </li>
+      <Wrapper>
+        <li className={style.dairyItem}>
+          <p className={style.dairyItemProduct}>{title}</p>
+          <p className={style.dairyItemWeight}>{weight} г </p>
+          <p className={style.dairyItemCcal}>{Math.round(kcal)} ккал</p>
+          {diaryProduct.date === todayDate ? (
+            <button
+              className={style.btnDelete}
+              type="button"
+              // id={_id}
+              onClick={onDeleteClick}
+            >
+              X
+            </button>
+          ) : (
+            <> </>
+          )}
+        </li>
+      </Wrapper>
     </>
   );
 };
