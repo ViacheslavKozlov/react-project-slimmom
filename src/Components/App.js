@@ -13,6 +13,8 @@ import {
 import Header from "./header/Header";
 import Main from "./main/Main";
 import { getUserInfo } from "../redux/user/userOperation";
+import { getDailyRateByDateOperation } from "../redux/dailyRate/dailyRateOperations";
+import { dairyProductsSelector } from "../redux/DiaryProducts/diaryProductSelector";
 
 export const AuthContext = React.createContext();
 
@@ -22,11 +24,13 @@ const App = () => {
   const isAuthIn = useSelector(getIsAuth);
   const refreshToken = useSelector(getRefreshToken);
   const sid = useSelector(getSid);
+  const date = useSelector(dairyProductsSelector);
   // console.log(isAuthIn);
 
   useEffect(() => {
     isAuthIn && token.set(isAuthIn);
     isAuthIn && dispatch(getUserInfo());
+    // isAuthIn && dispatch(getDailyRateByDateOperation({ date: date.date }));
   }, [dispatch, isAuthIn]);
 
   // useEffect(

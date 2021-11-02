@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { BASE_URL } from "../../service/Api";
+import { authRefresh } from "../auth/authOperations";
 // import { afterDeleteProductInfoDaySucces } from "../dailyRate/dailyRateActions";
 import {
   addProductRequest,
@@ -35,10 +36,16 @@ export const addProduct = (product) => (dispatch, getState) => {
   axios
     .post(BASE_URL + `/day`, product)
     .then((response) => dispatch(addProductSuccess(response.data)))
-    .catch((error) => dispatch(addProductError(error.message)));
+    .catch(async (error) => {
+      if (error.response.status === 401) {
+        await dispatch(authRefresh());
+        getState().authData.accessToken && dispatch(addProduct(product));
+      }
+      dispatch(addProductError(error.message));
+    });
 };
 
-export const deleteProductOperation = (data) => async (dispatch) => {
+export const deleteProductOperation = (data) => async (dispatch, getState) => {
   // dispatch(deleteProductRequest());
   // console.log(data.eatenProductId);
 
@@ -50,25 +57,31 @@ export const deleteProductOperation = (data) => async (dispatch) => {
       dispatch(afterDeleteProductInfoDaySucces(response.data))
     )
     .then(() => dispatch(deleteProductSuccess(newData.data.eatenProductId)))
-    .catch((error) => dispatch(deleteProductError(error.message)));
-};
-
-export const getProducts = () => (dispatch) => {
-  dispatch(getProductsRequest());
-};
-
-export const getDayInfo = (day) => async (dispatch, getState) => {
-  const token = getState().authData.accessToken;
-  dispatch(getDayInfoRequest());
-  try {
-    const { data } = await axios.post(`${BASE_URL}/day/info`, day, {
-      headers: { Authorization: `Bearer ${token}` },
+    .catch(async (error) => {
+      if (error.response.status === 401) {
+        await dispatch(authRefresh());
+        getState().authData.accessToken && dispatch(addProduct(data));
+      }
+      dispatch(deleteProductError(error.message));
     });
-    dispatch(getDayInfoSuccess(data));
-  } catch (error) {
-    dispatch(getDayInfoError(error.message));
-  }
 };
+
+// export const getProducts = () => (dispatch) => {
+//   dispatch(getProductsRequest());
+// };
+
+// export const getDayInfo = (day) => async (dispatch, getState) => {
+//   const token = getState().authData.accessToken;
+//   dispatch(getDayInfoRequest());
+//   try {
+//     const { data } = await axios.post(`${BASE_URL}/day/info`, day, {
+//       headers: { Authorization: `Bearer ${token}` },
+//     });
+//     dispatch(getDayInfoSuccess(data));
+//   } catch (error) {
+//     dispatch(getDayInfoError(error.message));
+//   }
+// };
 
 export const changeDateOperation = (date) => async (dispatch) => {
   // dispatch(getDailyRateRequest());

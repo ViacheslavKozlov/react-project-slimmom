@@ -40,15 +40,14 @@ const DiaryProductsList = ({ date }) => {
               ))}
             </>
           ) : (
-            <p>Вы ничего не добавляли</p>
+            <>
+              {!productsInfo.date ? (
+                <p>В этот день Вы не вели календарь</p>
+              ) : (
+                <p>Вы ничего не добавляли</p>
+              )}
+            </>
           )}
-          {/* {eatenProductsByDay?.eatenProducts?.length &&
-            eatenProductsByDay.eatenProducts.map((eatenProductByDay) => (
-              <DiaryProductsListItem
-                key={eatenProductByDay.id}
-                eatenProduct={eatenProductByDay}
-              />
-            ))} */}
         </div>
       </ul>
     </>
