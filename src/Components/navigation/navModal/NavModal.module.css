@@ -1,17 +1,19 @@
 .ModalBackdrop {
   position: fixed;
-  top: 140px;
+  top: 80px;
   left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5);
-  overflow: hidden;
+
   z-index: 1200;
 }
 
 .ModalContent {
   position: absolute;
   width: 100vw;
-  height: 100vh;
-  background-color: green;
+  height: calc(100vh - 80px);
+  background-color: var(--calories-color);
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 50px;
 }

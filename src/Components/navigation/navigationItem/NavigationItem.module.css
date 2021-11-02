@@ -7,17 +7,69 @@
   height: 44px;
 }
 
+.privateItem {
+  font-family: Verdana;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.link {
+  color: var(--main-txt-color);
+}
+
+.link:hover,
+:focus {
+  color: var(--main-txt-color);
+}
+.activeLink {
+  color: var(--headline-txt-color);
+}
+.activeLink:hover,
+:focus {
+  color: var(--headline-txt-color);
+}
+.activeLinkPrivate {
+  color: var(--main-color);
+}
+
+.activeLinkPrivate:hover,
+:focus {
+  color: var(--main-color);
+}
+
+.privateItem:not(:last-child) {
+  margin-bottom: 24px;
+}
+
+.privateItem:hover {
+  color: var(--main-txt-color);
+}
+.item {
+  text-decoration: none;
+  color: var(--main-txt-color);
+  font-family: Verdana;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 1.07;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.item:first-child {
+  margin-right: 65px;
+}
+.item:last-child {
+  margin-left: 15px;
+}
+
 @media screen and (min-width: 768px) {
   .link {
-    text-decoration: none;
     color: var(--main-txt-color);
-    font-family: Gotham Pro;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 14px;
-    line-height: 13px;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
   }
 
   .activeLink {
@@ -25,63 +77,50 @@
   }
 
   .logo {
-    position: relative;
-    bottom: 20px;
+    width: 162px;
+    height: 44px;
+  }
 
-    width: 166px;
-    height: 66px;
+  .item {
+    text-decoration: none;
+    color: var(--main-txt-color);
+    font-family: Verdana;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 1.07;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .item:first-child {
+    margin-right: 270px;
+  }
+
+  .privateItem {
+    font-size: 24px;
+    line-height: 1.2;
+  }
+
+  .activeLinkPrivate {
+    color: var(--main-color);
+  }
+
+  .activeLinkPrivate:hover,
+  :focus {
+    color: var(--main-color);
   }
 }
 
 @media screen and (min-width: 1280px) {
-  .link {
-    text-decoration: none;
-    color: var(--main-txt-color);
-    font-family: Gotham Pro;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 14px;
-    line-height: 13px;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-  }
-  .link:hover {
-    color: var(--headline-txt-color);
-  }
-
-  .activeLink {
-    color: var(--headline-txt-color);
-  }
-
-  .logo {
-    position: relative;
-    bottom: 20px;
-
-    width: 166px;
-    height: 66px;
-  }
-
-  .item:first-child::after {
-    position: absolute;
-    width: 32px;
-    height: 0px;
-    left: 248px;
-    top: 122px;
-    transform: rotate(90deg);
-
-    content: "";
-    display: block;
-    margin-left: 10px;
-
-    border: 2px solid #e0e0e0;
-  }
-
-  .item:not(:last-child) {
-    margin-right: 14px;
-  }
-
   .item:first-child {
-    margin-right: 22px;
+    margin-right: 25px;
+  }
+
+  .verticalLine {
+    border-right: 2px solid var(--linear-color);
+
+    padding-right: 25px;
   }
 }
 
