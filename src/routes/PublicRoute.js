@@ -1,13 +1,13 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Route, Redirect } from "react-router-dom";
-import { dailyRateSelector } from "../redux/dailyRate/dailyRateSelectors";
+import { userData } from "../redux/user/userSelectors";
 
 const PublicRoute = ({ path, exact, component, isAuth, isRestricted }) => {
-  const dailyRate = useSelector(dailyRateSelector);
+  const userDataSelector = useSelector(userData);
   return isAuth && isRestricted ? (
     <>
-      {dailyRate.notAllowedProducts?.length === 0 ? (
+      {!userDataSelector.age ? (
         <Redirect to="/calculator" />
       ) : (
         <Redirect to="/diary" />

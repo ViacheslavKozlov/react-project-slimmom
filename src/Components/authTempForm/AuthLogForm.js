@@ -8,8 +8,8 @@ import Wrapper from "../wrapper/Wrapper";
 
 const AuthForm = ({ handleSubmit, btnName, btn_auth }) => {
   const [name, setName] = useState("Slava");
-  const [email, setEmail] = useState("slava1@mail.com");
-  const [password, setPassword] = useState("xxxxxxxx");
+  const [email, setEmail] = useState("dnbdimka34@gmail.com");
+  const [password, setPassword] = useState("qweqwe123");
 
   const onChange = (e) => {
     const { type, value } = e.target;
