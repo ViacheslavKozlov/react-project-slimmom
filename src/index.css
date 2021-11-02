@@ -5,6 +5,7 @@
   --linear-color: #e0e0e0;
   --active-color: #fc842d;
   --calories-color: #264061;
+  --main-font: Roboto;
 }
 body {
   box-sizing: border-box;
