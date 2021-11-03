@@ -10,7 +10,6 @@ import {
   logoutAuthError,
   refreshAuthRequest,
   refreshAuthSuccess,
-  refreshAuthError,
   getUserSuccess,
 } from "./authActions";
 import { apiBaseURL, register, login, logout, refresh } from "../../bk.json";
@@ -93,5 +92,5 @@ export const authRefresh = () => (dispatch, getState) => {
       );
       axios.get("/user").then(({ data }) => dispatch(getUserSuccess(data)));
     })
-    .catch((error) => dispatch(logoutAuthSuccess()));
+    .catch(() => dispatch(logoutAuthSuccess()));
 };

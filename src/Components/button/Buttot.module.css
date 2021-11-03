@@ -8,16 +8,27 @@
   height: 44px;
   border-radius: 30px;
   box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
+  cursor: pointer;
 }
+/* .btn:hover {
+  background-color: #ff6a00;
+} */
 
 .btn_orange {
   background-color: #fc842d;
+  color: #fff;
+}
+.btn_orange:hover {
+  background-color: #ff6a00;
   color: #fff;
 }
 
 .btn_white {
   background-color: #fff;
   color: #fc842d;
+}
+.btn_white.btn_orange:hover {
+  background-color: rgb(114, 114, 114);
 }
 
 .btn_add {
@@ -27,7 +38,7 @@
   height: 50px;
   border-radius: 30px;
   box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
-  display: flex;
+  /* display: flex; */
   align-items: center;
   justify-content: center;
 }

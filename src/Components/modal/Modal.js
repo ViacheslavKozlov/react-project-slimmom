@@ -5,6 +5,7 @@ import style from "./Modal.module.css";
 import Loader from "react-loader-spinner";
 import { dailyRateLoading } from "../../redux/dailyRate/dailyRateSelectors";
 import { useSelector } from "react-redux";
+import sprite from "../../icons/sprite.svg";
 
 const Modal = ({ toggleModal, dailyRate }) => {
   const history = useHistory();
@@ -35,7 +36,12 @@ const Modal = ({ toggleModal, dailyRate }) => {
           <div className={style.modal_container}>
             {" "}
             {isLoading ? (
-              <Loader type="Oval" color="#fc842d" height={90} width={90} />
+              <Loader
+                type="BallTriangle"
+                color={`var(--active-color)`}
+                height={90}
+                width={90}
+              />
             ) : (
               <>
                 <button
@@ -44,9 +50,8 @@ const Modal = ({ toggleModal, dailyRate }) => {
                   data-action="close-modal"
                   onClick={toggleModal}
                 >
-                  X
                   <svg width="12" height="12">
-                    <use href="../../../icons/sprite.svg#close"></use>
+                    <use href={sprite + "#close"}></use>
                   </svg>
                 </button>
                 <h2 className={style.modal_title}>
