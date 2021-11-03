@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import useDeviceSizes from "../../hooks/useDeviceSizec";
 import { getIsAuth } from "../../redux/auth/authSelectors";
@@ -17,7 +17,7 @@ const Navigation = () => {
   // const userdata = ();
 
   const toggleModal = () => {
-    setShowModal((prev) => !prev);
+    setShowModal(prev => !prev);
   };
 
   // useEffect(() => {
@@ -30,43 +30,26 @@ const Navigation = () => {
         <NavList
           routes={
             isAuth
-              ? mainRoutes.filter((item) => item.isPrivate || item.path === "/")
-              : mainRoutes.filter(
-                  (item) => item.isRestricted || item.path === "/"
-                )
+              ? mainRoutes.filter(item => item.isPrivate || item.path === "/")
+              : mainRoutes.filter(item => item.isRestricted || item.path === "/")
           }
           isAuth={isAuth}
         />
       )}
       {!isDescDevice && (
         <>
-          {!isAuth && (
-            <NavList
-              routes={mainRoutes.filter(
-                (item) => item.isRestricted || item.path === "/"
-              )}
-              isAuth={isAuth}
-            />
-          )}
+          {!isAuth && <NavList routes={mainRoutes.filter(item => item.isRestricted || item.path === "/")} isAuth={isAuth} />}
           {isAuth && (
             <>
-              <NavList
-                routes={mainRoutes.filter((item) => item.path === "/")}
-                isAuth={isAuth}
-              />
+              <NavList routes={mainRoutes.filter(item => item.path === "/")} isAuth={isAuth} />
 
               {showModal && (
                 <NavModal toggleModal={toggleModal}>
-                  <NavList
-                    toggleModal={toggleModal}
-                    routes={mainRoutes.filter((item) => item.isPrivate)}
-                    isAuth={isAuth}
-                  />
+                  <NavList toggleModal={toggleModal} routes={mainRoutes.filter(item => item.isPrivate)} isAuth={isAuth} />
                 </NavModal>
               )}
             </>
           )}
-          
         </>
       )}
 
