@@ -12,7 +12,7 @@ import Wrapper from "../wrapper/Wrapper";
 import useDeviceSizes from "../../hooks/useDeviceSizec";
 import Loader from "react-loader-spinner";
 
-const DiaryAddProductForm = ({ date, isLoadingProducts }) => {
+const DiaryAddProductForm = ({ date, isLoadingProducts, toggle }) => {
   const [value, setValue] = useState("");
   const [weight, setWeight] = useState("");
   const [products, setProducts] = useState([]);
@@ -223,7 +223,11 @@ const DiaryAddProductForm = ({ date, isLoadingProducts }) => {
               ) : (
                 <div className={style.btnAddFormMobile}>
                   {isMobileDevice ? (
-                    <Button buttonName="Добавить" type="submit" />
+                    <Button
+                      buttonName="Добавить"
+                      type="submit"
+                      onClick={toggle}
+                    />
                   ) : (
                     <ButtonAdd buttonName="Добавить" type="submit" />
                   )}

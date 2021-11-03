@@ -12,6 +12,7 @@ import { toggleFrom } from "../redux/isOpen/IsOpenAction";
 import styles from "./DiaryPage.module.css";
 import { dailyRateLoading } from "../redux/dailyRate/dailyRateSelectors";
 import { dairyProductsLoading } from "../redux/DiaryProducts/diaryProductSelector";
+import Wrapper from "../Components/wrapper/Wrapper";
 
 const DiaryPage = () => {
   const [date, setDate] = useState(new Date());
@@ -29,22 +30,30 @@ const DiaryPage = () => {
     <>
       {!isOpen ? (
         <>
-          <DiaryDateСalendar
-            date={date}
-            setDate={setDate}
-            isLoadingDaily={isLoadingDaily}
-          />
-          <DiaryProductsList
-            date={date}
-            isLoadingDaily={isLoadingDaily}
-            isLoadingProducts={isLoadingProducts}
-          />
-          <ButtonAdd onClick={toggle} />
-          <DailyStatistics
-            date={date}
-            isLoadingDaily={isLoadingDaily}
-            isLoadingProducts={isLoadingProducts}
-          />
+          <div className={styles.mobileDiaryDateСalendar}>
+            <DiaryDateСalendar
+              date={date}
+              setDate={setDate}
+              isLoadingDaily={isLoadingDaily}
+            />
+          </div>
+          <div className={styles.mobileProductList}>
+            <DiaryProductsList
+              date={date}
+              isLoadingDaily={isLoadingDaily}
+              isLoadingProducts={isLoadingProducts}
+            />
+          </div>
+          <div className={styles.btnAddFormMobile}>
+            <ButtonAdd onClick={toggle} />
+          </div>
+          <div className={styles.statContainer}>
+            <DailyStatistics
+              date={date}
+              isLoadingDaily={isLoadingDaily}
+              isLoadingProducts={isLoadingProducts}
+            />
+          </div>
         </>
       ) : (
         <>
@@ -52,6 +61,7 @@ const DiaryPage = () => {
             date={date}
             isLoadingDaily={isLoadingDaily}
             isLoadingProducts={isLoadingProducts}
+            toggle={toggle}
           />
         </>
       )}
@@ -61,12 +71,14 @@ const DiaryPage = () => {
       {isDescDevice ? (
         <div className={styles.mainContainer}>
           <div className={styles.formContainer}>
-            <DiaryDateСalendar
-              date={date}
-              setDate={setDate}
-              isLoadingDaily={isLoadingDaily}
-              isLoadingProducts={isLoadingProducts}
-            />
+            <div className={styles.mobileDiaryDateСalendar}>
+              <DiaryDateСalendar
+                date={date}
+                setDate={setDate}
+                isLoadingDaily={isLoadingDaily}
+                isLoadingProducts={isLoadingProducts}
+              />
+            </div>
             <DiaryAddProductForm
               date={date}
               isLoadingDaily={isLoadingDaily}
@@ -88,12 +100,14 @@ const DiaryPage = () => {
         </div>
       ) : (
         <>
-          <DiaryDateСalendar
-            date={date}
-            setDate={setDate}
-            isLoadingDaily={isLoadingDaily}
-            isLoadingProducts={isLoadingProducts}
-          />
+          <div className={styles.mobileDiaryDateСalendar}>
+            <DiaryDateСalendar
+              date={date}
+              setDate={setDate}
+              isLoadingDaily={isLoadingDaily}
+              isLoadingProducts={isLoadingProducts}
+            />
+          </div>
           <DiaryAddProductForm
             date={date}
             isLoadingDaily={isLoadingDaily}
