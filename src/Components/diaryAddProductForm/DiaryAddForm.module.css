@@ -52,3 +52,11 @@
   bottom: -10px;
   background-color: #e0e0e0;
 }
+.button_wrapper {
+  width: 176px;
+  height: 44px;
+  /* display: flex;
+  align-items: center;
+  justify-self: center; */
+  text-align: center;
+}

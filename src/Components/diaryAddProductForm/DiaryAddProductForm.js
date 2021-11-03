@@ -9,7 +9,6 @@ import moment from "moment";
 import { addProduct } from "../../redux/DiaryProducts/diaryProductOperations";
 import { dairyProductsSelector } from "../../redux/DiaryProducts/diaryProductSelector";
 import Loader from "react-loader-spinner";
-import debounce from "lodash.debounce";
 
 const DiaryAddProductForm = ({ date, isLoadingProducts }) => {
   const [value, setValue] = useState("");
@@ -131,7 +130,6 @@ const DiaryAddProductForm = ({ date, isLoadingProducts }) => {
                 id="myBrowser"
                 name="product"
                 type="text"
-                autoFocus
                 placeholder="Введите название продукта"
               />
             </label>
@@ -161,16 +159,19 @@ const DiaryAddProductForm = ({ date, isLoadingProducts }) => {
               />
             </label>
           </div>
-          {isLoadingProducts ? (
-            <Loader
-              type="BallTriangle"
-              color={`var(--active-color)`}
-              height={30}
-              width={30}
-            />
-          ) : (
-            <Button buttonName="Добавить" type="submit" />
-          )}
+          <div className={style.button_wrapper}>
+            {isLoadingProducts ? (
+              <Loader
+                className={style.loader}
+                type="BallTriangle"
+                color={`var(--active-color)`}
+                height={30}
+                width={30}
+              />
+            ) : (
+              <Button buttonName="Добавить" type="submit" />
+            )}
+          </div>
         </form>
       ) : (
         <></>

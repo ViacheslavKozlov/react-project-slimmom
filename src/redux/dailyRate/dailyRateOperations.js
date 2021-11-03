@@ -2,6 +2,7 @@ import axios from "axios";
 import { authRefresh } from "../auth/authOperations";
 import {
   getDailyRateByDateError,
+  getDailyRateByDateRequest,
   getDailyRateByDateSucces,
   getDailyRateError,
   getDailyRateRequest,
@@ -55,7 +56,7 @@ const getDailyRateOperation = (userData, id) => async (dispatch, getState) => {
 };
 
 const getDailyRateByDateOperation = (date) => async (dispatch, getState) => {
-  // dispatch(getDailyRateRequest());
+  dispatch(getDailyRateByDateRequest());
   try {
     const response = await axios.post(`${BASE_URL}/day/info`, date);
 

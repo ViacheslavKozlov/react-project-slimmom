@@ -3,10 +3,7 @@ import Loader from "react-loader-spinner";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router";
 import { getDailyRateByDateOperation } from "../../redux/dailyRate/dailyRateOperations";
-import {
-  dailyRateLoading,
-  dailyRateSelector,
-} from "../../redux/dailyRate/dailyRateSelectors";
+import { dailyRateSelector } from "../../redux/dailyRate/dailyRateSelectors";
 import moment from "moment";
 
 import style from "./DailyStatistics.module.css";
