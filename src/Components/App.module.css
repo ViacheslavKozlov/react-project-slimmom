@@ -1,0 +1,33 @@
+.public {
+  background-color: #fff;
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 100vh;
+}
+.private {
+  background: none;
+  height: 100vh;
+}
+@media screen and (min-width: 768px) {
+  .public {
+    background-image: url("../images/health-home2-tabl-min.jpg");
+    background-position: 100% 100%;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .public {
+    background-image: url("../images/health-home2-desc-min.jpg");
+    background-position: 100% 50%;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .private {
+    background: linear-gradient(
+      270deg,
+      rgba(240, 241, 243, 1) 40%,
+      rgba(255, 255, 255, 1) 40%
+    );
+  }
+}

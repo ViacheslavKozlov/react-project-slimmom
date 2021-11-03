@@ -9,11 +9,10 @@ import { userInfo } from "../redux/user/userSelectors";
 const AuthPage = () => {
   const dispatch = useDispatch();
 
-  // const state = useSelector((state) => state.error);
   const error = useSelector((state) => state.error);
   const userId = useSelector(userInfo);
   const history = useHistory();
-  const { pathname, state } = useLocation();
+  const { pathname } = useLocation();
 
   const handleSubmit = (userData) => {
     pathname === mainRoutes[4].path

@@ -8,7 +8,6 @@ import style from "./DiaryAddForm.module.css";
 import moment from "moment";
 import { addProduct } from "../../redux/DiaryProducts/diaryProductOperations";
 import { dairyProductsSelector } from "../../redux/DiaryProducts/diaryProductSelector";
-import Wrapper from "../wrapper/Wrapper";
 import useDeviceSizes from "../../hooks/useDeviceSizec";
 import Loader from "react-loader-spinner";
 

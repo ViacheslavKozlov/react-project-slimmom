@@ -1,5 +1,9 @@
 import axios from "axios";
-import { getUserInfoError, getUserInfoRequest, getUserInfoSuccess } from "./userActions";
+import {
+  getUserInfoError,
+  getUserInfoRequest,
+  getUserInfoSuccess,
+} from "./userActions";
 import { BASE_URL } from "../../service/Api";
 import { authRefresh } from "../auth/authOperations";
 
@@ -8,17 +12,16 @@ export const getUserInfo = () => async (dispatch, getState) => {
     dispatch(getUserInfoRequest());
     const token = getState().authData.accessToken;
     const { data } = await axios.get(BASE_URL + "/user", {
-      headers: { Authorization: `Bearer ${token}` }
+      headers: { Authorization: `Bearer ${token}` },
     });
-    // console.log(data);
+
     if (data.userData.notAllowedProducts.length >= 5) {
-      // console.log("true");
       const normData = {
         ...data,
         userData: {
           ...data.userData,
-          notAllowedProducts: data.userData.notAllowedProducts.slice(0, 5)
-        }
+          notAllowedProducts: data.userData.notAllowedProducts.slice(0, 5),
+        },
       };
       dispatch(getUserInfoSuccess(normData));
       return;

@@ -1,32 +1,30 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { token } from "../redux/auth/authOperations";
 import { getIsAuth } from "../redux/auth/authSelectors";
 import Header from "./header/Header";
 import Main from "./main/Main";
 import { getUserInfo } from "../redux/user/userOperation";
-
-export const AuthContext = React.createContext();
+import styles from "../Components/App.module.css";
+import Wrapper from "./wrapper/Wrapper";
 
 const App = () => {
-  const [isAuth, setIsAuth] = useState(true);
   const dispatch = useDispatch();
   const isAuthIn = useSelector(getIsAuth);
 
-  useEffect(
-    () => {
-      isAuthIn && token.set(isAuthIn);
-      isAuthIn && dispatch(getUserInfo());
-    },
-    [dispatch, isAuthIn]
-  );
+  useEffect(() => {
+    isAuthIn && token.set(isAuthIn);
+    isAuthIn && dispatch(getUserInfo());
+  }, [dispatch, isAuthIn]);
 
   return (
     <>
-      <AuthContext.Provider value={[isAuth, setIsAuth]}>
+      <div className={!isAuthIn ? styles.public : styles.private}>
         <Header />
-        <Main />
-      </AuthContext.Provider>{" "}
+        <Wrapper>
+          <Main />
+        </Wrapper>
+      </div>
     </>
   );
 };

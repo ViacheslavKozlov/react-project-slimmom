@@ -12,7 +12,7 @@ import { toggleFrom } from "../redux/isOpen/IsOpenAction";
 import styles from "./DiaryPage.module.css";
 import { dailyRateLoading } from "../redux/dailyRate/dailyRateSelectors";
 import { dairyProductsLoading } from "../redux/DiaryProducts/diaryProductSelector";
-import Wrapper from "../Components/wrapper/Wrapper";
+// import Wrapper from "../Components/wrapper/Wrapper";
 
 const DiaryPage = () => {
   const [date, setDate] = useState(new Date());
@@ -26,129 +26,110 @@ const DiaryPage = () => {
     dispatch(toggleFrom());
   };
 
-  return isMobileDevice ? (
-    <>
-      {!isOpen ? (
+  return (
+    <div className={styles.backGround}>
+      {isMobileDevice ? (
         <>
-          <div className={styles.mobileDiaryDateСalendar}>
-            <DiaryDateСalendar
-              date={date}
-              setDate={setDate}
-              isLoadingDaily={isLoadingDaily}
-            />
-          </div>
-          <div className={styles.mobileProductList}>
-            <DiaryProductsList
-              date={date}
-              isLoadingDaily={isLoadingDaily}
-              isLoadingProducts={isLoadingProducts}
-            />
-          </div>
-          <div className={styles.btnAddFormMobile}>
-            <ButtonAdd onClick={toggle} />
-          </div>
-          <div className={styles.statContainer}>
-            <DailyStatistics
-              date={date}
-              isLoadingDaily={isLoadingDaily}
-              isLoadingProducts={isLoadingProducts}
-            />
-          </div>
+          {!isOpen ? (
+            <>
+              <div className={styles.mobileDiaryDateСalendar}>
+                <DiaryDateСalendar
+                  date={date}
+                  setDate={setDate}
+                  isLoadingDaily={isLoadingDaily}
+                />
+              </div>
+              <div className={styles.mobileProductList}>
+                <DiaryProductsList
+                  date={date}
+                  isLoadingDaily={isLoadingDaily}
+                  isLoadingProducts={isLoadingProducts}
+                />
+              </div>
+              <div className={styles.btnAddFormMobile}>
+                <ButtonAdd onClick={toggle} />
+              </div>
+              <div className={styles.statContainer}>
+                <DailyStatistics
+                  date={date}
+                  isLoadingDaily={isLoadingDaily}
+                  isLoadingProducts={isLoadingProducts}
+                />
+              </div>
+            </>
+          ) : (
+            <>
+              <DiaryAddProductForm
+                date={date}
+                isLoadingDaily={isLoadingDaily}
+                isLoadingProducts={isLoadingProducts}
+                toggle={toggle}
+              />
+            </>
+          )}
         </>
       ) : (
         <>
-          <DiaryAddProductForm
-            date={date}
-            isLoadingDaily={isLoadingDaily}
-            isLoadingProducts={isLoadingProducts}
-            toggle={toggle}
-          />
-        </>
-      )}
-    </>
-  ) : (
-    <>
-      {isDescDevice ? (
-        <div className={styles.mainContainer}>
-          <div className={styles.formContainer}>
-            <div className={styles.mobileDiaryDateСalendar}>
-              <DiaryDateСalendar
+          {isDescDevice ? (
+            <div className={styles.mainContainer}>
+              <div className={styles.formContainer}>
+                <div className={styles.mobileDiaryDateСalendar}>
+                  <DiaryDateСalendar
+                    date={date}
+                    setDate={setDate}
+                    isLoadingDaily={isLoadingDaily}
+                    isLoadingProducts={isLoadingProducts}
+                  />
+                </div>
+                <DiaryAddProductForm
+                  date={date}
+                  isLoadingDaily={isLoadingDaily}
+                  isLoadingProducts={isLoadingProducts}
+                />
+                <DiaryProductsList
+                  date={date}
+                  isLoadingDaily={isLoadingDaily}
+                  isLoadingProducts={isLoadingProducts}
+                />
+              </div>
+              <div className={styles.statContainer}>
+                <DailyStatistics
+                  date={date}
+                  isLoadingDaily={isLoadingDaily}
+                  isLoadingProducts={isLoadingProducts}
+                />
+              </div>
+            </div>
+          ) : (
+            <>
+              <div className={styles.mobileDiaryDateСalendar}>
+                <DiaryDateСalendar
+                  date={date}
+                  setDate={setDate}
+                  isLoadingDaily={isLoadingDaily}
+                  isLoadingProducts={isLoadingProducts}
+                />
+              </div>
+              <DiaryAddProductForm
                 date={date}
-                setDate={setDate}
                 isLoadingDaily={isLoadingDaily}
                 isLoadingProducts={isLoadingProducts}
               />
-            </div>
-            <DiaryAddProductForm
-              date={date}
-              isLoadingDaily={isLoadingDaily}
-              isLoadingProducts={isLoadingProducts}
-            />
-            <DiaryProductsList
-              date={date}
-              isLoadingDaily={isLoadingDaily}
-              isLoadingProducts={isLoadingProducts}
-            />
-          </div>
-          <div className={styles.statContainer}>
-            <DailyStatistics
-              date={date}
-              isLoadingDaily={isLoadingDaily}
-              isLoadingProducts={isLoadingProducts}
-            />
-          </div>
-        </div>
-      ) : (
-        <>
-          <div className={styles.mobileDiaryDateСalendar}>
-            <DiaryDateСalendar
-              date={date}
-              setDate={setDate}
-              isLoadingDaily={isLoadingDaily}
-              isLoadingProducts={isLoadingProducts}
-            />
-          </div>
-          <DiaryAddProductForm
-            date={date}
-            isLoadingDaily={isLoadingDaily}
-            isLoadingProducts={isLoadingProducts}
-          />
-          <DiaryProductsList
-            date={date}
-            isLoadingDaily={isLoadingDaily}
-            isLoadingProducts={isLoadingProducts}
-          />
-          <DailyStatistics
-            date={date}
-            isLoadingDaily={isLoadingDaily}
-            isLoadingProducts={isLoadingProducts}
-          />
+              <DiaryProductsList
+                date={date}
+                isLoadingDaily={isLoadingDaily}
+                isLoadingProducts={isLoadingProducts}
+              />
+              <DailyStatistics
+                date={date}
+                isLoadingDaily={isLoadingDaily}
+                isLoadingProducts={isLoadingProducts}
+              />
+            </>
+          )}
         </>
       )}
-    </>
+    </div>
   );
 };
-
 export default DiaryPage;
-
-//   <>
-//     {!isOpen ? (
-//       <>
-//         <DiaryDateСalendar date={date} setDate={setDate} />
-//         <DiaryProductsList date={date} />
-//         <ButtonAdd onClick={toggle} />
-//         <DailyStatistics date={date} />
-//       </>
-//     ) : (
-//       <>
-//         <DiaryAddProductForm date={date} />
-//       </>
-//     )}
-//   </>
-// ) : (
-//   <>
-//     <DiaryDateСalendar date={date} setDate={setDate} />
-//     <DiaryAddProductForm date={date} />
-//     <DiaryProductsList date={date} />
-//     <DailyStatistics date={date} />
-//   </>
