@@ -1,14 +1,13 @@
-import React from 'react'
-// import styles from "./Svg.module.css"
-import sprite from "../../icons/sprite.svg"
+import React from "react";
 
-const Svg = ({svgName}) => {
-    return (
-        // <button className={styles.svg} type="button" > {svgName} </button>
-        <svg  width="20" height="20" fill="white"> 
-            <use href={ sprite + "#add"}/>
-</svg >
-    )
-}
+import sprite from "../../icons/sprite.svg";
 
-export  {Svg};
+const Svg = ({ svgName }) => {
+  return (
+    <svg width="20" height="20" fill="white">
+      <use href={sprite + "#add"} />
+    </svg>
+  );
+};
+
+export { Svg };

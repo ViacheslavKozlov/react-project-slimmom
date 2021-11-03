@@ -1,32 +1,39 @@
 import { createReducer, combineReducers } from "@reduxjs/toolkit";
-import { loginAuthSuccess, logoutAuthSuccess, registerAuthSuccess } from "../auth/authActions";
+import {
+  loginAuthSuccess,
+  logoutAuthSuccess,
+  registerAuthSuccess,
+} from "../auth/authActions";
 import { getDailyRateSucces, setUserData } from "../dailyRate/dailyRateActions";
-import { addProductSuccess, getDayInfoSuccess } from "../DiaryProducts/diaryProductActions";
+import {
+  addProductSuccess,
+  getDayInfoSuccess,
+} from "../DiaryProducts/diaryProductActions";
 import { getUserInfoSuccess } from "./userActions";
 
 const userInfo = createReducer(
   {
     email: "",
     username: "",
-    id: ""
+    id: "",
   },
   {
     [registerAuthSuccess]: (_, { payload }) => payload,
     [loginAuthSuccess]: (_, { payload }) => ({
       email: payload.user.email,
       username: payload.user.username,
-      id: payload.user.id
+      id: payload.user.id,
     }),
     [logoutAuthSuccess]: () => ({
       email: "",
       username: "",
-      id: ""
+      id: "",
     }),
     [getUserInfoSuccess]: (_, { payload }) => ({
       email: payload.email,
       username: payload.username,
-      id: payload.id
-    })
+      id: payload.id,
+    }),
   }
 );
 const userData = createReducer(
@@ -37,10 +44,13 @@ const userData = createReducer(
     bloodType: 1,
     desiredWeight: 0,
     dailyRate: 0,
-    notAllowedProducts: []
+    notAllowedProducts: [],
   },
   {
-    [loginAuthSuccess]: (state, { payload }) => ({ ...state, ...payload.user.userData }),
+    [loginAuthSuccess]: (state, { payload }) => ({
+      ...state,
+      ...payload.user.userData,
+    }),
     [logoutAuthSuccess]: () => ({
       weight: 0,
       height: 0,
@@ -48,22 +58,25 @@ const userData = createReducer(
       bloodType: 1,
       desiredWeight: 0,
       dailyRate: 0,
-      notAllowedProducts: []
+      notAllowedProducts: [],
     }),
     [setUserData]: (state, { payload }) => ({ ...state, ...payload }),
     [getDailyRateSucces]: (state, { payload }) => ({
       ...state,
       dailyRate: payload.dailyRate,
-      notAllowedProducts: payload.notAllowedProducts
+      notAllowedProducts: payload.notAllowedProducts,
     }),
-    [getUserInfoSuccess]: (state, { payload }) => ({ ...state, ...payload.userData })
+    [getUserInfoSuccess]: (state, { payload }) => ({
+      ...state,
+      ...payload.userData,
+    }),
   }
 );
 
 const summaries = createReducer([], {
   [loginAuthSuccess]: (_, { payload }) => payload.summaries || [],
   [getDailyRateSucces]: (_, { payload }) => payload.summaries,
-  [logoutAuthSuccess]: () => []
+  [logoutAuthSuccess]: () => [],
 });
 
 const todaySummary = createReducer(
@@ -74,10 +87,13 @@ const todaySummary = createReducer(
     dailyRate: 0,
     percentsOfDailyRate: 0,
     userId: "",
-    id: ""
+    id: "",
   },
   {
-    [loginAuthSuccess]: (state, { payload }) => ({ ...state, ...payload.todaySummary }),
+    [loginAuthSuccess]: (state, { payload }) => ({
+      ...state,
+      ...payload.todaySummary,
+    }),
 
     [logoutAuthSuccess]: () => ({
       date: "",
@@ -86,8 +102,8 @@ const todaySummary = createReducer(
       dailyRate: 0,
       percentsOfDailyRate: 0,
       userId: "",
-      id: ""
-    })
+      id: "",
+    }),
   }
 );
 
@@ -95,26 +111,28 @@ export const userReducer = combineReducers({
   userInfo,
   userData,
   todaySummary,
-  summaries
+  summaries,
 });
 
-// day reducer
 const day = createReducer(
   {
     id: "",
     eatenProducts: [],
     date: "",
-    daySummary: ""
+    daySummary: "",
   },
 
   {
-    [addProductSuccess]: (state, { payload }) => (payload.day ? { ...state, ...payload.day } : { ...state, ...payload.newDay }),
+    [addProductSuccess]: (state, { payload }) =>
+      payload.day
+        ? { ...state, ...payload.day }
+        : { ...state, ...payload.newDay },
     [getDayInfoSuccess]: (_, { payload }) => ({
       id: payload.id || "",
       eatenProducts: payload.eatenProducts || [],
       date: payload.date || "",
-      daySummary: payload.daySummary || ""
-    })
+      daySummary: payload.daySummary || "",
+    }),
   }
 );
 
@@ -126,21 +144,26 @@ const daySummary = createReducer(
     dailyRate: 0,
     percentsOfDailyRate: 0,
     userId: "",
-    id: ""
+    id: "",
   },
   {
     [addProductSuccess]: (state, { payload }) =>
-      payload.daySummary ? { ...state, ...payload.daySummary } : { ...state, ...payload.newDaySummary },
-    [getDayInfoSuccess]: (state, { payload }) => ({ ...state, ...payload.daySummary })
+      payload.daySummary
+        ? { ...state, ...payload.daySummary }
+        : { ...state, ...payload.newDaySummary },
+    [getDayInfoSuccess]: (state, { payload }) => ({
+      ...state,
+      ...payload.daySummary,
+    }),
   }
 );
 
 const days = createReducer([], {
-  [getUserInfoSuccess]: (_, { payload }) => payload.days
+  [getUserInfoSuccess]: (_, { payload }) => payload.days,
 });
 
 export const dayReducer = combineReducers({
   day,
   daySummary,
-  days
+  days,
 });

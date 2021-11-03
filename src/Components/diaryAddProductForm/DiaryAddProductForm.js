@@ -24,15 +24,15 @@ const DiaryAddProductForm = ({ date, isLoadingProducts }) => {
 
   // const token =
   //   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MTc5NGE5N2E2Zjk3NjY4ZjdmYzU5MTQiLCJzaWQiOiI2MTdlNmQzM2E2Zjk3NjY4ZjdmYzVhMjkiLCJpYXQiOjE2MzU2NzU0NDMsImV4cCI6MTYzNTY3OTA0M30.nCrIAFfdo-azzNoMw_NmusE-iWJNrJQ5PQ1RSfUEgN8";
-  const getProductSearch = value => {
+  const getProductSearch = (value) => {
     console.log(value);
     axios
       .get(BASE_URL + `/product?search=${value}`)
-      .then(response => {
+      .then((response) => {
         // console.log(response.data);
         setProducts(response.data.slice(0, 10));
       })
-      .catch(error => {
+      .catch((error) => {
         setProducts([]);
         console.log(error);
       });
@@ -72,7 +72,7 @@ const DiaryAddProductForm = ({ date, isLoadingProducts }) => {
   //   )._id;
   // console.log(products);
 
-  const onHandleSubmit = e => {
+  const onHandleSubmit = (e) => {
     e.preventDefault();
     // const id = getProductIdByName();
     if (products.length === 0) {
@@ -84,7 +84,7 @@ const DiaryAddProductForm = ({ date, isLoadingProducts }) => {
     const userEatenProduct = {
       date: diaryProduct.date,
       productId: id,
-      weight: Number(weight) || 100
+      weight: Number(weight) || 100,
     };
     dispatch(addProduct(userEatenProduct));
     setValue("");
@@ -92,33 +92,30 @@ const DiaryAddProductForm = ({ date, isLoadingProducts }) => {
     setProducts([]);
   };
 
-  useEffect(
-    () => {
-      // dispatch(getDailyRateOperation());
-      // axios.post(
-      //   `${BASE_URL}/daily-rate/61794a97a6f97668f7fc5914`,
-      //   {
-      //     weight: 100,
-      //     height: 170,
-      //     age: 30,
-      //     desiredWeight: 60,
-      //     bloodType: 1,
-      //   },
-      //   {
-      //     headers: { Authorization: `Bearer ${token}` },
-      //   }
-      // );
-      // value.length >= 1 &&
-      //   axios
-      //     .get(BASE_URL + `/product?search=${value}`)
-      //     .then((response) => {
-      //       console.log(response.data);
-      //       setProducts(response.data.slice(0, 10));
-      //     })
-      //     .catch((error) => console.log(error));
-    },
-    [value]
-  );
+  useEffect(() => {
+    // dispatch(getDailyRateOperation());
+    // axios.post(
+    //   `${BASE_URL}/daily-rate/61794a97a6f97668f7fc5914`,
+    //   {
+    //     weight: 100,
+    //     height: 170,
+    //     age: 30,
+    //     desiredWeight: 60,
+    //     bloodType: 1,
+    //   },
+    //   {
+    //     headers: { Authorization: `Bearer ${token}` },
+    //   }
+    // );
+    // value.length >= 1 &&
+    //   axios
+    //     .get(BASE_URL + `/product?search=${value}`)
+    //     .then((response) => {
+    //       console.log(response.data);
+    //       setProducts(response.data.slice(0, 10));
+    //     })
+    //     .catch((error) => console.log(error));
+  }, [value]);
 
   return (
     <>
@@ -189,8 +186,12 @@ const DiaryAddProductForm = ({ date, isLoadingProducts }) => {
               />
             </label>
             <datalist id="productList">
-              {products.map(product => (
-                <option key={product._id} id={product._id} value={product.title?.ru || "Not found"} />
+              {products.map((product) => (
+                <option
+                  key={product._id}
+                  id={product._id}
+                  value={product.title?.ru || "Not found"}
+                />
               ))}
             </datalist>
             <label htmlFor="myBrowser">
@@ -212,7 +213,13 @@ const DiaryAddProductForm = ({ date, isLoadingProducts }) => {
           </div>
           <div className={style.button_wrapper}>
             {isLoadingProducts ? (
-              <Loader className={style.loader} type="BallTriangle" color={`var(--active-color)`} height={30} width={30} />
+              <Loader
+                className={style.loader}
+                type="BallTriangle"
+                color={`var(--active-color)`}
+                height={30}
+                width={30}
+              />
             ) : (
               <div className={style.btnAddFormMobile}>
                 {isMobileDevice ? (

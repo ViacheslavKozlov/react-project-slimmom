@@ -2,8 +2,6 @@ import { useMediaQuery } from "react-responsive";
 import { device } from "../common/deviceSizes";
 
 const useDeviceSizes = () => {
-  //CONDITIONS
-
   const isMobileDevice = useMediaQuery({
     query: device.mobile,
   });
