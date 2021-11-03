@@ -1,12 +1,7 @@
 .form_wrapper {
+  font-family: var(--main-font);
   padding: 40px 0 60px 15px;
 }
-
-/* .inputs_wrapper {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-} */
 
 .form_title {
   font-weight: 700;
@@ -49,8 +44,6 @@
   top: 0;
   left: 0;
   padding: 10px 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 
   font-weight: 700;
   font-size: 14px;
@@ -82,16 +75,14 @@
   margin-bottom: 30px;
   width: 240px;
 }
-/* .radio_input {
-  margin: 0 6px 0 0;
-} */
+
 .form_radio {
   margin-bottom: 10px;
 }
-.form_radio input[type="radio"] {
+.form_radio_input {
   display: none;
 }
-.form_radio label {
+.form_radio_label {
   display: inline-block;
   cursor: pointer;
   position: relative;
@@ -102,9 +93,9 @@
   line-height: 1.21;
   letter-spacing: 0.04em;
 
-  color: #9b9faa;
+  color: var(--main-txt-color);
 }
-.form_radio label:before {
+.form_radio_label:before {
   content: "";
   display: inline-block;
   width: 17px;
@@ -117,27 +108,24 @@
 }
 
 /* Checked */
-.form_radio input[type="radio"]:checked + label {
+.form_radio_input:checked + .form_radio_label {
   font-weight: 700;
 
   color: var(--active-color);
 }
-.form_radio input[type="radio"]:checked + label:before {
+.form_radio_input:checked + .form_radio_label:before {
   filter: grayscale(0%);
   background: url(https://snipp.ru/img/radio-2.png) 0 0 no-repeat;
 }
 
 /* Hover */
-.form_radio label:hover,
-.form_radio label:hover:before {
+.form_radio_label:hover,
+.form_radio_label:hover:before {
   color: var(--active-color);
   filter: brightness(120%);
 }
 
 .form p {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-
   text-align: left;
 
   font-weight: 700;

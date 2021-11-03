@@ -1,4 +1,5 @@
 .statistics_wrapper {
+  font-family: var(--main-font);
   text-align: center;
   padding: 40px 0;
   background-color: #f0f1f3;

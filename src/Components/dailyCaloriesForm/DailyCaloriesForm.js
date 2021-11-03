@@ -22,7 +22,7 @@ const initialState = {
   height: "",
   age: "",
   desiredWeight: "",
-  bloodType: 1
+  bloodType: 1,
 };
 
 const DailyCaloriesForm = () => {
@@ -41,10 +41,10 @@ const DailyCaloriesForm = () => {
   const history = useHistory();
 
   const toggleModal = () => {
-    setModalOpen(prev => !prev);
+    setModalOpen((prev) => !prev);
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     if (isAuth && userId) {
       dispatch(getDailyRateOperation(userData, userId));
@@ -67,7 +67,7 @@ const DailyCaloriesForm = () => {
     window.scrollBy(0, 0);
     toggleModal();
   };
-  const onHandleBlur = e => {
+  const onHandleBlur = (e) => {
     const input = e.target;
     if (input.value !== "") {
       input.classList.add(style.not_empty);
@@ -76,15 +76,15 @@ const DailyCaloriesForm = () => {
       input.classList.remove(style.not_empty);
     }
   };
-  const onHandleChange = e => {
+  const onHandleChange = (e) => {
     const { value, name } = e.target;
 
     if (value === "") {
-      setUserData(prev => ({ ...prev, [name]: value }));
+      setUserData((prev) => ({ ...prev, [name]: value }));
       // localStorage.setItem([name], JSON.stringify(value));
       return;
     }
-    setUserData(prev => ({ ...prev, [name]: Number(value) }));
+    setUserData((prev) => ({ ...prev, [name]: Number(value) }));
     // localStorage.setItem([name], JSON.stringify(Number(value)));
   };
 
@@ -178,6 +178,7 @@ const DailyCaloriesForm = () => {
                 <div className={style.input_radio_wrapper}>
                   <div сlassName={style.form_radio}>
                     <input
+                      className={style.form_radio_input}
                       id="radio-1"
                       type="radio"
                       checked={bloodType === 1}
@@ -185,10 +186,13 @@ const DailyCaloriesForm = () => {
                       value="1"
                       onChange={onHandleChange}
                     />
-                    <label htmlFor="radio-1"> 1</label>
+                    <label htmlFor="radio-1" className={style.form_radio_label}>
+                      1
+                    </label>
                   </div>
-                  <div сlassName={style.form_radio}>
+                  <div сlassName={style.test}>
                     <input
+                      className={style.form_radio_input}
                       id="radio-2"
                       type="radio"
                       checked={bloodType === 2}
@@ -196,10 +200,14 @@ const DailyCaloriesForm = () => {
                       value="2"
                       onChange={onHandleChange}
                     />
-                    <label htmlFor="radio-2"> 2</label>
+                    <label htmlFor="radio-2" className={style.form_radio_label}>
+                      {" "}
+                      2
+                    </label>
                   </div>
                   <div сlassName={style.form_radio}>
                     <input
+                      className={style.form_radio_input}
                       id="radio-3"
                       type="radio"
                       checked={bloodType === 3}
@@ -207,10 +215,14 @@ const DailyCaloriesForm = () => {
                       value="3"
                       onChange={onHandleChange}
                     />
-                    <label htmlFor="radio-3"> 3</label>
+                    <label htmlFor="radio-3" className={style.form_radio_label}>
+                      {" "}
+                      3
+                    </label>
                   </div>
                   <div сlassName={style.form_radio}>
                     <input
+                      className={style.form_radio_input}
                       id="radio-4"
                       type="radio"
                       checked={bloodType === 4}
@@ -218,41 +230,11 @@ const DailyCaloriesForm = () => {
                       value="4"
                       onChange={onHandleChange}
                     />
-                    <label htmlFor="radio-4"> 4</label>
+                    <label htmlFor="radio-4" className={style.form_radio_label}>
+                      {" "}
+                      4
+                    </label>
                   </div>
-                  {/* <label>
-                  <input
-                    type="radio"
-                    className={style.radio_input}
-                    checked={bloodType === 2}
-                    name="bloodType"
-                    value="2"
-                    onChange={onHandleChange}
-                  />
-                  2
-                </label>
-                <label>
-                  <input
-                    type="radio"
-                    className={style.radio_input}
-                    checked={bloodType === 3}
-                    name="bloodType"
-                    value="3"
-                    onChange={onHandleChange}
-                  />
-                  3
-                </label>
-                <label>
-                  <input
-                    type="radio"
-                    className={style.radio_input}
-                    checked={bloodType === 4}
-                    name="bloodType"
-                    value="4"
-                    onChange={onHandleChange}
-                  />
-                  4
-                </label> */}
                 </div>
               </div>
               <Button buttonName="Похудеть" type={"submit"} />

@@ -5,10 +5,11 @@ import logoTablet from "../../../images/logo-tablet-min.jpg";
 import logoDesc from "../../../images/logo-desc-min.jpg";
 import mobileLogoWithoutSlim from "../../../images/logo-mobile-min.jpg";
 import useDeviceSizes from "../../../hooks/useDeviceSizec";
+import { useLocation } from "react-router";
 
 const NavigationItem = ({ name, path, exact, toggleModal, isAuth }) => {
   const { isMobileDevice, isDescDevice, isTabletDevice } = useDeviceSizes();
-
+  const location = useLocation();
   return (
     <li
       className={
@@ -20,7 +21,7 @@ const NavigationItem = ({ name, path, exact, toggleModal, isAuth }) => {
       {name !== "Home" ? (
         <NavLink
           onClick={toggleModal}
-          to={path}
+          to={{ pathname: path, state: { prevPath: location.pathname } }}
           exact={exact}
           className={styles.link}
           activeClassName={
