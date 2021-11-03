@@ -37,10 +37,17 @@
   padding: 0 1px;
   border: 0;
   background: none;
-  font: inherit;
+  font: 18px;
   box-sizing: content-box;
   -moz-appearance: textfield;
 }
+
+@media screen and (min-width: 768px) {
+  .react-date-picker__inputGroup__input {
+    font-size: 34px;
+  }
+}
+
 .react-date-picker__inputGroup__input::-webkit-outer-spin-button,
 .react-date-picker__inputGroup__input::-webkit-inner-spin-button {
   -webkit-appearance: none;

@@ -34,9 +34,12 @@
     align-items: center;
     justify-content: space-between;
   }
+  .statContainer {
+    margin-left: 150px;
+  }
   .mobileDiaryDateСalendar {
     margin-top: 143px;
-    padding-left: 115px;
+    padding-left: 0;
     padding-right: 115px;
   }
 }
