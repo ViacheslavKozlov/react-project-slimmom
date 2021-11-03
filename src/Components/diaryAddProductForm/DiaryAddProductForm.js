@@ -11,7 +11,7 @@ import { dairyProductsSelector } from "../../redux/DiaryProducts/diaryProductSel
 import useDeviceSizes from "../../hooks/useDeviceSizec";
 import Loader from "react-loader-spinner";
 
-const DiaryAddProductForm = ({ date, isLoadingProducts }) => {
+const DiaryAddProductForm = ({ date, isLoadingProducts, toggle }) => {
   const [value, setValue] = useState("");
   const [weight, setWeight] = useState("");
   const [products, setProducts] = useState([]);
@@ -170,65 +170,69 @@ const DiaryAddProductForm = ({ date, isLoadingProducts }) => {
               )}
             </div>
           </div> */}
-
-          <div className={style.addProductInputForm}>
-            <label htmlFor="myBrowser">
-              <input
-                required
-                value={value}
-                className={style.formFieldProduct}
-                onChange={onHandleChange}
-                list="productList"
-                id="myBrowser"
-                name="product"
-                type="text"
-                placeholder="Введите название продукта"
-              />
-            </label>
-            <datalist id="productList">
-              {products.map((product) => (
-                <option
-                  key={product._id}
-                  id={product._id}
-                  value={product.title?.ru || "Not found"}
+          <div className={style.addProductForm}>
+            <div className={style.addProductInputForm}>
+              <label htmlFor="myBrowser">
+                <input
+                  required
+                  value={value}
+                  className={style.formFieldProduct}
+                  onChange={onHandleChange}
+                  list="productList"
+                  id="myBrowser"
+                  name="product"
+                  type="text"
+                  placeholder="Введите название продукта"
                 />
-              ))}
-            </datalist>
-            <label htmlFor="myBrowser">
-              <input
-                required
-                className={style.formFieldWeigth}
-                onChange={onHandleChange}
-                list=""
-                id=""
-                name="weight"
-                type="number"
-                step="1"
-                value={weight}
-                // onInput="validity.valid||(value='');"
-                // autoFocus
-                placeholder="Граммы"
-              />
-            </label>
-          </div>
-          <div className={style.button_wrapper}>
-            {isLoadingProducts ? (
-              <Loader
-                className={style.loader}
-                type="BallTriangle"
-                color={`var(--active-color)`}
-                height={30}
-                width={30}
-              />
-            ) : (
-              <div className={style.btnAddFormMobile}>
-                {isMobileDevice ? (
-                  <Button buttonName="Добавить" type="submit" />
-                ) : (
-                  <ButtonAdd buttonName="Добавить" type="submit" />
-                )}
-              </div>
-            )}
+              </label>
+              <datalist id="productList">
+                {products.map((product) => (
+                  <option
+                    key={product._id}
+                    id={product._id}
+                    value={product.title?.ru || "Not found"}
+                  />
+                ))}
+              </datalist>
+              <label htmlFor="myBrowser">
+                <input
+                  required
+                  className={style.formFieldWeight}
+                  onChange={onHandleChange}
+                  list=""
+                  id=""
+                  name="weight"
+                  type="number"
+                  step="1"
+                  value={weight}
+                  git // autoFocus
+                  placeholder="Граммы"
+                />
+              </label>
+            </div>
+            <div className={style.button_wrapper}>
+              {isLoadingProducts ? (
+                <Loader
+                  className={style.loader}
+                  type="BallTriangle"
+                  color={`var(--active-color)`}
+                  height={30}
+                  width={30}
+                />
+              ) : (
+                <div className={style.btnAddFormMobile}>
+                  {isMobileDevice ? (
+                    <Button
+                      buttonName="Добавить"
+                      type="submit"
+                      onClick={toggle}
+                    />
+                  ) : (
+                    <ButtonAdd buttonName="Добавить" type="submit" />
+                  )}
+                </div>
+              )}
+            </div>
           </div>
         </form>
       ) : (
