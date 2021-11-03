@@ -65,7 +65,9 @@ export const authLogout = () => dispatch => {
     .catch(error => dispatch(logoutAuthError(error.response.data.message)));
 };
 
-export const authRefresh = (refreshToken, sid) => dispatch => {
+export const authRefresh = () => (dispatch, getState) => {
+  const refreshToken = getState().authData.refreshToken;
+  const sid = getState().authData.sid;
   dispatch(refreshAuthRequest());
   token.set(refreshToken);
   axios
@@ -80,7 +82,7 @@ export const authRefresh = (refreshToken, sid) => dispatch => {
           sid
         })
       );
-      axios("/user").then(({ data }) => dispatch(getUserSuccess(data)));
+      axios.get("/user").then(({ data }) => dispatch(getUserSuccess(data)));
     })
-    .catch(error => dispatch(refreshAuthError(error.message)));
+    .catch(error => dispatch(logoutAuthSuccess()));
 };
