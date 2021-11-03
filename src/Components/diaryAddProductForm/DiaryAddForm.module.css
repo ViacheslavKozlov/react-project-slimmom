@@ -27,7 +27,7 @@
   background-color: #9b9faa;
 }
 
-.formFieldWeigth {
+.formFieldWeight {
   margin-top: 30px;
   width: 290px;
   height: 26px;
@@ -44,17 +44,13 @@
   color: #9b9faa;
 }
 
-.formFieldWeigth:after {
+.formFieldWeight:after {
   content: "";
   width: 290px;
   display: inline-block;
   height: 3px;
   bottom: -10px;
   background-color: #9b9faa;
-}
-
-.btnAddFormMobile {
-  text-align: center;
 }
 
 @media screen and (min-width: 768px) {
@@ -70,7 +66,7 @@
     justify-content: space-between;
     padding: 60px 0px 39px 0px;
   }
-  .formFieldWeigth {
+  .formFieldWeight {
     margin-top: 0;
     width: 106px;
   }
@@ -85,4 +81,5 @@
   align-items: center;
   justify-self: center; */
   text-align: center;
+  margin: 0 auto;
 }
