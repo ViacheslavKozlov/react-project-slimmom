@@ -30,7 +30,7 @@ const App = () => {
   useEffect(() => {
     isAuthIn && token.set(isAuthIn);
     isAuthIn && dispatch(getUserInfo());
-    //   // isAuthIn && dispatch(getDailyRateByDateOperation({ date: date.date }));
+    // isAuthIn && dispatch(getDailyRateByDateOperation({ date: date.date }));
   }, [dispatch, isAuthIn]);
 
   // useEffect(() => {

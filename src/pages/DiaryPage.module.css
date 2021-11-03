@@ -16,10 +16,19 @@
   padding-right: 0px;
 }
 
+@media screen and (min-width: 768px) {
+  .mobileDiaryDateСalendar {
+    margin-top: 100px;
+  }
+}
+
 @media screen and (min-width: 1280px) {
   .mainContainer {
     display: flex;
     align-items: center;
     justify-content: space-between;
+  }
+  .mobileDiaryDateСalendar {
+    margin-top: 143px;
   }
 }

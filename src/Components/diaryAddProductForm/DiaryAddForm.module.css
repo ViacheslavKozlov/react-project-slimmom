@@ -56,3 +56,25 @@
 .btnAddFormMobile {
   text-align: center;
 }
+
+@media screen and (min-width: 768px) {
+  .addProductForm {
+    width: 376px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .addProductInputForm {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 60px 0px 39px 0px;
+  }
+  .formFieldWeigth {
+    margin-top: 0;
+    width: 106px;
+  }
+  .btnAddFormMobile {
+    margin-left: 47px;
+  }
+}

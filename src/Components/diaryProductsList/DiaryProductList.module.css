@@ -1,4 +1,18 @@
 .scrollList {
   overflow: "scroll";
-  height: 220px;
+  /* height: 220px; */
+}
+
+@media screen and (min-width: 768px) {
+  .scrollList {
+    overflow: scroll;
+    height: 240px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .scrollList {
+    overflow: scroll;
+    height: 269px;
+  }
 }
