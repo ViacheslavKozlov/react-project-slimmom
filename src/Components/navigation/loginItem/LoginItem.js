@@ -20,8 +20,8 @@ const LoginItem = () => {
   return (
     <ul className={styles.listSecondary}>
       {isOpen && (
-        <li>
-          <button type="button" className={styles.goBackBtn} onClick={toggle}>
+        <li className={styles.goBackBtn}>
+          <button type="button" onClick={toggle}>
             <svg width="12" height="7">
               <use href={sprite + "#close"}></use>
             </svg>
@@ -33,7 +33,7 @@ const LoginItem = () => {
       </li>
       <li className={styles.item} onClick={logout}>
         <button type="button" className={styles.btn}>
-          Выйти
+          <div className={styles.verticalLine}>Выйти</div>
         </button>
       </li>
     </ul>

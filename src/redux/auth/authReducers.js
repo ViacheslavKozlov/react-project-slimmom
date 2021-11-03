@@ -28,8 +28,8 @@ const authReducer = createReducer(
       sid: ""
     }),
     [refreshAuthSuccess]: (_, { payload }) => ({
-      accessToken: payload.newAccessToken,
-      refreshToken: payload.newRefreshToken,
+      accessToken: payload.accessToken,
+      refreshToken: payload.refreshToken,
       sid: payload.sid
     })
   }
