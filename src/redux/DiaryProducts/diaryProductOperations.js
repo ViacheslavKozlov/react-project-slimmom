@@ -46,7 +46,7 @@ export const addProduct = (product) => (dispatch, getState) => {
 };
 
 export const deleteProductOperation = (data) => async (dispatch, getState) => {
-  // dispatch(deleteProductRequest());
+  dispatch(deleteProductRequest());
   // console.log(data.eatenProductId);
 
   const newData = { data };
