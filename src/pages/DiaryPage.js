@@ -25,116 +25,99 @@ const DiaryPage = () => {
     dispatch(toggleFrom());
   };
 
-  return isMobileDevice ? (
-    <>
-      {!isOpen ? (
+  return (
+    <div className={styles.backGround}>
+      {isMobileDevice ? (
         <>
-          <DiaryDateСalendar
-            date={date}
-            setDate={setDate}
-            isLoadingDaily={isLoadingDaily}
-          />
-          <DiaryProductsList
-            date={date}
-            isLoadingDaily={isLoadingDaily}
-            isLoadingProducts={isLoadingProducts}
-          />
-          <ButtonAdd onClick={toggle} />
-          <DailyStatistics
-            date={date}
-            isLoadingDaily={isLoadingDaily}
-            isLoadingProducts={isLoadingProducts}
-          />
+          {!isOpen ? (
+            <>
+              <DiaryDateСalendar
+                date={date}
+                setDate={setDate}
+                isLoadingDaily={isLoadingDaily}
+              />
+              <DiaryProductsList
+                date={date}
+                isLoadingDaily={isLoadingDaily}
+                isLoadingProducts={isLoadingProducts}
+              />
+              <ButtonAdd onClick={toggle} />
+              <DailyStatistics
+                date={date}
+                isLoadingDaily={isLoadingDaily}
+                isLoadingProducts={isLoadingProducts}
+              />
+            </>
+          ) : (
+            <>
+              <DiaryAddProductForm
+                
+                date={date}
+                isLoadingDaily={isLoadingDaily}
+                isLoadingProducts={isLoadingProducts}
+              />
+            </>
+          )}
         </>
       ) : (
         <>
-          <DiaryAddProductForm
-            date={date}
-            isLoadingDaily={isLoadingDaily}
-            isLoadingProducts={isLoadingProducts}
-          />
+          {isDescDevice ? (
+            <div className={styles.mainContainer}>
+              <div className={styles.formContainer}>
+                <DiaryDateСalendar
+                  date={date}
+                  setDate={setDate}
+                  isLoadingDaily={isLoadingDaily}
+                  isLoadingProducts={isLoadingProducts}
+                />
+                <DiaryAddProductForm
+                  date={date}
+                  isLoadingDaily={isLoadingDaily}
+                  isLoadingProducts={isLoadingProducts}
+                />
+                <DiaryProductsList
+                  date={date}
+                  isLoadingDaily={isLoadingDaily}
+                  isLoadingProducts={isLoadingProducts}
+                />
+              </div>
+              <div className={styles.statContainer}>
+                <DailyStatistics
+                  date={date}
+                  isLoadingDaily={isLoadingDaily}
+                  isLoadingProducts={isLoadingProducts}
+                />
+              </div>
+            </div>
+          ) : (
+            <>
+              <DiaryDateСalendar
+                date={date}
+                setDate={setDate}
+                isLoadingDaily={isLoadingDaily}
+                isLoadingProducts={isLoadingProducts}
+              />
+              <DiaryAddProductForm
+                date={date}
+                isLoadingDaily={isLoadingDaily}
+                isLoadingProducts={isLoadingProducts}
+              />
+              <DiaryProductsList
+                date={date}
+                isLoadingDaily={isLoadingDaily}
+                isLoadingProducts={isLoadingProducts}
+              />
+              <DailyStatistics
+                date={date}
+                isLoadingDaily={isLoadingDaily}
+                isLoadingProducts={isLoadingProducts}
+              />
+            </>
+          )}
         </>
       )}
-    </>
-  ) : (
-    <>
-      {isDescDevice ? (
-        <div className={styles.mainContainer}>
-          <div className={styles.formContainer}>
-            <DiaryDateСalendar
-              date={date}
-              setDate={setDate}
-              isLoadingDaily={isLoadingDaily}
-              isLoadingProducts={isLoadingProducts}
-            />
-            <DiaryAddProductForm
-              date={date}
-              isLoadingDaily={isLoadingDaily}
-              isLoadingProducts={isLoadingProducts}
-            />
-            <DiaryProductsList
-              date={date}
-              isLoadingDaily={isLoadingDaily}
-              isLoadingProducts={isLoadingProducts}
-            />
-          </div>
-          <div className={styles.statContainer}>
-            <DailyStatistics
-              date={date}
-              isLoadingDaily={isLoadingDaily}
-              isLoadingProducts={isLoadingProducts}
-            />
-          </div>
-        </div>
-      ) : (
-        <>
-          <DiaryDateСalendar
-            date={date}
-            setDate={setDate}
-            isLoadingDaily={isLoadingDaily}
-            isLoadingProducts={isLoadingProducts}
-          />
-          <DiaryAddProductForm
-            date={date}
-            isLoadingDaily={isLoadingDaily}
-            isLoadingProducts={isLoadingProducts}
-          />
-          <DiaryProductsList
-            date={date}
-            isLoadingDaily={isLoadingDaily}
-            isLoadingProducts={isLoadingProducts}
-          />
-          <DailyStatistics
-            date={date}
-            isLoadingDaily={isLoadingDaily}
-            isLoadingProducts={isLoadingProducts}
-          />
-        </>
-      )}
-    </>
+    </div>
   );
 };
 
 export default DiaryPage;
-
-//   <>
-//     {!isOpen ? (
-//       <>
-//         <DiaryDateСalendar date={date} setDate={setDate} />
-//         <DiaryProductsList date={date} />
-//         <ButtonAdd onClick={toggle} />
-//         <DailyStatistics date={date} />
-//       </>
-//     ) : (
-//       <>
-//         <DiaryAddProductForm date={date} />
-//       </>
-//     )}
-//   </>
-// ) : (
-//   <>
-//     <DiaryDateСalendar date={date} setDate={setDate} />
-//     <DiaryAddProductForm date={date} />
-//     <DiaryProductsList date={date} />
-//     <DailyStatistics date={date} />
-//   </>

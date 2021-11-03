@@ -14,15 +14,13 @@ const Navigation = () => {
   const isAuth = useSelector(getIsAuth);
   const { isDescDevice, isTabletDevice } = useDeviceSizes();
   const [showModal, setShowModal] = useState(false);
-  // const userdata = ();
+  
 
   const toggleModal = () => {
     setShowModal(prev => !prev);
   };
 
-  // useEffect(() => {
-  // // если нет данных в  по заполенинию джанных, history push to calculator
-  // }, [input])
+
 
   return (
     <div className={styles.container}>

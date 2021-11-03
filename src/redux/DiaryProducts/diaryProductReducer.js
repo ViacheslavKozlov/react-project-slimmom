@@ -18,10 +18,7 @@ import {
   getUserInfoRequest,
   getUserInfoSuccess,
 } from "../user/userActions";
-// import errorReducer from "../errorReducer/errorReducer";
-// import isLoadingReduser from "../isLoadingReduser/isLoadingReduser";
 
-// import authRedusers from "../../redux/auth/authReducers";
 import { getDailyRateByDateSucces } from "../dailyRate/dailyRateActions";
 import { logoutAuthSuccess } from "../auth/authActions";
 
@@ -42,21 +39,14 @@ const productReducer = createReducer(
         : {
             ...state,
             eatenProducts: [],
-            // date: null,
-            // dateId: null,
-            // eatenProducts: [],
           },
 
     [deleteProductSuccess]: (state, { payload }) => {
-      // console.log(asd);
       return {
         ...state,
         eatenProducts: state.eatenProducts.filter(
           (product) => product.id !== payload
         ),
-        // [deleteProductSuccess]: (state, action) =>
-        //   state.filter((product) => product._id !== action.payload),
-        // [getProductsSuccess]: (_, action) => action.payload,})
       };
     },
     [changeCurrentDateSucces]: (state, { payload }) => ({
@@ -64,7 +54,6 @@ const productReducer = createReducer(
       date: payload,
     }),
     [logoutAuthSuccess]: () => ({
-      // date: moment(new Date()).format("YYYY-MM-DD"),
       date: null,
       eatenProducts: [],
     }),
@@ -102,7 +91,6 @@ const errorReducer = createReducer("", {
 export const productDailyReducer = combineReducers({
   response: productReducer,
   isLoading: loadingReducer,
-  // authData: persistedAuthReducer,
+
   error: errorReducer,
-  // isLoading: isLoadingReduser,
 });

@@ -1,10 +1,3 @@
-/* ul,
-ol,
-button {
-  padding: 0;
-  list-style: none;
-  margin: 0;
-} */
 .container {
   display: flex;
   justify-content: space-between;
@@ -30,11 +23,6 @@ button {
   margin: 0;
   text-align: center;
 }
-
-/* .container {
-  display: flex;
-  justify-content: space-between;
-} */
 
 .listSecondary {
   display: flex;
@@ -75,13 +63,6 @@ button {
   color: var(--headline-txt-color);
 }
 
-/* .verticalLine {
-  display: flex;
-  align-items: center;
-  height: 32px;
-  border-left: 2px solid var(--linear-color);
-  margin-left: 15px;
-} */
 .item {
   display: flex;
   align-items: center;
@@ -96,13 +77,6 @@ button {
   width: 30px;
   border: 2px solid var(--linear-color);
 }
-
-/* .item::before {
-  width: 35px;
-  position: relative;
-  content: "";
-  border: 2px solid var(--linear-color);
-} */
 
 @media screen and (min-width: 768px) {
   .container {

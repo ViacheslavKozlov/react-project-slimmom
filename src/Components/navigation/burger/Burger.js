@@ -17,9 +17,7 @@ const Burger = ({ toggleModal, showModal }) => {
           </svg>
         )}
       </button>
-      {/* <button type="button" onClick={toggleModal}>
-        закрыть модалку
-      </button> */}
+     
     </>
   );
 };
