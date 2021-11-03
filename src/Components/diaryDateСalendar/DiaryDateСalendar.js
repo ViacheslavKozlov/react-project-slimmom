@@ -7,6 +7,8 @@ import { changeDateOperation } from "../../redux/DiaryProducts/diaryProductOpera
 import { getDailyRateByDateOperation } from "../../redux/dailyRate/dailyRateOperations";
 import { userData } from "../../redux/user/userSelectors";
 import { dailyRateSelector } from "../../redux/dailyRate/dailyRateSelectors";
+import Wrapper from "../wrapper/Wrapper";
+
 // import DatePicker from "react-date-picker/dist/entry.nostyle";
 
 export default function DiaryDateСalendar({ date, setDate }) {
@@ -56,9 +58,5 @@ export default function DiaryDateСalendar({ date, setDate }) {
     // updateValue(date);
   };
 
-  return (
-    <div>
-      <DatePicker onChange={onChange} value={date} />
-    </div>
-  );
+  return <DatePicker onChange={onChange} value={date} />;
 }

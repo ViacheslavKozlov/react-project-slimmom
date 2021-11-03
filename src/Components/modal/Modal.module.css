@@ -160,10 +160,16 @@
     background: transparent;
     cursor: pointer;
   }
+  .modal_closeBtn:hover {
+    fill: #fc842d;
+  }
 }
 
 @media screen and (min-width: 1280px) {
   .modal_container {
     width: 690px;
+  }
+  .modal_closeBtn:hover {
+    fill: #fc842d;
   }
 }

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import DiaryAddProductForm from "../Components/diaryAddProductForm/DiaryAddProductForm";
 import DiaryProductsList from "../Components/diaryProductsList/DiaryProductsList";
 import DiaryDateСalendar from "../Components/diaryDateСalendar/DiaryDateСalendar";
-// import RightSideBar from "../Components/rightSideBar/RightSideBar";
 import DailyStatistics from "../Components/dailyStatistics/DailyStatistics";
 import useDeviceSizes from "../hooks/useDeviceSizec";
 import { useSelector } from "react-redux";

@@ -30,11 +30,13 @@ import { diaryEatenProductId, diaryProductId } from "./diaryProductSelector";
 
 export const addProduct = (product) => (dispatch, getState) => {
   // const localId = getState().authorization.tokens.localId;
-  // const idToken = getState().authorization.tokens.idToken;
+  const token = getState().authData.accessToken;
   dispatch(addProductRequest());
 
   axios
-    .post(BASE_URL + `/day`, product)
+    .post(BASE_URL + `/day`, product, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
     .then((response) => dispatch(addProductSuccess(response.data)))
     .catch(async (error) => {
       if (error.response.status === 401) {
@@ -48,7 +50,6 @@ export const addProduct = (product) => (dispatch, getState) => {
 export const deleteProductOperation = (data) => async (dispatch, getState) => {
   dispatch(deleteProductRequest());
   // console.log(data.eatenProductId);
-
   const newData = { data };
   // console.log(newData.data.eatenProductId);
   axios

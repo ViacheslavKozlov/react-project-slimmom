@@ -3,17 +3,20 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // import { getDailyRateOperation } from "../../redux/dailyRate/dailyRateOperations";
 import { BASE_URL } from "../../service/Api";
-import { Button } from "../button/Button";
+import { Button, ButtonAdd } from "../button/Button";
 import style from "./DiaryAddForm.module.css";
 import moment from "moment";
 import { addProduct } from "../../redux/DiaryProducts/diaryProductOperations";
 import { dairyProductsSelector } from "../../redux/DiaryProducts/diaryProductSelector";
+import Wrapper from "../wrapper/Wrapper";
+import useDeviceSizes from "../../hooks/useDeviceSizec";
 import Loader from "react-loader-spinner";
 
 const DiaryAddProductForm = ({ date, isLoadingProducts }) => {
   const [value, setValue] = useState("");
   const [weight, setWeight] = useState("");
   const [products, setProducts] = useState([]);
+  const { isMobileDevice } = useDeviceSizes();
   const dispatch = useDispatch();
 
   const diaryProduct = useSelector(dairyProductsSelector);
@@ -117,8 +120,58 @@ const DiaryAddProductForm = ({ date, isLoadingProducts }) => {
 
   return (
     <>
+      {/* <Wrapper> */}
       {diaryProduct.date === todayDate ? (
         <form onSubmit={onHandleSubmit}>
+          {/* <div className={style.addProductForm}> */}
+          {/* <div className={style.addProductInputForm}>
+              <label htmlFor="myBrowser">
+                <input
+                  value={value}
+                  className={style.formFieldProduct}
+                  onChange={onHandleChange}
+                  list="productList"
+                  id="myBrowser"
+                  name="product"
+                  type="text"
+                  autoFocus
+                  placeholder="Введите название продукта"
+                />
+              </label>
+              <datalist id="productList">
+                {products.map((product) => (
+                  <option
+                    key={product._id}
+                    id={product._id}
+                    value={product.title.ru}
+                  />
+                ))}
+              </datalist>
+              <label htmlFor="myBrowser">
+                <input
+                  className={style.formFieldWeigth}
+                  onChange={onHandleChange}
+                  list=""
+                  id=""
+                  name="weight"
+                  type="number"
+                  min="100"
+                  step="1"
+                  value={weight}
+                  autoFocus
+                  placeholder="Граммы"
+                />
+              </label>
+            </div>
+            <div className={style.btnAddFormMobile}>
+              {isMobileDevice ? (
+                <Button buttonName="Добавить" type="submit" />
+              ) : (
+                <ButtonAdd buttonName="Добавить" type="submit" />
+              )}
+            </div>
+          </div> */}
+
           <div className={style.addProductInputForm}>
             <label htmlFor="myBrowser">
               <input
@@ -169,13 +222,20 @@ const DiaryAddProductForm = ({ date, isLoadingProducts }) => {
                 width={30}
               />
             ) : (
-              <Button buttonName="Добавить" type="submit" />
+              <div className={style.btnAddFormMobile}>
+                {isMobileDevice ? (
+                  <Button buttonName="Добавить" type="submit" />
+                ) : (
+                  <ButtonAdd buttonName="Добавить" type="submit" />
+                )}
+              </div>
             )}
           </div>
         </form>
       ) : (
         <></>
       )}
+      {/* </Wrapper> */}
     </>
   );
 };
