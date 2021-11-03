@@ -36,6 +36,7 @@ const productReducer = createReducer(
           }
         : {
             ...state,
+            eatenProducts: [],
             // date: null,
             // dateId: null,
             // eatenProducts: [],
@@ -58,7 +59,8 @@ const productReducer = createReducer(
       date: payload,
     }),
     [logoutAuthSuccess]: () => ({
-      date: moment(new Date()).format("YYYY-MM-DD"),
+      // date: moment(new Date()).format("YYYY-MM-DD"),
+      date: null,
       eatenProducts: [],
     }),
   }

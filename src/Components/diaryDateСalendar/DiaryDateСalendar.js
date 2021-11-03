@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import DatePicker from "react-date-picker";
+import "react-datepicker/dist/react-datepicker.css";
 import moment from "moment";
 import { useDispatch, useSelector } from "react-redux";
 import { changeDateOperation } from "../../redux/DiaryProducts/diaryProductOperations";
@@ -19,6 +20,7 @@ export default function DiaryDateСalendar({ date, setDate }) {
   const dailyRate = useSelector(dailyRateSelector);
 
   useEffect(() => {
+    console.log(currentDate);
     dispatch(changeDateOperation(currentDate));
     if (dailyRate.dailyRate === null) {
       return;
@@ -26,7 +28,7 @@ export default function DiaryDateСalendar({ date, setDate }) {
     if (currentDate < todayDate) {
       // alert("В этот день Вы не вели дневник");
       //срабатывает только на изменение даты
-      !!userDataSelector.age &&
+      !!dailyRate.dailyRate &&
         dispatch(getDailyRateByDateOperation({ date: currentDate }));
 
       return;

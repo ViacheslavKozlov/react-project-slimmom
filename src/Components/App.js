@@ -28,17 +28,14 @@ const App = () => {
   // console.log(isAuthIn);
 
   useEffect(() => {
-    isAuthIn && token.set(isAuthIn);
-    isAuthIn && dispatch(getUserInfo());
-    // isAuthIn && dispatch(getDailyRateByDateOperation({ date: date.date }));
-  }, [dispatch, isAuthIn]);
+  //   isAuthIn && token.set(isAuthIn);
+  //   isAuthIn && dispatch(getUserInfo());
+  //   // isAuthIn && dispatch(getDailyRateByDateOperation({ date: date.date }));
+  // }, [dispatch, isAuthIn]);
 
-  // useEffect(
-  //   () => {
-  //     !isAuthIn && refreshToken && dispatch(authRefresh(refreshToken, sid));
-  //   },
-  //   [dispatch, isAuthIn, refreshToken, sid]
-  // );
+  // useEffect(() => {
+  //   !isAuthIn && refreshToken && dispatch(authRefresh(refreshToken, sid));
+  // }, [dispatch, isAuthIn, refreshToken, sid]);
 
   return (
     <>
