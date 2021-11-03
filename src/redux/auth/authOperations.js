@@ -11,7 +11,7 @@ import {
   refreshAuthRequest,
   refreshAuthSuccess,
   refreshAuthError,
-  getUserSuccess
+  getUserSuccess,
 } from "./authActions";
 import { apiBaseURL, register, login, logout, refresh } from "../../bk.json";
 import axios from "axios";
@@ -24,36 +24,41 @@ export const token = {
   },
   unset() {
     axios.defaults.headers.common.Authorization = "";
-  }
+  },
 };
 
-export const authRegistration = userData => dispatch => {
+export const authRegistration = (userData) => async (dispatch) => {
   dispatch(registerAuthRequest());
 
-  axios
+  await axios
     .post(register, userData)
     .then(({ data }) => dispatch(registerAuthSuccess(data)))
-    .catch(error => dispatch(registerAuthError(error.response.data.message)));
+    .then(() =>
+      dispatch(
+        authLogin({ email: userData.email, password: userData.password })
+      )
+    )
+    .catch((error) => dispatch(registerAuthError(error.response.data.message)));
 };
 
-export const authLogin = userData => dispatch => {
+export const authLogin = (userData) => (dispatch) => {
   dispatch(loginAuthRequest());
   const { email, password } = userData;
   axios
     .post(login, {
       email,
-      password
+      password,
     })
     .then(({ data }) => {
       dispatch(loginAuthSuccess(data));
       token.set(data.accessToken);
     })
-    .catch(error => {
+    .catch((error) => {
       dispatch(loginAuthError(error.response.data.message));
     });
 };
 
-export const authLogout = () => dispatch => {
+export const authLogout = () => (dispatch) => {
   dispatch(logoutAuthRequest());
 
   axios
@@ -62,7 +67,7 @@ export const authLogout = () => dispatch => {
       token.unset();
       return dispatch(logoutAuthSuccess());
     })
-    .catch(error => dispatch(logoutAuthError(error.response.data.message)));
+    .catch((error) => dispatch(logoutAuthError(error.response.data.message)));
 };
 
 export const authRefresh = () => (dispatch, getState) => {
@@ -73,16 +78,20 @@ export const authRefresh = () => (dispatch, getState) => {
   axios
     .post(refresh, { sid })
     .then(({ data }) => {
-      const { newAccessToken: accessToken, newRefreshToken: refreshToken, sid } = data;
+      const {
+        newAccessToken: accessToken,
+        newRefreshToken: refreshToken,
+        sid,
+      } = data;
       token.set(accessToken);
       dispatch(
         refreshAuthSuccess({
           accessToken,
           refreshToken,
-          sid
+          sid,
         })
       );
       axios.get("/user").then(({ data }) => dispatch(getUserSuccess(data)));
     })
-    .catch(error => dispatch(logoutAuthSuccess()));
+    .catch((error) => dispatch(logoutAuthSuccess()));
 };

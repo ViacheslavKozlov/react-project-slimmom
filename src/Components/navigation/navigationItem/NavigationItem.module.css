@@ -114,13 +114,16 @@
 
 @media screen and (min-width: 1280px) {
   .item:first-child {
-    margin-right: 25px;
+    margin-right: 20px;
   }
 
-  .verticalLine {
-    border-right: 2px solid var(--linear-color);
-
-    padding-right: 25px;
+  .item:nth-child(2)::before {
+    margin-right: 20px;
+    display: inline;
+    transform: rotate(90deg);
+    content: "";
+    width: 30px;
+    border: 2px solid var(--linear-color);
   }
 }
 
