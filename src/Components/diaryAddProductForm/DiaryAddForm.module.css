@@ -9,7 +9,7 @@
   outline: 0;
   background: transparent;
 
-  font-family: Verdana;
+  font-family: var(--main-font);
   font-style: normal;
   font-weight: 700;
   font-size: 14px;
@@ -35,7 +35,7 @@
   outline: 0;
   background: transparent;
 
-  font-family: Verdana;
+  font-family: var(--main-font);
   font-style: normal;
   font-weight: 700;
   font-size: 14px;
@@ -50,7 +50,7 @@
   display: inline-block;
   height: 3px;
   bottom: -10px;
-  background-color: #e0e0e0;
+  background-color: #9b9faa;
 }
 
 .btnAddFormMobile {

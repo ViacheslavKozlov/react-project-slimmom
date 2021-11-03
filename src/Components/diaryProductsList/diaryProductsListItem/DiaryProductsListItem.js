@@ -22,25 +22,23 @@ const DiaryProductsListItem = ({
 
   return (
     <>
-      <Wrapper>
-        <li className={style.dairyItem}>
-          <p className={style.dairyItemProduct}>{title}</p>
-          <p className={style.dairyItemWeight}>{weight} г </p>
-          <p className={style.dairyItemCcal}>{Math.round(kcal)} ккал</p>
-          {diaryProduct.date === todayDate ? (
-            <button
-              className={style.btnDelete}
-              type="button"
-              // id={_id}
-              onClick={onDeleteClick}
-            >
-              X
-            </button>
-          ) : (
-            <> </>
-          )}
-        </li>
-      </Wrapper>
+      <li className={style.dairyItem}>
+        <p className={style.dairyItemProduct}>{title}</p>
+        <p className={style.dairyItemWeight}>{weight} г </p>
+        <p className={style.dairyItemCcal}>{Math.round(kcal)} ккал</p>
+        {diaryProduct.date === todayDate ? (
+          <button
+            className={style.btnDelete}
+            type="button"
+            // id={_id}
+            onClick={onDeleteClick}
+          >
+            X
+          </button>
+        ) : (
+          <> </>
+        )}
+      </li>
     </>
   );
 };

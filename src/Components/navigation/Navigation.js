@@ -12,7 +12,7 @@ import styles from "./Navigation.module.css";
 
 const Navigation = () => {
   const isAuth = useSelector(getIsAuth);
-  const { isDescDevice } = useDeviceSizes();
+  const { isDescDevice, isTabletDevice } = useDeviceSizes();
   const [showModal, setShowModal] = useState(false);
   // const userdata = ();
 
@@ -66,13 +66,17 @@ const Navigation = () => {
               )}
             </>
           )}
-          {/* <div className={styles.horizontalLine}></div>  */}
+          
         </>
       )}
 
-      {isDescDevice && isAuth && <LoginItem />}
+      {isAuth && (isDescDevice || isTabletDevice) && <LoginItem />}
 
-      {!isDescDevice && isAuth && <Burger toggleModal={toggleModal} />}
+      {!isDescDevice && isAuth && (
+        <>
+          <Burger toggleModal={toggleModal} showModal={showModal} />
+        </>
+      )}
     </div>
   );
 };

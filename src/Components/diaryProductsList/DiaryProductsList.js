@@ -25,34 +25,32 @@ const DiaryProductsList = ({ date }) => {
   };
   return (
     <>
-      <Wrapper>
-        <ul className="list">
-          <div className={style.scrollList}>
-            {productsInfo.eatenProducts?.length !== 0 ? (
-              <>
-                {productsInfo.eatenProducts?.map((product) => (
-                  <DiaryProductsListItem
-                    key={product.id}
-                    kcal={product.kcal}
-                    title={product.title}
-                    weight={product.weight}
-                    id={product.id}
-                    onRemoveProductById={onRemoveProductById}
-                  />
-                ))}
-              </>
-            ) : (
-              <>
-                {!productsInfo.date ? (
-                  <p>В этот день Вы не вели календарь</p>
-                ) : (
-                  <p>Вы ничего не добавляли</p>
-                )}
-              </>
-            )}
-          </div>
-        </ul>
-      </Wrapper>
+      <ul className="list">
+        <div className={style.scrollList}>
+          {productsInfo.eatenProducts?.length !== 0 ? (
+            <>
+              {productsInfo.eatenProducts?.map((product) => (
+                <DiaryProductsListItem
+                  key={product.id}
+                  kcal={product.kcal}
+                  title={product.title}
+                  weight={product.weight}
+                  id={product.id}
+                  onRemoveProductById={onRemoveProductById}
+                />
+              ))}
+            </>
+          ) : (
+            <>
+              {!productsInfo.date ? (
+                <p>В этот день Вы не вели календарь</p>
+              ) : (
+                <p>Вы ничего не добавляли</p>
+              )}
+            </>
+          )}
+        </div>
+      </ul>
     </>
   );
 };

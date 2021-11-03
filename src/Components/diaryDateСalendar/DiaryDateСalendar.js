@@ -58,11 +58,5 @@ export default function DiaryDateСalendar({ date, setDate }) {
     // updateValue(date);
   };
 
-  return (
-    <div>
-      <Wrapper>
-        <DatePicker onChange={onChange} value={date} />
-      </Wrapper>
-    </div>
-  );
+  return <DatePicker onChange={onChange} value={date} />;
 }

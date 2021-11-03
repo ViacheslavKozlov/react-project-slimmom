@@ -1,14 +1,19 @@
-.mobileProductList {
-  height: 1024px;
-}
 .mobileDiaryDateСalendar {
   margin-top: 40px;
 }
-.mobileDiaryDateСalendar {
+.mobileProductList {
+  margin-top: 31px;
+  height: 211px;
+  overflow-y: scroll;
 }
 .btnAddFormMobile {
+  margin-top: 60px;
+  text-align: center;
 }
 .statContainer {
+  margin-top: 60px;
+  padding-left: 0px;
+  padding-right: 0px;
 }
 
 @media screen and (min-width: 1280px) {
