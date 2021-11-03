@@ -26,12 +26,17 @@ export const token = {
   },
 };
 
-export const authRegistration = (userData) => (dispatch) => {
+export const authRegistration = (userData) => async (dispatch) => {
   dispatch(registerAuthRequest());
 
-  axios
+  await axios
     .post(register, userData)
     .then(({ data }) => dispatch(registerAuthSuccess(data)))
+    .then(() =>
+      dispatch(
+        authLogin({ email: userData.email, password: userData.password })
+      )
+    )
     .catch((error) => dispatch(registerAuthError(error.response.data.message)));
 };
 
