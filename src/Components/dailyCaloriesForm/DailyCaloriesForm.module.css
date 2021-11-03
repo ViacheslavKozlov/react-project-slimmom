@@ -1,4 +1,5 @@
 .form_wrapper {
+  /* margin: 0 auto; */
   font-family: var(--main-font);
   padding: 40px 0 60px 15px;
 }
@@ -22,9 +23,6 @@
   width: 240px;
 }
 
-/* .inputItem {
-  width: 100%;
-} */
 .input_box {
   position: relative;
 }
@@ -107,7 +105,6 @@
   background: url(https://snipp.ru/img/radio-1.png) 0 0 no-repeat;
 }
 
-/* Checked */
 .form_radio_input:checked + .form_radio_label {
   font-weight: 700;
 
@@ -153,7 +150,6 @@
     margin-bottom: 60px;
   }
   .inputs_wrapper {
-    /* width: 100%; */
     display: flex;
     justify-content: flex-end;
     flex-direction: row;
@@ -173,6 +169,10 @@
 }
 
 @media screen and (min-width: 1280px) {
+  .form_wrapper {
+    padding: 0 0 0 0;
+    width: 605px;
+  }
   .inputs_wrapper {
     justify-content: flex-start;
   }

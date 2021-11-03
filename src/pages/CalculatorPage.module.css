@@ -1,0 +1,16 @@
+.statsContainer {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+.mobileContainer {
+  background-color: var(--header-secondNav-color);
+}
+
+@media screen and (min-width: 1280px) {
+  .mainContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 146px;
+  }
+}
