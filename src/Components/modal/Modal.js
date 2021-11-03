@@ -35,7 +35,12 @@ const Modal = ({ toggleModal, dailyRate }) => {
           <div className={style.modal_container}>
             {" "}
             {isLoading ? (
-              <Loader type="Oval" color="#fc842d" height={90} width={90} />
+              <Loader
+                type="BallTriangle"
+                color={`var(--active-color)`}
+                height={90}
+                width={90}
+              />
             ) : (
               <>
                 <button

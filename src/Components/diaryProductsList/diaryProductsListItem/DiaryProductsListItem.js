@@ -1,9 +1,10 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { deleteProductOperation } from "../../../redux/DiaryProducts/diaryProductOperations";
+import { useSelector } from "react-redux";
+// import { deleteProductOperation } from "../../../redux/DiaryProducts/diaryProductOperations";
 import style from "./DairyProductsListItem.module.css";
 import moment from "moment";
 import { dairyProductsSelector } from "../../../redux/DiaryProducts/diaryProductSelector";
+import Loader from "react-loader-spinner";
 
 // import { useDispatch } from "react-redux";
 // import { deleteContact } from "../../../redux/DiaryProducts/diaryProductOperations";
@@ -14,6 +15,7 @@ const DiaryProductsListItem = ({
   kcal,
   id,
   onRemoveProductById,
+  isLoadingProducts,
 }) => {
   const diaryProduct = useSelector(dairyProductsSelector);
   const todayDate = moment(new Date()).format("YYYY-MM-DD");
@@ -26,15 +28,34 @@ const DiaryProductsListItem = ({
         <p className={style.dairyItemWeight}>{weight} г </p>
         <p className={style.dairyItemCcal}>{Math.round(kcal)} ккал</p>
         {diaryProduct.date === todayDate ? (
-          <button
-            className={style.btnDelete}
-            type="button"
-            // id={_id}
-            onClick={onDeleteClick}
-          >
-            X
-          </button>
+          <>
+            {isLoadingProducts ? (
+              <Loader
+                type="BallTriangle"
+                color={`var(--active-color)`}
+                height={15}
+                width={15}
+              />
+            ) : (
+              <button
+                className={style.btnDelete}
+                type="button"
+                // id={_id}
+                onClick={onDeleteClick}
+              >
+                X
+              </button>
+            )}
+          </>
         ) : (
+          // <button
+          //   className={style.btnDelete}
+          //   type="button"
+          //   // id={_id}
+          //   onClick={onDeleteClick}
+          // >
+          //   X
+          // </button>
           <> </>
         )}
       </li>

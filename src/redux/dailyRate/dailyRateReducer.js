@@ -5,7 +5,9 @@ import {
   getDailyRateRequest,
   getDailyRateSucces,
   getDailyRateByDateSucces,
-  getUserInfoError,
+  // getUserInfoRequest,
+  // getUserInfoSucces,
+  // getUserInfoError,
   getDailyRateByDateError,
   getDailyRateByDateRequest,
 } from "./dailyRateActions";
@@ -18,7 +20,11 @@ import {
   addProductSuccess,
   afterDeleteProductInfoDaySucces,
 } from "../DiaryProducts/diaryProductActions";
-import { getUserInfoSuccess } from "../user/userActions";
+import {
+  // getUserInfoError,
+  // getUserInfoRequest,
+  getUserInfoSuccess,
+} from "../user/userActions";
 // const initialState = {};
 
 export const dailyCaloriesReducer = createReducer(
@@ -135,14 +141,19 @@ const dailyRateLoaderReducer = createReducer(false, {
   [getDailyRateByDateSucces]: () => false,
   [getDailyRateError]: () => false,
   [getDailyRateByDateError]: () => false,
+  // [getUserInfoRequest]: () => true,
+  // [getUserInfoSuccess]: () => false,
+  // [getUserInfoError]: () => false,
 });
 
 const dailyCaloriesErrorReducer = createReducer("", {
   [getDailyRateError]: (_, { payload }) => payload,
-  [getUserInfoError]: (_, { payload }) => payload,
+  // [getUserInfoError]: (_, { payload }) => payload,
   [getDailyRateByDateError]: (_, { payload }) => payload,
   [getDailyRateRequest]: () => "",
   [getDailyRateSucces]: () => "",
+  [getUserInfoSuccess]: () => "",
+  // [getUserInfoRequest]: () => "",
   [getDailyRateByDateSucces]: () => "",
   [getDailyRateByDateRequest]: () => "",
 });

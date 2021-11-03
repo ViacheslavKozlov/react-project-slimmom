@@ -5,6 +5,7 @@ import { userData } from "../redux/user/userSelectors";
 
 const PublicRoute = ({ path, exact, component, isAuth, isRestricted }) => {
   const userDataSelector = useSelector(userData);
+
   return isAuth && isRestricted ? (
     <>
       {!userDataSelector.age ? (

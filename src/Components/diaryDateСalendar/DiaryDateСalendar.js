@@ -18,7 +18,7 @@ export default function DiaryDateСalendar({ date, setDate }) {
   const dailyRate = useSelector(dailyRateSelector);
 
   useEffect(() => {
-    console.log(currentDate);
+    // console.log(currentDate);
     dispatch(changeDateOperation(currentDate));
     if (dailyRate.dailyRate === null) {
       return;

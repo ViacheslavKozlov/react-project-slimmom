@@ -13,8 +13,13 @@ import {
   getProductsError,
   changeCurrentDateSucces,
 } from "./diaryProductActions";
+import {
+  getUserInfoError,
+  getUserInfoRequest,
+  getUserInfoSuccess,
+} from "../user/userActions";
 // import errorReducer from "../errorReducer/errorReducer";
-import isLoadingReduser from "../isLoadingReduser/isLoadingReduser";
+// import isLoadingReduser from "../isLoadingReduser/isLoadingReduser";
 
 // import authRedusers from "../../redux/auth/authReducers";
 import { getDailyRateByDateSucces } from "../dailyRate/dailyRateActions";
@@ -78,6 +83,10 @@ const loadingReducer = createReducer(false, {
   [deleteProductRequest]: () => true,
   [deleteProductSuccess]: () => false,
   [deleteProductError]: () => false,
+
+  [getUserInfoRequest]: () => true,
+  [getUserInfoSuccess]: () => false,
+  [getUserInfoError]: () => false,
 });
 
 const errorReducer = createReducer("", {
@@ -92,8 +101,8 @@ const errorReducer = createReducer("", {
 
 export const productDailyReducer = combineReducers({
   response: productReducer,
-  loading: loadingReducer,
+  isLoading: loadingReducer,
   // authData: persistedAuthReducer,
   error: errorReducer,
-  isLoading: isLoadingReduser,
+  // isLoading: isLoadingReduser,
 });
