@@ -9,6 +9,9 @@
   .scrollList {
     overflow: auto;
     height: 240px;
+    max-width: 589px;
+    padding-right: 90px;
+    padding-left: 90px;
   }
 }
 
@@ -16,6 +19,9 @@
   .scrollList {
     overflow: auto;
     height: 269px;
+    max-width: 552px;
+    padding-right: 115px;
+    padding-left: 115px;
   }
 }
 .scrollList::-webkit-scrollbar {
