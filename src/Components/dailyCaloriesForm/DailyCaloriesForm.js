@@ -14,7 +14,7 @@ const initialState = {
   height: "",
   age: "",
   desiredWeight: "",
-  bloodType: 1
+  bloodType: 1,
 };
 
 const DailyCaloriesForm = () => {
@@ -32,10 +32,10 @@ const DailyCaloriesForm = () => {
   const history = useHistory();
 
   const toggleModal = () => {
-    setModalOpen(prev => !prev);
+    setModalOpen((prev) => !prev);
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     if (isAuth && userId) {
       dispatch(getDailyRateOperation(userData, userId));
@@ -53,7 +53,7 @@ const DailyCaloriesForm = () => {
     window.scrollBy(0, 0);
     toggleModal();
   };
-  const onHandleBlur = e => {
+  const onHandleBlur = (e) => {
     const input = e.target;
     if (input.value !== "") {
       input.classList.add(style.not_empty);
@@ -62,14 +62,14 @@ const DailyCaloriesForm = () => {
       input.classList.remove(style.not_empty);
     }
   };
-  const onHandleChange = e => {
+  const onHandleChange = (e) => {
     const { value, name } = e.target;
 
     if (value === "") {
-      setUserData(prev => ({ ...prev, [name]: value }));
+      setUserData((prev) => ({ ...prev, [name]: value }));
       return;
     }
-    setUserData(prev => ({ ...prev, [name]: Number(value) }));
+    setUserData((prev) => ({ ...prev, [name]: Number(value) }));
   };
 
   const { weight, height, age, desiredWeight, bloodType } = userData;
@@ -150,7 +150,7 @@ const DailyCaloriesForm = () => {
               </div>
               <p>Группа крови *</p>
               <div className={style.input_radio_wrapper}>
-                <div сlassName={style.form_radio}>
+                <div className={style.form_radio}>
                   <input
                     className={style.form_radio_input}
                     id="radio-1"
@@ -164,7 +164,7 @@ const DailyCaloriesForm = () => {
                     1
                   </label>
                 </div>
-                <div сlassName={style.test}>
+                <div className={style.form_radio}>
                   <input
                     className={style.form_radio_input}
                     id="radio-2"
@@ -178,7 +178,7 @@ const DailyCaloriesForm = () => {
                     2
                   </label>
                 </div>
-                <div сlassName={style.form_radio}>
+                <div className={style.form_radio}>
                   <input
                     className={style.form_radio_input}
                     id="radio-3"
@@ -192,7 +192,7 @@ const DailyCaloriesForm = () => {
                     3
                   </label>
                 </div>
-                <div сlassName={style.form_radio}>
+                <div className={style.form_radio}>
                   <input
                     className={style.form_radio_input}
                     id="radio-4"

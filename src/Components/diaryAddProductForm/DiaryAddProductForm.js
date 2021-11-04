@@ -172,7 +172,7 @@ const DiaryAddProductForm = ({ date, isLoadingProducts, toggle }) => {
           </div> */}
           <div className={style.addProductForm}>
             <div className={style.addProductInputForm}>
-              <label htmlFor="myBrowser">
+              <label htmlFor="myBrowser" className={style.addProductInputLable}>
                 <input
                   required
                   value={value}
@@ -194,7 +194,7 @@ const DiaryAddProductForm = ({ date, isLoadingProducts, toggle }) => {
                   />
                 ))}
               </datalist>
-              <label htmlFor="myBrowser">
+              <label htmlFor="myBrowser" className={style.addProductInputLable}>
                 <input
                   required
                   className={style.formFieldWeight}
@@ -205,7 +205,7 @@ const DiaryAddProductForm = ({ date, isLoadingProducts, toggle }) => {
                   type="number"
                   step="1"
                   value={weight}
-                  git // autoFocus
+                  // git // autoFocus
                   placeholder="Граммы"
                 />
               </label>
