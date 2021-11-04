@@ -11,13 +11,13 @@ const AuthForm = ({ handleSubmit, btnName, btn_auth }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const onChange = (e) => {
+  const onChange = e => {
     const { type, value } = e.target;
     type === "text" && setName(value);
     type === "email" && setEmail(value);
     type === "password" && setPassword(value);
   };
-  const onSubmit = (e) => {
+  const onSubmit = e => {
     e.preventDefault();
     // console.log(handleSubmit({ username: name, email, password }))
     // console.log(handleSubmit())
@@ -43,8 +43,8 @@ const AuthForm = ({ handleSubmit, btnName, btn_auth }) => {
                 onChange={onChange}
                 value={name}
                 required
-                // pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-                // title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
+                pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+                title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
                 className={styles.registration_input}
               />
               <hr className={styles.registration_line} />
@@ -74,8 +74,8 @@ const AuthForm = ({ handleSubmit, btnName, btn_auth }) => {
               onChange={onChange}
               value={password}
               required
-              // pattern="^[A-Za-z]+\d+.*$"
-              // title="Пароль должен включать только цифры и буквы"
+              pattern="^[A-Za-z]+\d+.*$"
+              title="Пароль должен включать только цифры и буквы"
               className={styles.registration_input}
             />
             <hr className={styles.registration_line} />
@@ -103,7 +103,7 @@ const AuthForm = ({ handleSubmit, btnName, btn_auth }) => {
 
 AuthForm.propTypes = {
   handleSubmit: PropTypes.func,
-  btnName: PropTypes.string,
+  btnName: PropTypes.string
 };
 
 export default AuthForm;
