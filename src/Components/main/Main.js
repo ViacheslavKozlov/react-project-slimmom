@@ -10,17 +10,11 @@ const Main = () => {
   const isAuth = useSelector(getIsAuth);
 
   return (
-    <Suspense fallback={<h2>loading</h2>}>
+    <Suspense fallback={null}>
       <Switch>
         {mainRoutes.map(({ path, exact, component, isPrivate, isRestricted }) =>
           isPrivate ? (
-            <PrivateRoute
-              key={path}
-              path={path}
-              exact={exact}
-              component={component}
-              isAuth={isAuth}
-            />
+            <PrivateRoute key={path} path={path} exact={exact} component={component} isAuth={isAuth} />
           ) : (
             <PublicRoute
               key={path}
