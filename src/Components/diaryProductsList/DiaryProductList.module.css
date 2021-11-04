@@ -21,7 +21,7 @@
   .scrollList {
     overflow: auto;
     height: 269px;
-    max-width: 552px;
+    width: 605px;
     padding-right: 15px;
     padding-left: 0;
   }
