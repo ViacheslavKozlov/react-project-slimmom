@@ -10,7 +10,6 @@ import sprite from "../../icons/sprite.svg";
 const Modal = ({ toggleModal, dailyRate }) => {
   const history = useHistory();
   const isLoading = useSelector(dailyRateLoading);
-  // console.log(dailyRate.notAllowedProducts);
   useEffect(() => {
     window.addEventListener("keydown", onHandleEscape);
     const body = document.querySelector("body");

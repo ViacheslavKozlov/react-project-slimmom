@@ -125,6 +125,14 @@
     width: 30px;
     border: 2px solid var(--linear-color);
   }
+  .activeLinkPrivate {
+    color: var(--headline-txt-color);
+  }
+
+  .activeLinkPrivate:hover,
+  :focus {
+    color: var(--headline-txt-color);
+  }
 }
 
 @import "../../../utils/vars.css";

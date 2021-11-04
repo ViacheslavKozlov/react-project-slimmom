@@ -10,13 +10,6 @@ import { getIsAuth } from "../../redux/auth/authSelectors";
 import Wrapper from "../wrapper/Wrapper";
 import { userInfo } from "../../redux/user/userSelectors";
 
-// const initialState = {
-//   weight: JSON.parse(localStorage.getItem("weight")) || "",
-//   height: JSON.parse(localStorage.getItem("height")) || "",
-//   age: JSON.parse(localStorage.getItem("age")) || "",
-//   desiredWeight: JSON.parse(localStorage.getItem("desiredWeight")) || "",
-//   bloodType: JSON.parse(localStorage.getItem("bloodType")) || 1,
-// };
 const initialState = {
   weight: "",
   height: "",
@@ -29,7 +22,6 @@ const DailyCaloriesForm = () => {
   const [userData, setUserData] = useState(initialState);
 
   const [modal, setModalOpen] = useState(false);
-  // const [isAuth, setAuth] = useState(true);
 
   const dailyRate = useSelector(dailyRateSelector);
   const userId = useSelector(userInfo).id;
@@ -52,11 +44,6 @@ const DailyCaloriesForm = () => {
       dispatch(getDailyRateOperation(userData));
     }
     if (location.pathname === "/") {
-      // localStorage.removeItem("weight");
-      // localStorage.removeItem("height");
-      // localStorage.removeItem("age");
-      // localStorage.removeItem("desiredWeight");
-      // localStorage.removeItem("bloodType");
       setUserData({ ...initialState });
     }
 
@@ -81,167 +68,151 @@ const DailyCaloriesForm = () => {
 
     if (value === "") {
       setUserData((prev) => ({ ...prev, [name]: value }));
-      // localStorage.setItem([name], JSON.stringify(value));
       return;
     }
     setUserData((prev) => ({ ...prev, [name]: Number(value) }));
-    // localStorage.setItem([name], JSON.stringify(Number(value)));
   };
 
   const { weight, height, age, desiredWeight, bloodType } = userData;
   return (
     <>
-      <Wrapper>
-        {modal && <Modal toggleModal={toggleModal} dailyRate={dailyRate} />}
-        <div className={`${style.form_wrapper} container`}>
-          <h1 className={style.form_title}>
-            {location.pathname === "/calculator"
-              ? "Узнай свою суточную норму калорий"
-              : "Просчитай свою суточную норму калорий прямо сейчас"}
-          </h1>
-          <form className={style.form} onSubmit={handleSubmit}>
-            <div className={style.inputs_wrapper}>
-              <div className={style.inputs_box_first}>
-                {/* <label>Рост</label> */}
-                <div className={style.input_box}>
-                  <input
-                    className={style.input_item}
-                    id="userHeight"
-                    type="number"
-                    required
-                    // autoComplete="off"
-                    min="100"
-                    max="250"
-                    pattern="^[ 0-9]+$"
-                    onChange={onHandleChange}
-                    onBlur={onHandleBlur}
-                    // placeholder="Рост *"
-                    name="height"
-                    value={height}
-                  />
-                  <label>Рост *</label>
-                </div>
-                <div className={style.input_box}>
-                  <input
-                    className={style.input_item}
-                    id="userAge"
-                    type="number"
-                    required
-                    // autoComplete="off"
-                    min="18"
-                    max="100"
-                    onChange={onHandleChange}
-                    onBlur={onHandleBlur}
-                    // placeholder="Возраст *"
-                    name="age"
-                    value={age}
-                  />
-                  <label>Возраст *</label>
-                </div>
-                <div className={style.input_box}>
-                  <input
-                    className={style.input_item}
-                    id="userWeight"
-                    type="number"
-                    // autoComplete="off"
-                    required
-                    min="20"
-                    max="500"
-                    onChange={onHandleChange}
-                    onBlur={onHandleBlur}
-                    // placeholder="Текущий вес *"
-                    name="weight"
-                    value={weight}
-                  />
-                  <label>Текущий вес *</label>
-                </div>
+      {modal && <Modal toggleModal={toggleModal} dailyRate={dailyRate} />}
+      <div className={`${style.form_wrapper} container`}>
+        <h1 className={style.form_title}>
+          {location.pathname === "/calculator"
+            ? "Узнай свою суточную норму калорий"
+            : "Просчитай свою суточную норму калорий прямо сейчас"}
+        </h1>
+        <form className={style.form} onSubmit={handleSubmit}>
+          <div className={style.inputs_wrapper}>
+            <div className={style.inputs_box_first}>
+              <div className={style.input_box}>
+                <input
+                  className={style.input_item}
+                  id="userHeight"
+                  type="number"
+                  required
+                  min="100"
+                  max="250"
+                  pattern="^[ 0-9]+$"
+                  onChange={onHandleChange}
+                  onBlur={onHandleBlur}
+                  name="height"
+                  value={height}
+                />
+                <label>Рост *</label>
               </div>
-              <div className={style.inputs_box_second}>
-                <div className={style.input_box}>
-                  <input
-                    className={style.input_item}
-                    id="userDesiredWeight"
-                    type="number"
-                    required
-                    // autoComplete="off"
-                    min="20"
-                    max="500"
-                    onChange={onHandleChange}
-                    onBlur={onHandleBlur}
-                    // placeholder="Желаемый вес *"
-                    name="desiredWeight"
-                    value={desiredWeight}
-                  />
-                  <label>Желаемый вес *</label>
-                </div>
-                <p>Группа крови *</p>
-                <div className={style.input_radio_wrapper}>
-                  <div сlassName={style.form_radio}>
-                    <input
-                      className={style.form_radio_input}
-                      id="radio-1"
-                      type="radio"
-                      checked={bloodType === 1}
-                      name="bloodType"
-                      value="1"
-                      onChange={onHandleChange}
-                    />
-                    <label htmlFor="radio-1" className={style.form_radio_label}>
-                      1
-                    </label>
-                  </div>
-                  <div сlassName={style.test}>
-                    <input
-                      className={style.form_radio_input}
-                      id="radio-2"
-                      type="radio"
-                      checked={bloodType === 2}
-                      name="bloodType"
-                      value="2"
-                      onChange={onHandleChange}
-                    />
-                    <label htmlFor="radio-2" className={style.form_radio_label}>
-                      {" "}
-                      2
-                    </label>
-                  </div>
-                  <div сlassName={style.form_radio}>
-                    <input
-                      className={style.form_radio_input}
-                      id="radio-3"
-                      type="radio"
-                      checked={bloodType === 3}
-                      name="bloodType"
-                      value="3"
-                      onChange={onHandleChange}
-                    />
-                    <label htmlFor="radio-3" className={style.form_radio_label}>
-                      {" "}
-                      3
-                    </label>
-                  </div>
-                  <div сlassName={style.form_radio}>
-                    <input
-                      className={style.form_radio_input}
-                      id="radio-4"
-                      type="radio"
-                      checked={bloodType === 4}
-                      name="bloodType"
-                      value="4"
-                      onChange={onHandleChange}
-                    />
-                    <label htmlFor="radio-4" className={style.form_radio_label}>
-                      {" "}
-                      4
-                    </label>
-                  </div>
-                </div>
+              <div className={style.input_box}>
+                <input
+                  className={style.input_item}
+                  id="userAge"
+                  type="number"
+                  required
+                  min="18"
+                  max="100"
+                  onChange={onHandleChange}
+                  onBlur={onHandleBlur}
+                  name="age"
+                  value={age}
+                />
+                <label>Возраст *</label>
               </div>
-              <Button buttonName="Похудеть" type={"submit"} />
+              <div className={style.input_box}>
+                <input
+                  className={style.input_item}
+                  id="userWeight"
+                  type="number"
+                  required
+                  min="20"
+                  max="500"
+                  onChange={onHandleChange}
+                  onBlur={onHandleBlur}
+                  name="weight"
+                  value={weight}
+                />
+                <label>Текущий вес *</label>
+              </div>
             </div>
-          </form>
-        </div>
-      </Wrapper>
+            <div className={style.inputs_box_second}>
+              <div className={style.input_box}>
+                <input
+                  className={style.input_item}
+                  id="userDesiredWeight"
+                  type="number"
+                  required
+                  min="20"
+                  max="500"
+                  onChange={onHandleChange}
+                  onBlur={onHandleBlur}
+                  name="desiredWeight"
+                  value={desiredWeight}
+                />
+                <label>Желаемый вес *</label>
+              </div>
+              <p>Группа крови *</p>
+              <div className={style.input_radio_wrapper}>
+                <div сlassName={style.form_radio}>
+                  <input
+                    className={style.form_radio_input}
+                    id="radio-1"
+                    type="radio"
+                    checked={bloodType === 1}
+                    name="bloodType"
+                    value="1"
+                    onChange={onHandleChange}
+                  />
+                  <label htmlFor="radio-1" className={style.form_radio_label}>
+                    1
+                  </label>
+                </div>
+                <div сlassName={style.test}>
+                  <input
+                    className={style.form_radio_input}
+                    id="radio-2"
+                    type="radio"
+                    checked={bloodType === 2}
+                    name="bloodType"
+                    value="2"
+                    onChange={onHandleChange}
+                  />
+                  <label htmlFor="radio-2" className={style.form_radio_label}>
+                    2
+                  </label>
+                </div>
+                <div сlassName={style.form_radio}>
+                  <input
+                    className={style.form_radio_input}
+                    id="radio-3"
+                    type="radio"
+                    checked={bloodType === 3}
+                    name="bloodType"
+                    value="3"
+                    onChange={onHandleChange}
+                  />
+                  <label htmlFor="radio-3" className={style.form_radio_label}>
+                    3
+                  </label>
+                </div>
+                <div сlassName={style.form_radio}>
+                  <input
+                    className={style.form_radio_input}
+                    id="radio-4"
+                    type="radio"
+                    checked={bloodType === 4}
+                    name="bloodType"
+                    value="4"
+                    onChange={onHandleChange}
+                  />
+                  <label htmlFor="radio-4" className={style.form_radio_label}>
+                    4
+                  </label>
+                </div>
+              </div>
+            </div>
+            <Button buttonName="Похудеть" type={"submit"} />
+          </div>
+        </form>
+      </div>
     </>
   );
 };

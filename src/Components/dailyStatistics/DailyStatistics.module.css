@@ -2,7 +2,6 @@
   font-family: var(--main-font);
   text-align: center;
   padding: 40px 0 80px 0;
-  /* background-color: #f0f1f3; */
 }
 
 .statistics_box:not(:last-child) {
@@ -10,7 +9,6 @@
 }
 .statistics_box ul .statistic_text:not(:last-child) {
   margin-bottom: 15px;
-  /* min-width: 50%; */
 }
 
 .statistics_title {
@@ -45,27 +43,28 @@
   color: var(--main-txt-color);
 }
 @media screen and (min-width: 768px) {
+  .statistics_box {
+    width: 270px;
+  }
   .statistics_wrapper {
     display: flex;
+    justify-content: space-between;
     padding: 90px 0 90px 0;
   }
   .statistics_box:not(:last-child) {
     margin-bottom: 0;
-    margin-right: 60px;
+    margin-right: 0;
+    padding-right: 60px;
   }
   .statistics_box ul .statistic_text:not(:last-child) {
     margin-bottom: 15px;
-    /* min-width: 50%; */
-  }
-  .statistic_box {
-    width: 270px;
   }
 }
 @media screen and (min-width: 1280px) {
   .statistics_wrapper {
     display: flex;
     flex-direction: column;
-    padding: 146px 0 0 0;
+    padding: 0;
   }
   .statistic_box {
     width: 270px;
