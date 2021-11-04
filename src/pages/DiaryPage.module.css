@@ -13,8 +13,8 @@
 }
 .mobileProductList {
   margin-top: 31px;
-  padding-left: 15px;
-  padding-right: 15px;
+  /* padding-left: 15px;
+  padding-right: 15px; */
   height: 211px;
   overflow-y: auto;
 }
@@ -57,7 +57,7 @@
 @media screen and (min-width: 768px) {
   .mobileDiaryDateСalendar {
     margin-top: 100px;
-    padding-left: 0;
+    padding-left: 0px;
     padding-right: 90px;
   }
 }

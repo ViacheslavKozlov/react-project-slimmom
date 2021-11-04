@@ -11,13 +11,13 @@ const AuthForm = ({ handleSubmit, btnName, btn_auth }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const onChange = e => {
+  const onChange = (e) => {
     const { type, value } = e.target;
     type === "text" && setName(value);
     type === "email" && setEmail(value);
     type === "password" && setPassword(value);
   };
-  const onSubmit = e => {
+  const onSubmit = (e) => {
     e.preventDefault();
     // console.log(handleSubmit({ username: name, email, password }))
     // console.log(handleSubmit())
@@ -103,7 +103,7 @@ const AuthForm = ({ handleSubmit, btnName, btn_auth }) => {
 
 AuthForm.propTypes = {
   handleSubmit: PropTypes.func,
-  btnName: PropTypes.string
+  btnName: PropTypes.string,
 };
 
 export default AuthForm;
