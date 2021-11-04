@@ -11,6 +11,14 @@
     rgb(255, 255, 255) 50%,
     rgb(240, 241, 243) 45%
   );
+
+  /* background: linear-gradient(
+    0deg,
+    rgb(240, 241, 243) 0px,
+    rgb(240, 241, 243) 200px,
+    rgba(255, 255, 255, 1) 200px,
+    rgba(255, 255, 255, 1) 1000px
+  ); */
 }
 @media screen and (min-width: 768px) {
   .privateLeave {
@@ -27,6 +35,14 @@
       rgb(255, 255, 255) 55%,
       rgb(240, 241, 243) 55%
     );
+
+    /* background: linear-gradient(
+      0deg,
+      rgb(240, 241, 243) 0px,
+      rgb(240, 241, 243) 300px,
+      rgba(255, 255, 255, 1) 300px,
+      rgba(255, 255, 255, 1) 1000px
+    ); */
   }
   .public {
     background-image: url("../images/health-home2-tabl-min.jpg");
