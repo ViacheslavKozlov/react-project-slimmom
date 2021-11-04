@@ -1,17 +1,16 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import { getDailyRateOperation } from "../../redux/dailyRate/dailyRateOperations";
 import { BASE_URL } from "../../service/Api";
 import { Button, ButtonAdd } from "../button/Button";
 import style from "./DiaryAddForm.module.css";
-import moment, { localeData } from "moment";
+import moment from "moment";
 import { addProduct } from "../../redux/DiaryProducts/diaryProductOperations";
 import { dairyProductsSelector } from "../../redux/DiaryProducts/diaryProductSelector";
 import useDeviceSizes from "../../hooks/useDeviceSizec";
 import Loader from "react-loader-spinner";
 
-const DiaryAddProductForm = ({ date, isLoadingProducts, toggle }) => {
+const DiaryAddProductForm = ({ isLoadingProducts, toggle }) => {
   const [value, setValue] = useState("");
   const [weight, setWeight] = useState("");
   const [products, setProducts] = useState([]);
@@ -19,11 +18,8 @@ const DiaryAddProductForm = ({ date, isLoadingProducts, toggle }) => {
   const dispatch = useDispatch();
 
   const diaryProduct = useSelector(dairyProductsSelector);
-  // const currentDate = moment(date).format("YYYY-MM-DD");
   const todayDate = moment(new Date()).format("YYYY-MM-DD");
 
-  // const token =
-  //   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MTc5NGE5N2E2Zjk3NjY4ZjdmYzU5MTQiLCJzaWQiOiI2MTdlNmQzM2E2Zjk3NjY4ZjdmYzVhMjkiLCJpYXQiOjE2MzU2NzU0NDMsImV4cCI6MTYzNTY3OTA0M30.nCrIAFfdo-azzNoMw_NmusE-iWJNrJQ5PQ1RSfUEgN8";
   const getProductSearch = (value) => {
     console.log(value);
     axios

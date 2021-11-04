@@ -2,16 +2,13 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { mainRoutes } from "../routes/mainRoutes";
 import { authLogin, authRegistration } from "../redux/auth/authOperations";
-import { useHistory, useLocation } from "react-router";
+import { useLocation } from "react-router";
 import AuthTempForm from "../Components/authTempForm";
-import { userInfo } from "../redux/user/userSelectors";
 
 const AuthPage = () => {
   const dispatch = useDispatch();
 
   const error = useSelector((state) => state.error);
-  const userId = useSelector(userInfo);
-  const history = useHistory();
   const { pathname } = useLocation();
 
   const handleSubmit = (userData) => {
