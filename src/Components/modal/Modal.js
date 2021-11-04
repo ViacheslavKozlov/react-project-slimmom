@@ -5,11 +5,14 @@ import style from "./Modal.module.css";
 import Loader from "react-loader-spinner";
 import { dailyRateLoading } from "../../redux/dailyRate/dailyRateSelectors";
 import { useSelector } from "react-redux";
+import useDeviceSizes from "../../hooks/useDeviceSizec";
 import sprite from "../../icons/sprite.svg";
 
 const Modal = ({ toggleModal, dailyRate }) => {
   const history = useHistory();
   const isLoading = useSelector(dailyRateLoading);
+  const { isMobileDevice } = useDeviceSizes();
+
   useEffect(() => {
     window.addEventListener("keydown", onHandleEscape);
     const body = document.querySelector("body");
@@ -33,7 +36,6 @@ const Modal = ({ toggleModal, dailyRate }) => {
       <>
         <div className={style.backdrop} onClick={onOverlayClick}>
           <div className={style.modal_container}>
-            {" "}
             {isLoading ? (
               <Loader
                 type="BallTriangle"
@@ -43,16 +45,27 @@ const Modal = ({ toggleModal, dailyRate }) => {
               />
             ) : (
               <>
-                <button
-                  className={style.modal_closeBtn}
-                  type="button"
-                  data-action="close-modal"
-                  onClick={toggleModal}
-                >
-                  <svg width="12" height="12">
-                    <use href={sprite + "#close"}></use>
-                  </svg>
-                </button>
+                {!isMobileDevice && (
+                  <>
+                    <button
+                      className={style.modal_closeBtn}
+                      type="button"
+                      data-action="close-modal"
+                      onClick={toggleModal}
+                    ></button>
+
+                    <button
+                      className={style.modal_closeBtn}
+                      type="button"
+                      data-action="close-modal"
+                      onClick={toggleModal}
+                    >
+                      <svg width="12" height="12">
+                        <use href={sprite + "#close"}></use>
+                      </svg>
+                    </button>
+                  </>
+                )}
                 <h2 className={style.modal_title}>
                   Ваша рекомендуемая суточная норма калорий составляет
                 </h2>
