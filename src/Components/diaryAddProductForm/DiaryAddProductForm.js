@@ -82,7 +82,7 @@ const DiaryAddProductForm = ({ isLoadingProducts, toggle }) => {
         <form onSubmit={onHandleSubmit}>
           <div className={style.addProductForm}>
             <div className={style.addProductInputForm}>
-              <label htmlFor="myBrowser">
+              <label htmlFor="myBrowser" className={style.addProductInputLable}>
                 <input
                   required
                   value={value}
@@ -104,7 +104,7 @@ const DiaryAddProductForm = ({ isLoadingProducts, toggle }) => {
                   />
                 ))}
               </datalist>
-              <label htmlFor="myBrowser">
+              <label htmlFor="myBrowser" className={style.addProductInputLable}>
                 <input
                   required
                   className={style.formFieldWeight}
@@ -115,7 +115,7 @@ const DiaryAddProductForm = ({ isLoadingProducts, toggle }) => {
                   type="number"
                   step="1"
                   value={weight}
-                  git // autoFocus
+                  // git // autoFocus
                   placeholder="Граммы"
                 />
               </label>
