@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { BASE_URL } from "../../service/Api";
 import { Button, ButtonAdd } from "../button/Button";
 import style from "./DiaryAddForm.module.css";
-import moment from "moment";
+import moment, { localeData } from "moment";
 import { addProduct } from "../../redux/DiaryProducts/diaryProductOperations";
 import { dairyProductsSelector } from "../../redux/DiaryProducts/diaryProductSelector";
 import useDeviceSizes from "../../hooks/useDeviceSizec";
@@ -29,7 +29,6 @@ const DiaryAddProductForm = ({ date, isLoadingProducts, toggle }) => {
     axios
       .get(BASE_URL + `/product?search=${value}`)
       .then((response) => {
-        // console.log(response.data);
         setProducts(response.data.slice(0, 10));
       })
       .catch((error) => {
@@ -38,8 +37,6 @@ const DiaryAddProductForm = ({ date, isLoadingProducts, toggle }) => {
       });
   };
 
-  // const debounceProductSearch = debounce(getProductSearch, 1000);
-
   const onHandleChange = ({ target }) => {
     const { value, name } = target;
     console.log(value);
@@ -47,40 +44,31 @@ const DiaryAddProductForm = ({ date, isLoadingProducts, toggle }) => {
     name === "weight" && setWeight(value);
 
     if (name === "product") {
-      getProductSearch(value);
-
-      // getProductSearch(value);
-      // value.length >= 1 &&
-      //   axios
-      //     .get(BASE_URL + `/product?search=${value}`)
-      //     .then((response) => {
-      //       // console.log(response.data);
-      //       setProducts(response.data.slice(0, 10));
-      //     })
-      //     .catch((error) => {
-      //       setProducts([]);
-      //       // console.log(error);
-      //     });
+      !products.some((product) => product.title.ru === value) &&
+        getProductSearch(value);
     }
   };
 
-  // console.log(value);
-
-  // const getProductIdByName = () =>
-  //   products.find(
-  //     (product) => product.title.ru.toLowerCase() === value.toLowerCase()
-  //   )._id;
-  // console.log(products);
+  const getProductIdByName = () => {
+    console.log(products);
+    const curProd = products.find(
+      (product) => product.title.ru.toLowerCase() === value.toLowerCase()
+    );
+    if (!curProd) {
+      return;
+    }
+    return curProd._id;
+  };
 
   const onHandleSubmit = (e) => {
     e.preventDefault();
-    // const id = getProductIdByName();
+
     if (products.length === 0) {
       alert("Продукт не найден");
       return;
     }
-    const id = products[0]._id;
-    // console.log(id);
+    const id = getProductIdByName();
+    console.log(id);
     const userEatenProduct = {
       date: diaryProduct.date,
       productId: id,
@@ -92,84 +80,10 @@ const DiaryAddProductForm = ({ date, isLoadingProducts, toggle }) => {
     setProducts([]);
   };
 
-  useEffect(() => {
-    // dispatch(getDailyRateOperation());
-    // axios.post(
-    //   `${BASE_URL}/daily-rate/61794a97a6f97668f7fc5914`,
-    //   {
-    //     weight: 100,
-    //     height: 170,
-    //     age: 30,
-    //     desiredWeight: 60,
-    //     bloodType: 1,
-    //   },
-    //   {
-    //     headers: { Authorization: `Bearer ${token}` },
-    //   }
-    // );
-    // value.length >= 1 &&
-    //   axios
-    //     .get(BASE_URL + `/product?search=${value}`)
-    //     .then((response) => {
-    //       console.log(response.data);
-    //       setProducts(response.data.slice(0, 10));
-    //     })
-    //     .catch((error) => console.log(error));
-  }, [value]);
-
   return (
     <>
-      {/* <Wrapper> */}
       {diaryProduct.date === todayDate ? (
         <form onSubmit={onHandleSubmit}>
-          {/* <div className={style.addProductForm}> */}
-          {/* <div className={style.addProductInputForm}>
-              <label htmlFor="myBrowser">
-                <input
-                  value={value}
-                  className={style.formFieldProduct}
-                  onChange={onHandleChange}
-                  list="productList"
-                  id="myBrowser"
-                  name="product"
-                  type="text"
-                  autoFocus
-                  placeholder="Введите название продукта"
-                />
-              </label>
-              <datalist id="productList">
-                {products.map((product) => (
-                  <option
-                    key={product._id}
-                    id={product._id}
-                    value={product.title.ru}
-                  />
-                ))}
-              </datalist>
-              <label htmlFor="myBrowser">
-                <input
-                  className={style.formFieldWeigth}
-                  onChange={onHandleChange}
-                  list=""
-                  id=""
-                  name="weight"
-                  type="number"
-                  min="100"
-                  step="1"
-                  value={weight}
-                  autoFocus
-                  placeholder="Граммы"
-                />
-              </label>
-            </div>
-            <div className={style.btnAddFormMobile}>
-              {isMobileDevice ? (
-                <Button buttonName="Добавить" type="submit" />
-              ) : (
-                <ButtonAdd buttonName="Добавить" type="submit" />
-              )}
-            </div>
-          </div> */}
           <div className={style.addProductForm}>
             <div className={style.addProductInputForm}>
               <label htmlFor="myBrowser">
@@ -238,7 +152,6 @@ const DiaryAddProductForm = ({ date, isLoadingProducts, toggle }) => {
       ) : (
         <></>
       )}
-      {/* </Wrapper> */}
     </>
   );
 };
