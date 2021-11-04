@@ -1,7 +1,6 @@
 .scrollList {
   overflow: auto;
-  scrollbar-color: #458245 #714826; /* «цвет ползунка» «цвет полосы скроллбара» */
-  scrollbar-width: thin;
+  font-family: var(--main-font);
   /* height: 220px; */
 }
 
@@ -10,8 +9,11 @@
     overflow: auto;
     height: 240px;
     max-width: 589px;
-    padding-right: 90px;
-    padding-left: 90px;
+    padding-right: 15px;
+    padding-left: 0;
+  }
+  .list {
+    width: 605px;
   }
 }
 
@@ -19,8 +21,8 @@
   .scrollList {
     overflow: auto;
     height: 269px;
-    max-width: 552px;
-    padding-right: 115px;
+    width: 605px;
+    padding-right: 15px;
     padding-left: 0;
   }
 }

@@ -23,7 +23,7 @@
 @media screen and (min-width: 768px) {
   .mobileDiaryDateСalendar {
     margin-top: 100px;
-    padding-left: 90px;
+    padding-left: 0;
     padding-right: 90px;
   }
 }
@@ -34,12 +34,13 @@
     align-items: center;
     justify-content: space-between;
   }
-  .statContainer {
-    margin-left: 150px;
-  }
   .mobileDiaryDateСalendar {
     margin-top: 143px;
     padding-left: 0;
     padding-right: 115px;
+  }
+  .statContainer {
+    padding-left: 90px;
+    margin-top: 100px;
   }
 }

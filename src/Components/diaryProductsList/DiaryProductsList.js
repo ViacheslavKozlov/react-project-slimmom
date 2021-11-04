@@ -33,7 +33,7 @@ const DiaryProductsList = ({ date, isLoadingDaily, isLoadingProducts }) => {
           width={90}
         />
       ) : (
-        <ul className="list">
+        <ul className={style.list}>
           <div className={style.scrollList}>
             {productsInfo.eatenProducts?.length !== 0 ? (
               <>

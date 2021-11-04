@@ -20,23 +20,6 @@ const AuthPage = () => {
       : dispatch(authLogin(userData));
   };
 
-  useEffect(() => {
-    if (pathname === "/login" && error !== "") {
-      alert("Что-то пошло не так, попробуйте еще раз");
-      return;
-    }
-    if (pathname === "/register" && error !== "") {
-      alert("Что-то пошло не так, попробуйте еще раз");
-      return;
-    }
-    if (pathname === "/register" && userId.id !== "" && error === "") {
-      const isComing = window.confirm(
-        "Вы успешно зарегистрировались, перейти на страницу входа?"
-      );
-      isComing && history.push("/login");
-    }
-  }, [userId, error, history, pathname]);
-
   return mainRoutes
     .filter(({ isRestricted }) => isRestricted)
     .map(
