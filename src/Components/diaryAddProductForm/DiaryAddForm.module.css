@@ -85,3 +85,14 @@
   text-align: center;
   margin: 0 auto;
 }
+
+@media screen and (min-width: 1280px) {
+  .addProductForm {
+    width: 376px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 0;
+    padding-right: 90px;
+  }
+}

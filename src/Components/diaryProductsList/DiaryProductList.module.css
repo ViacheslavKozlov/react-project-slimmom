@@ -21,7 +21,7 @@
     height: 269px;
     max-width: 552px;
     padding-right: 115px;
-    padding-left: 115px;
+    padding-left: 0;
   }
 }
 .scrollList::-webkit-scrollbar {
