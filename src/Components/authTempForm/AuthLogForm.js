@@ -11,13 +11,13 @@ const AuthForm = ({ handleSubmit, btnName, btn_auth }) => {
   const [email, setEmail] = useState("dnbdimka34@gmail.com");
   const [password, setPassword] = useState("qweqwe123");
 
-  const onChange = (e) => {
+  const onChange = e => {
     const { type, value } = e.target;
     type === "text" && setName(value);
     type === "email" && setEmail(value);
     type === "password" && setPassword(value);
   };
-  const onSubmit = (e) => {
+  const onSubmit = e => {
     e.preventDefault();
     // console.log(handleSubmit({ username: name, email, password }))
     // console.log(handleSubmit())
@@ -35,7 +35,7 @@ const AuthForm = ({ handleSubmit, btnName, btn_auth }) => {
         <div>
           {btnName === mainRoutes[4].name && (
             <label className={styles.registration_label}>
-              Імя *{" "}
+              Имя *{" "}
               <input
                 type="text"
                 autoComplete="off"
@@ -103,7 +103,7 @@ const AuthForm = ({ handleSubmit, btnName, btn_auth }) => {
 
 AuthForm.propTypes = {
   handleSubmit: PropTypes.func,
-  btnName: PropTypes.string,
+  btnName: PropTypes.string
 };
 
 export default AuthForm;
