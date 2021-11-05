@@ -23,39 +23,36 @@ const DiaryAddProductForm = ({ isLoadingProducts, toggle }) => {
   const getProductSearch = (value) => {
     axios
       .get(BASE_URL + `/product?search=${value}`)
-      .then((response) => {
+      .then(response => {
         setProducts(response.data.slice(0, 10));
       })
-      .catch((error) => {
+      .catch(error => {
         setProducts([]);
-        console.log(error);
+        alert(error);
       });
   };
 
   const onHandleChange = ({ target }) => {
     const { value, name } = target;
-    console.log(value);
+    // console.log(value);
     name === "product" && setValue(value);
     name === "weight" && setWeight(value);
 
     if (name === "product") {
-      !products.some((product) => product.title.ru === value) &&
-        getProductSearch(value);
+      !products.some(product => product.title.ru === value) && getProductSearch(value);
     }
   };
 
   const getProductIdByName = () => {
-    console.log(products);
-    const curProd = products.find(
-      (product) => product.title.ru.toLowerCase() === value.toLowerCase()
-    );
+    // console.log(products);
+    const curProd = products.find(product => product.title.ru.toLowerCase() === value.toLowerCase());
     if (!curProd) {
       return;
     }
     return curProd._id;
   };
 
-  const onHandleSubmit = (e) => {
+  const onHandleSubmit = e => {
     e.preventDefault();
 
     if (products.length === 0) {
@@ -63,11 +60,11 @@ const DiaryAddProductForm = ({ isLoadingProducts, toggle }) => {
       return;
     }
     const id = getProductIdByName();
-    console.log(id);
+    // console.log(id);
     const userEatenProduct = {
       date: diaryProduct.date,
       productId: id,
-      weight: Number(weight) || 100,
+      weight: Number(weight) || 100
     };
     dispatch(addProduct(userEatenProduct));
     setValue("");
@@ -85,7 +82,7 @@ const DiaryAddProductForm = ({ isLoadingProducts, toggle }) => {
         <form onSubmit={onHandleSubmit}>
           <div className={style.addProductForm}>
             <div className={style.addProductInputForm}>
-              <label htmlFor="myBrowser">
+              <label htmlFor="myBrowser" className={style.addProductInputLable}>
                 <input
                   required
                   value={value}
@@ -99,15 +96,11 @@ const DiaryAddProductForm = ({ isLoadingProducts, toggle }) => {
                 />
               </label>
               <datalist id="productList">
-                {products.map((product) => (
-                  <option
-                    key={product._id}
-                    id={product._id}
-                    value={product.title?.ru || "Not found"}
-                  />
+                {products.map(product => (
+                  <option key={product._id} id={product._id} value={product.title?.ru || "Not found"} />
                 ))}
               </datalist>
-              <label htmlFor="myBrowser">
+              <label htmlFor="myBrowser" className={style.addProductInputLable}>
                 <input
                   required
                   className={style.formFieldWeight}
@@ -118,28 +111,26 @@ const DiaryAddProductForm = ({ isLoadingProducts, toggle }) => {
                   type="number"
                   step="1"
                   value={weight}
-                  git // autoFocus
+                  // git // autoFocus
                   placeholder="Граммы"
                 />
               </label>
             </div>
             <div className={style.button_wrapper}>
               {isLoadingProducts ? (
-                <Loader
-                  className={style.loader}
-                  type="BallTriangle"
-                  color={`var(--active-color)`}
-                  height={30}
-                  width={30}
-                />
+                <Loader className={style.loader} type="BallTriangle" color={`var(--active-color)`} height={30} width={30} />
               ) : (
                 <div className={style.btnAddFormMobile}>
                   {isMobileDevice ? (
+<<<<<<< HEAD
                     <Button
                       buttonName="Добавить"
                       type={"submit"}
                       onClick={onMobileSubmit}
                     />
+=======
+                    <Button buttonName="Добавить" type="submit" onClick={toggle} />
+>>>>>>> 81fde622c13d59dd22a9dcabc6f8ae73ee1f5336
                   ) : (
                     <ButtonAdd type="submit" />
                   )}

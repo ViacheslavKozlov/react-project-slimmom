@@ -150,7 +150,7 @@ const DailyCaloriesForm = () => {
               </div>
               <p>Группа крови *</p>
               <div className={style.input_radio_wrapper}>
-                <div сlassName={style.form_radio}>
+                <div className={style.form_radio}>
                   <input
                     className={style.form_radio_input}
                     id="radio-1"
@@ -164,7 +164,7 @@ const DailyCaloriesForm = () => {
                     1
                   </label>
                 </div>
-                <div сlassName={style.test}>
+                <div className={style.form_radio}>
                   <input
                     className={style.form_radio_input}
                     id="radio-2"
@@ -178,7 +178,7 @@ const DailyCaloriesForm = () => {
                     2
                   </label>
                 </div>
-                <div сlassName={style.form_radio}>
+                <div className={style.form_radio}>
                   <input
                     className={style.form_radio_input}
                     id="radio-3"
@@ -192,7 +192,7 @@ const DailyCaloriesForm = () => {
                     3
                   </label>
                 </div>
-                <div сlassName={style.form_radio}>
+                <div className={style.form_radio}>
                   <input
                     className={style.form_radio_input}
                     id="radio-4"

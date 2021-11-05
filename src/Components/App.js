@@ -20,10 +20,12 @@ const App = () => {
   return (
     <>
       <div className={!isAuthIn ? styles.public : styles.private}>
-        <Header />
-        <Wrapper>
-          <Main />
-        </Wrapper>
+        <div className={!isAuthIn ? styles.publicLeave : styles.privateLeave}>
+          <Header />
+          <Wrapper>
+            <Main />
+          </Wrapper>
+        </div>
       </div>
     </>
   );
