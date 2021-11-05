@@ -1,12 +1,8 @@
 .mobileDiaryDateСalendar {
   margin-top: 40px;
-  padding-left: 15px;
-  padding-right: 15px;
 }
 .mobileProductList {
   margin-top: 31px;
-  padding-left: 15px;
-  padding-right: 15px;
   height: 211px;
   overflow-y: auto;
 }

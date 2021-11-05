@@ -113,6 +113,10 @@
 }
 
 @media screen and (min-width: 1280px) {
+  .logo_main_desc {
+    width: 170px;
+    height: 67px;
+  }
   .item:first-child {
     margin-right: 20px;
   }
@@ -122,8 +126,8 @@
     display: inline;
     transform: rotate(90deg);
     content: "";
-    width: 30px;
-    border: 2px solid var(--linear-color);
+    width: 32px;
+    border: 1px solid var(--linear-color);
   }
   .activeLinkPrivate {
     color: var(--headline-txt-color);

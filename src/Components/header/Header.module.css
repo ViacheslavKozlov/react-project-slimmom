@@ -17,4 +17,8 @@
   padding-top: 19px;
 }
 
-@import "../../utils/vars.css";
+@media screen and (min-width: 1280px) {
+  .MainContainer {
+    padding-top: 82px;
+  }
+}

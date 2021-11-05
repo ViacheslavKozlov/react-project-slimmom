@@ -21,7 +21,6 @@ const DiaryAddProductForm = ({ isLoadingProducts, toggle }) => {
   const todayDate = moment(new Date()).format("YYYY-MM-DD");
 
   const getProductSearch = (value) => {
-    console.log(value);
     axios
       .get(BASE_URL + `/product?search=${value}`)
       .then((response) => {
@@ -74,6 +73,10 @@ const DiaryAddProductForm = ({ isLoadingProducts, toggle }) => {
     setValue("");
     setWeight("");
     setProducts([]);
+  };
+  const onMobileSubmit = (e) => {
+    onHandleSubmit(e);
+    toggle();
   };
 
   return (
@@ -134,11 +137,11 @@ const DiaryAddProductForm = ({ isLoadingProducts, toggle }) => {
                   {isMobileDevice ? (
                     <Button
                       buttonName="Добавить"
-                      type="submit"
-                      onClick={toggle}
+                      type={"submit"}
+                      onClick={onMobileSubmit}
                     />
                   ) : (
-                    <ButtonAdd buttonName="Добавить" type="submit" />
+                    <ButtonAdd type="submit" />
                   )}
                 </div>
               )}

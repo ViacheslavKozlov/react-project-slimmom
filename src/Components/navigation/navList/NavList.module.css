@@ -20,7 +20,7 @@
 @media screen and (min-width: 1280px) {
   .list {
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     justify-content: space-between;
   }
 } ;

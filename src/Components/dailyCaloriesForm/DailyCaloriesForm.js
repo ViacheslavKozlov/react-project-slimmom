@@ -14,7 +14,7 @@ const initialState = {
   height: "",
   age: "",
   desiredWeight: "",
-  bloodType: 1
+  bloodType: 1,
 };
 
 const DailyCaloriesForm = () => {
@@ -32,10 +32,10 @@ const DailyCaloriesForm = () => {
   const history = useHistory();
 
   const toggleModal = () => {
-    setModalOpen(prev => !prev);
+    setModalOpen((prev) => !prev);
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     if (isAuth && userId) {
       dispatch(getDailyRateOperation(userData, userId));
@@ -53,7 +53,7 @@ const DailyCaloriesForm = () => {
     window.scrollBy(0, 0);
     toggleModal();
   };
-  const onHandleBlur = e => {
+  const onHandleBlur = (e) => {
     const input = e.target;
     if (input.value !== "") {
       input.classList.add(style.not_empty);
@@ -62,14 +62,14 @@ const DailyCaloriesForm = () => {
       input.classList.remove(style.not_empty);
     }
   };
-  const onHandleChange = e => {
+  const onHandleChange = (e) => {
     const { value, name } = e.target;
 
     if (value === "") {
-      setUserData(prev => ({ ...prev, [name]: value }));
+      setUserData((prev) => ({ ...prev, [name]: value }));
       return;
     }
-    setUserData(prev => ({ ...prev, [name]: Number(value) }));
+    setUserData((prev) => ({ ...prev, [name]: Number(value) }));
   };
 
   const { weight, height, age, desiredWeight, bloodType } = userData;
