@@ -1,19 +1,37 @@
+.loader_container {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 320px;
+}
+
 .scrollList {
   /* overflow: auto; */
   font-family: var(--main-font);
+  padding-right: 10px;
   /* height: 220px; */
 }
 
 @media screen and (min-width: 768px) {
+  .loader_container {
+    padding-top: 50px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 605px;
+  }
   .scrollList {
     overflow: auto;
-    height: 240px;
-    max-width: 589px;
+    height: 230px;
     padding-right: 15px;
     padding-left: 0;
   }
   .list {
-    width: 605px;
+    /* width: 605px; */
+    margin-top: 50px;
+    margin-bottom: 60px;
   }
   .scrollList::-webkit-scrollbar {
     width: 8px;
@@ -41,9 +59,13 @@
 @media screen and (min-width: 1280px) {
   .scrollList {
     /* overflow: auto; */
-    height: 269px;
+    height: 240px;
     width: 605px;
     padding-right: 15px;
     padding-left: 0;
+  }
+  .list {
+    /* width: 605px; */
+    padding-right: 30px;
   }
 }

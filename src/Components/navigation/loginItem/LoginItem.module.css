@@ -2,6 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  z-index: 10;
 }
 .arrowSvg {
   width: 10px;
@@ -22,6 +23,10 @@
   padding: 0;
   margin: 0;
   text-align: center;
+}
+
+.rightContainer {
+  margin-left: auto;
 }
 
 .listSecondary {

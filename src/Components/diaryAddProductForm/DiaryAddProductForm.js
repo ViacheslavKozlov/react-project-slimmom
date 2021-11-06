@@ -23,10 +23,10 @@ const DiaryAddProductForm = ({ isLoadingProducts, toggle }) => {
   const getProductSearch = (value) => {
     axios
       .get(BASE_URL + `/product?search=${value}`)
-      .then(response => {
+      .then((response) => {
         setProducts(response.data.slice(0, 10));
       })
-      .catch(error => {
+      .catch((error) => {
         setProducts([]);
         alert(error);
       });
@@ -39,20 +39,23 @@ const DiaryAddProductForm = ({ isLoadingProducts, toggle }) => {
     name === "weight" && setWeight(value);
 
     if (name === "product") {
-      !products.some(product => product.title.ru === value) && getProductSearch(value);
+      !products.some((product) => product.title.ru === value) &&
+        getProductSearch(value);
     }
   };
 
   const getProductIdByName = () => {
     // console.log(products);
-    const curProd = products.find(product => product.title.ru.toLowerCase() === value.toLowerCase());
+    const curProd = products.find(
+      (product) => product.title.ru.toLowerCase() === value.toLowerCase()
+    );
     if (!curProd) {
       return;
     }
     return curProd._id;
   };
 
-  const onHandleSubmit = e => {
+  const onHandleSubmit = (e) => {
     e.preventDefault();
 
     if (products.length === 0) {
@@ -64,7 +67,7 @@ const DiaryAddProductForm = ({ isLoadingProducts, toggle }) => {
     const userEatenProduct = {
       date: diaryProduct.date,
       productId: id,
-      weight: Number(weight) || 100
+      weight: Number(weight) || 100,
     };
     dispatch(addProduct(userEatenProduct));
     setValue("");
@@ -96,8 +99,12 @@ const DiaryAddProductForm = ({ isLoadingProducts, toggle }) => {
                 />
               </label>
               <datalist id="productList">
-                {products.map(product => (
-                  <option key={product._id} id={product._id} value={product.title?.ru || "Not found"} />
+                {products.map((product) => (
+                  <option
+                    key={product._id}
+                    id={product._id}
+                    value={product.title?.ru || "Not found"}
+                  />
                 ))}
               </datalist>
               <label htmlFor="myBrowser" className={style.addProductInputLable}>
@@ -118,19 +125,21 @@ const DiaryAddProductForm = ({ isLoadingProducts, toggle }) => {
             </div>
             <div className={style.button_wrapper}>
               {isLoadingProducts ? (
-                <Loader className={style.loader} type="BallTriangle" color={`var(--active-color)`} height={30} width={30} />
+                <Loader
+                  className={style.loader}
+                  type="BallTriangle"
+                  color={`var(--active-color)`}
+                  height={30}
+                  width={30}
+                />
               ) : (
                 <div className={style.btnAddFormMobile}>
                   {isMobileDevice ? (
-<<<<<<< HEAD
                     <Button
                       buttonName="Добавить"
                       type={"submit"}
                       onClick={onMobileSubmit}
                     />
-=======
-                    <Button buttonName="Добавить" type="submit" onClick={toggle} />
->>>>>>> 81fde622c13d59dd22a9dcabc6f8ae73ee1f5336
                   ) : (
                     <ButtonAdd type="submit" />
                   )}

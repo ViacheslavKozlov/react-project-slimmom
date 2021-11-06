@@ -29,7 +29,7 @@ const AuthForm = ({ handleSubmit, btnName, btn_auth }) => {
   const history = useHistory();
 
   return (
-    <Wrapper>
+    <div className={styles.auth_wrapper}>
       <h1 className={styles.registration_title}>{btnName}</h1>
       <form onSubmit={onSubmit} className={styles.registration_form}>
         <div>
@@ -97,7 +97,7 @@ const AuthForm = ({ handleSubmit, btnName, btn_auth }) => {
           )}
         </div>
       </form>
-    </Wrapper>
+    </div>
   );
 };
 

@@ -26,38 +26,31 @@ const DiaryProductsListItem = ({
       <li className={style.dairyItem}>
         <p className={style.dairyItemProduct}>{title}</p>
         <p className={style.dairyItemWeight}>{weight} г </p>
-        <p className={style.dairyItemCcal}>{Math.round(kcal)} ккал</p>
-        {diaryProduct.date === todayDate ? (
-          <>
-            {isLoadingProducts ? (
-              <Loader
-                type="BallTriangle"
-                color={`var(--active-color)`}
-                height={15}
-                width={15}
-              />
-            ) : (
-              <button
-                className={style.btnDelete}
-                type="button"
-                // id={_id}
-                onClick={onDeleteClick}
-              >
-                X
-              </button>
-            )}
-          </>
-        ) : (
-          // <button
-          //   className={style.btnDelete}
-          //   type="button"
-          //   // id={_id}
-          //   onClick={onDeleteClick}
-          // >
-          //   X
-          // </button>
-          <> </>
-        )}
+        <div className={style.withButtonContainer}>
+          <p className={style.dairyItemCcal}>{Math.round(kcal)} ккал</p>
+          {diaryProduct.date === todayDate ? (
+            <>
+              {isLoadingProducts ? (
+                <Loader
+                  type="BallTriangle"
+                  color={`var(--active-color)`}
+                  height={15}
+                  width={15}
+                />
+              ) : (
+                <button
+                  className={style.btnDelete}
+                  type="button"
+                  onClick={onDeleteClick}
+                >
+                  X
+                </button>
+              )}
+            </>
+          ) : (
+            <> </>
+          )}
+        </div>
       </li>
     </>
   );

@@ -4,10 +4,12 @@
   width: 100vw;
   bottom: 0;
   left: -15px;
-  /* left: calc(((768px - 100vw - 140px) / 2)); */
+  /* left: calc(((320px - 100vw - 30px) / 2)); */
 }
 
 .statistics_container {
+  margin: 0 auto;
+  max-width: 500px;
   font-family: var(--main-font);
   text-align: center;
   padding: 40px 15px 40px 15px;
@@ -65,7 +67,7 @@
   }
   .statistics_container {
     margin: 0 auto;
-    width: 768px;
+    max-width: 768px;
     display: flex;
     justify-content: space-between;
     padding: 90px 70px 90px 70px;
@@ -81,19 +83,35 @@
 }
 @media screen and (min-width: 1280px) {
   .statistics_wrapper {
+    padding-left: 90px;
+    padding-top: 292px;
     height: 100vh;
-    background-color: #f0f1f3;
+    background: linear-gradient(
+        to right,
+        rgba(240, 241, 243, 1),
+        rgba(240, 241, 243, 0.2)
+      ),
+      url("../../images/leaves-desc.png");
+    /* background-image: url("../../images/leaves-desc.png"); */
+    background-position: 100% 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    /* background-color: rgb(240, 241, 243); */
     position: relative;
-    width: 330px;
+    /* width: 100%; */
+    width: calc(330px + 90px + (100vw - 1050px) / 2 - 5px);
     bottom: 0;
+    top: -146px;
     /* left: -70px; */
     left: 0;
   }
+
   .statistics_container {
     display: flex;
     flex-direction: column;
     padding: 0;
     width: 330px;
+    margin: 0;
   }
   .statistic_box {
     padding-right: 0;
