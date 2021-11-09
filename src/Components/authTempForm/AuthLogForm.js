@@ -4,7 +4,6 @@ import styles from "./AuthLogForm.module.css";
 import { mainRoutes } from "../../routes/mainRoutes";
 import { Button } from "../button/Button";
 import { useHistory } from "react-router-dom";
-import Wrapper from "../wrapper/Wrapper";
 
 const AuthForm = ({ handleSubmit, btnName, btn_auth }) => {
   const [name, setName] = useState("");
@@ -19,11 +18,6 @@ const AuthForm = ({ handleSubmit, btnName, btn_auth }) => {
   };
   const onSubmit = (e) => {
     e.preventDefault();
-    // console.log(handleSubmit({ username: name, email, password }))
-    // console.log(handleSubmit())
-    // if ()
-    // let path = `/calculator`;
-    // history.push(path);
     handleSubmit({ username: name, email, password });
   };
   const history = useHistory();
