@@ -49,18 +49,18 @@
   }
 }
 @media screen and (min-width: 1280px) {
-  /* .private {
-    background: linear-gradient(
+  .private {
+    /* background: linear-gradient(
       270deg,
       rgba(240, 241, 243, 1) 0px,
       rgba(240, 241, 243, 1) 200px,
       rgba(255, 255, 255, 1) 200px,
       rgba(255, 255, 255, 1) 500px
     ); */
-  /* background: linear-gradient(
+    background: linear-gradient(
       270deg,
-      rgba(240, 241, 243, 1) 40%,
-      rgba(255, 255, 255, 1) 40%
-    ); */
-  /* } */
+      rgba(240, 241, 243, 1) 43%,
+      rgba(255, 255, 255, 1) 43%
+    );
+  }
 }

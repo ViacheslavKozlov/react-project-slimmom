@@ -15,7 +15,11 @@ const PublicRoute = ({ path, exact, component, isAuth, isRestricted }) => {
       )}
     </>
   ) : (
-    <Route path={path} exact={exact} component={component} />
+    <>
+      <Route path={path} exact={exact} component={component} />
+
+      {/* <Route render={() => <Redirect to={{ pathname: "/" }} />} /> */}
+    </>
   );
 };
 

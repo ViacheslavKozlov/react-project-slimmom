@@ -86,16 +86,17 @@
     padding-left: 90px;
     padding-top: 292px;
     height: 100vh;
-    background: linear-gradient(
+    background: none;
+    /* background: linear-gradient(
         to right,
         rgba(240, 241, 243, 1),
         rgba(240, 241, 243, 0.2)
       ),
-      url("../../images/leaves-desc.png");
+      url("../../images/leaves-desc.png"); */
     /* background-image: url("../../images/leaves-desc.png"); */
-    background-position: 100% 100%;
+    /* background-position: 100% 100%;
     background-size: cover;
-    background-repeat: no-repeat;
+    background-repeat: no-repeat; */
     /* background-color: rgb(240, 241, 243); */
     position: relative;
     /* width: 100%; */

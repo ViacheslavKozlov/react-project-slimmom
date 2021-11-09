@@ -5,7 +5,10 @@ const PrivateRoute = ({ path, exact, component, isAuth }) => {
   return !isAuth ? (
     <Redirect to="/login" />
   ) : (
-    <Route path={path} exact={exact} component={component} />
+    <>
+      <Route path={path} exact={exact} component={component} />
+      {/* <Route render={() => <Redirect to={{ pathname: "/" }} />} /> */}
+    </>
   );
 };
 
