@@ -1,3 +1,8 @@
+.auth_wrapper {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
 .input {
   display: block;
   margin-bottom: 12px;
@@ -23,9 +28,7 @@
 }
 
 .registration_form {
-  margin: 0;
-
-  width: 290px;
+  margin: 0 auto;
 }
 
 @media screen and (min-width: 768px) {
@@ -54,6 +57,9 @@
   }
 }
 @media screen and (min-width: 1280px) {
+  .auth_wrapper {
+    margin: 0;
+  }
   .registration_title {
     margin-top: 95px;
     margin-bottom: 68px;
@@ -127,7 +133,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 290px;
 }
 @media screen and (min-width: 768px) {
   .flex {

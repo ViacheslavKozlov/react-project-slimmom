@@ -7,8 +7,10 @@
   --calories-color: #264061;
   --main-font: Roboto;
 }
-body {
+* {
   box-sizing: border-box;
+}
+body {
   margin: 0;
   padding: 0;
   outline: none;

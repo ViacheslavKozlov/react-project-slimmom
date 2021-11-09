@@ -1,4 +1,6 @@
 .backGround {
+  /* margin: 0 auto; */
+  /* max-width: 320px; */
   /* background-repeat: no-repeat;
 
   /* background-position: 100% 100%; */
@@ -7,14 +9,14 @@
 }
 
 .mobileDiaryDateСalendar {
+  margin: 0 auto;
+  max-width: 500px;
   margin-top: 40px;
-  padding-left: 15px;
-  padding-right: 15px;
 }
 .mobileProductList {
+  margin: 0 auto;
+  max-width: 500px;
   margin-top: 31px;
-  /* padding-left: 15px;
-  padding-right: 15px; */
   height: 211px;
   overflow-y: auto;
 }
@@ -57,16 +59,22 @@
 @media screen and (min-width: 768px) {
   .mobileDiaryDateСalendar {
     margin-top: 100px;
+    margin-bottom: 60px;
+    margin-left: 0;
+    margin-right: 0;
     padding-left: 0px;
-    padding-right: 90px;
+    padding-right: 0;
   }
 }
 
 @media screen and (min-width: 1280px) {
   .mainContainer {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+  .formContainer {
+    width: 605px;
   }
   .mobileDiaryDateСalendar {
     margin-top: 143px;
@@ -74,7 +82,7 @@
     padding-right: 115px;
   }
   .statContainer {
-    padding-left: 90px;
-    margin-top: 100px;
+    padding-left: 0;
+    margin-top: 0;
   }
 }

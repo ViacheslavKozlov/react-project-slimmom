@@ -1,5 +1,7 @@
 .addProductInputForm {
   padding: 80px 0 60px 0;
+  max-width: 400px;
+  margin: 0 auto;
 }
 
 .formFieldProduct {
@@ -73,13 +75,13 @@
     align-items: center;
     justify-content: space-between;
     padding-left: 0;
-    padding-right: 90px;
+    padding-right: 0;
   }
   .addProductInputForm {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 60px 0px 39px 0px;
+    padding: 0;
   }
   .formFieldWeight {
     margin-top: 0;

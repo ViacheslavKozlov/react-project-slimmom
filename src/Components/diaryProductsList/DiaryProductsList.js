@@ -26,12 +26,14 @@ const DiaryProductsList = ({ date, isLoadingDaily, isLoadingProducts }) => {
   return (
     <>
       {false || isLoadingDaily ? (
-        <Loader
-          type="BallTriangle"
-          color={`var(--active-color)`}
-          height={90}
-          width={90}
-        />
+        <div className={style.loader_container}>
+          <Loader
+            type="BallTriangle"
+            color={`var(--active-color)`}
+            height={90}
+            width={90}
+          />
+        </div>
       ) : (
         <ul className={style.list}>
           <div className={style.scrollList}>

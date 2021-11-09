@@ -19,6 +19,10 @@ const LoginItem = () => {
   const toggle = () => {
     dispatch(toggleFrom());
   };
+  const onLogoutClick = () => {
+    logout();
+    dispatch(toggleFrom(false));
+  };
 
   return (
     <div className={styles.container}>
@@ -31,14 +35,16 @@ const LoginItem = () => {
           </button>
         </div>
       )}
-      <ul className={styles.listSecondary}>
-        <li className={styles.itemUser}>{user}</li>
-        <li className={styles.item} onClick={logout}>
-          <button type="button" className={styles.btn}>
-            Выйти
-          </button>
-        </li>
-      </ul>
+      <div className={styles.rightContainer}>
+        <ul className={styles.listSecondary}>
+          <li className={styles.itemUser}>{user}</li>
+          <li className={styles.item} onClick={onLogoutClick}>
+            <button type="button" className={styles.btn}>
+              Выйти
+            </button>
+          </li>
+        </ul>
+      </div>
     </div>
   );
 };

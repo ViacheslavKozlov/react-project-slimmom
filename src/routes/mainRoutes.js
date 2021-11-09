@@ -51,4 +51,14 @@ export const mainRoutes = [
     isPrivate: false,
     isRestricted: true,
   },
+  {
+    name: "Home",
+    path: "*",
+    exact: true,
+    component: lazy(() =>
+      import("../pages/HomePage" /*webpackChunkName:"HomePage"*/)
+    ),
+    isPrivate: false,
+    isRestricted: false,
+  },
 ];
