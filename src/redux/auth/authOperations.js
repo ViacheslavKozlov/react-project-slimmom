@@ -14,6 +14,19 @@ import {
 } from "./authActions";
 import { apiBaseURL, register, login, logout, refresh } from "../../bk.json";
 import axios from "axios";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+const notifyError = (message) =>
+  toast.error(message, {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+  });
 
 axios.defaults.baseURL = apiBaseURL;
 
@@ -28,7 +41,6 @@ export const token = {
 
 export const authRegistration = (userData) => async (dispatch) => {
   dispatch(registerAuthRequest());
-
   await axios
     .post(register, userData)
     .then(({ data }) => dispatch(registerAuthSuccess(data)))
@@ -37,7 +49,16 @@ export const authRegistration = (userData) => async (dispatch) => {
         authLogin({ email: userData.email, password: userData.password })
       )
     )
-    .catch((error) => dispatch(registerAuthError(error.response.data.message)));
+    .catch((error) => {
+      if (
+        error.response.data.message.includes(
+          `User with ${userData.email} email already exists`
+        )
+      ) {
+        notifyError("Пользователь с таким email уже зарегистрирован");
+      }
+      dispatch(registerAuthError(error.response.data.message));
+    });
 };
 
 export const authLogin = (userData) => (dispatch) => {
@@ -53,6 +74,16 @@ export const authLogin = (userData) => (dispatch) => {
       token.set(data.accessToken);
     })
     .catch((error) => {
+      if (
+        error.response.data.message.includes(
+          `User with ${email} email doesn't exist`
+        )
+      ) {
+        notifyError("Пользователь с таким email не зарегистрирован");
+      }
+      if (error.response.data.message.includes(`Password is wrong`)) {
+        notifyError("Неправильный пароль");
+      }
       dispatch(loginAuthError(error.response.data.message));
     });
 };

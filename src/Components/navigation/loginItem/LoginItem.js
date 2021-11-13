@@ -16,8 +16,12 @@ const LoginItem = () => {
   const isOpen = useSelector(isOpenAddFormModal);
   const { isMobileDevice } = useDeviceSizes();
 
-  const toggle = () => {
-    dispatch(toggleFrom());
+  const onGoBackClick = () => {
+    toggle(false);
+  };
+
+  const toggle = (value) => {
+    dispatch(toggleFrom(value));
   };
   const onLogoutClick = () => {
     logout();
@@ -28,7 +32,7 @@ const LoginItem = () => {
     <div className={styles.container}>
       {isMobileDevice && isOpen && (
         <div className={styles.goBackBtn}>
-          <button type="button" onClick={toggle}>
+          <button type="button" onClick={onGoBackClick}>
             <svg className={styles.arrowSvg}>
               <use href={arrow + "#icon-arrow-left2"} />
             </svg>
@@ -38,8 +42,12 @@ const LoginItem = () => {
       <div className={styles.rightContainer}>
         <ul className={styles.listSecondary}>
           <li className={styles.itemUser}>{user}</li>
-          <li className={styles.item} onClick={onLogoutClick}>
-            <button type="button" className={styles.btn}>
+          <li className={styles.item}>
+            <button
+              type="button"
+              className={styles.btn}
+              onClick={onLogoutClick}
+            >
               Выйти
             </button>
           </li>
