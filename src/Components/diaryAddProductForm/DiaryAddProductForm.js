@@ -9,6 +9,19 @@ import { addProduct } from "../../redux/DiaryProducts/diaryProductOperations";
 import { dairyProductsSelector } from "../../redux/DiaryProducts/diaryProductSelector";
 import useDeviceSizes from "../../hooks/useDeviceSizec";
 import Loader from "react-loader-spinner";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+const notifyError = (message) =>
+  toast.error(message, {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+  });
 
 const DiaryAddProductForm = ({ isLoadingProducts, toggle }) => {
   const [value, setValue] = useState("");
@@ -21,6 +34,9 @@ const DiaryAddProductForm = ({ isLoadingProducts, toggle }) => {
   const todayDate = moment(new Date()).format("YYYY-MM-DD");
 
   const getProductSearch = (value) => {
+    if (value === "") {
+      return;
+    }
     axios
       .get(BASE_URL + `/product?search=${value}`)
       .then((response) => {
@@ -28,13 +44,12 @@ const DiaryAddProductForm = ({ isLoadingProducts, toggle }) => {
       })
       .catch((error) => {
         setProducts([]);
-        alert(error);
+        notifyError("Такого продукта нет в списке");
       });
   };
 
   const onHandleChange = ({ target }) => {
     const { value, name } = target;
-    // console.log(value);
     name === "product" && setValue(value);
     name === "weight" && setWeight(value);
 
@@ -45,7 +60,6 @@ const DiaryAddProductForm = ({ isLoadingProducts, toggle }) => {
   };
 
   const getProductIdByName = () => {
-    // console.log(products);
     const curProd = products.find(
       (product) => product.title.ru.toLowerCase() === value.toLowerCase()
     );
@@ -59,15 +73,22 @@ const DiaryAddProductForm = ({ isLoadingProducts, toggle }) => {
     e.preventDefault();
 
     if (products.length === 0) {
-      alert("Продукт не найден");
+      notifyError("Продукт не найден");
+      return;
+    }
+    if (value === "") {
+      notifyError("Введите продукт");
+      return;
+    }
+    if (weight === "") {
+      notifyError("Вы забыли ввести количество грамм");
       return;
     }
     const id = getProductIdByName();
-    // console.log(id);
     const userEatenProduct = {
       date: diaryProduct.date,
       productId: id,
-      weight: Number(weight) || 100,
+      weight: Number(weight),
     };
     dispatch(addProduct(userEatenProduct));
     setValue("");
@@ -76,11 +97,15 @@ const DiaryAddProductForm = ({ isLoadingProducts, toggle }) => {
   };
   const onMobileSubmit = (e) => {
     onHandleSubmit(e);
-    toggle();
+    if (value === "" || weight === "") {
+      return;
+    }
+    toggle(false);
   };
 
   return (
     <>
+      <ToastContainer theme={"colored"} />
       {diaryProduct.date === todayDate ? (
         <form onSubmit={onHandleSubmit}>
           <div className={style.addProductForm}>

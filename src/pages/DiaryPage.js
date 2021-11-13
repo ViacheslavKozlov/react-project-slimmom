@@ -22,8 +22,11 @@ const DiaryPage = () => {
   const isLoadingProducts = useSelector(dairyProductsLoading);
   const dispatch = useDispatch();
 
-  const toggle = () => {
-    dispatch(toggleFrom());
+  const onBtnAddClick = () => {
+    toggle(true);
+  };
+  const toggle = (value) => {
+    dispatch(toggleFrom(value));
   };
 
   return (
@@ -47,7 +50,7 @@ const DiaryPage = () => {
                 />
               </div>
               <div className={styles.btnAddFormMobile}>
-                <ButtonAdd onClick={toggle} />
+                <ButtonAdd onClick={onBtnAddClick} />
               </div>
               <div className={styles.statContainer}>
                 <DailyStatistics

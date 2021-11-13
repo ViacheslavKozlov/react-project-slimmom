@@ -3,7 +3,7 @@ import useDeviceSizes from "../../../hooks/useDeviceSizec";
 import NavigationItem from "../navigationItem/NavigationItem";
 import styles from "./NavList.module.css";
 
-const NavList = ({ routes, isAuth, toggleModal }) => {
+const NavList = ({ routes, isAuth, toggleModal, toggle }) => {
   const { isMobileDevice, isTabletDevice } = useDeviceSizes();
 
   return (
@@ -17,6 +17,7 @@ const NavList = ({ routes, isAuth, toggleModal }) => {
       {routes.map(({ name, path, exact, isPrivate, isRestricted }) => (
         <NavigationItem
           toggleModal={toggleModal}
+          toggle={toggle}
           key={path}
           name={name}
           path={path}
