@@ -1,5 +1,5 @@
 .statistics_wrapper {
-  background-color: #f0f1f3;
+  /* background-color: #f0f1f3; */
   position: relative;
   width: 100vw;
   bottom: 0;
@@ -55,7 +55,7 @@
 }
 @media screen and (min-width: 768px) {
   .statistics_wrapper {
-    background-color: #f0f1f3;
+    /* background-color: #f0f1f3; */
     position: relative;
     width: 100vw;
     bottom: 0;
