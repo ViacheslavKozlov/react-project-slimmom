@@ -19,8 +19,8 @@ const App = () => {
 
   return (
     <>
-      <div className={!isAuthIn ? styles.public : styles.private}>
-        <div className={!isAuthIn ? styles.publicLeave : styles.privateLeave}>
+      <div className={!isAuthIn && styles.public}>
+        <div className={!isAuthIn && styles.publicLeave}>
           <Header />
           <Wrapper>
             <Main />
