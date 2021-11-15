@@ -7,8 +7,8 @@ import { useHistory } from "react-router-dom";
 
 const AuthForm = ({ handleSubmit, btnName, btn_auth }) => {
   const [name, setName] = useState("");
-  const [email, setEmail] = useState("dnbdimka34@gmail.com");
-  const [password, setPassword] = useState("qweqwe123");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const onChange = (e) => {
     const { type, value } = e.target;
